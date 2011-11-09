@@ -41,12 +41,34 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 342507267;
-			PBXWorkspaceStateSaveDate = 342507267;
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					689,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 342509095;
+			PBXWorkspaceStateSaveDate = 342509095;
 		};
 		perUserProjectItems = {
+			67A2AC58146A466500E4911D /* PlistBookmark */ = 67A2AC58146A466500E4911D /* PlistBookmark */;
 			67F9C217146A41F1005B2CAB /* PBXTextBookmark */ = 67F9C217146A41F1005B2CAB /* PBXTextBookmark */;
-			67F9C218146A41F1005B2CAB /* PlistBookmark */ = 67F9C218146A41F1005B2CAB /* PlistBookmark */;
 			67F9C219146A41F1005B2CAB /* PlistBookmark */ = 67F9C219146A41F1005B2CAB /* PlistBookmark */;
 		};
 		sourceControlManager = 6775FEA8146A3D830099C340 /* Source Control */;
@@ -95,6 +117,17 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	67A2AC58146A466500E4911D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 67F9C20B146A3F6F005B2CAB /* ananas-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/xukun/Documents/workspace/ananas/project/ananas-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
 	67F9C20C146A3F6F005B2CAB /* main.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {907, 456}}";
@@ -112,17 +145,6 @@
 		vrLen = 353;
 		vrLoc = 0;
 	};
-	67F9C218146A41F1005B2CAB /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 67F9C20B146A3F6F005B2CAB /* ananas-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/xukun/Documents/workspace/svn/trunk/ananas/project/ananas-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
 	67F9C219146A41F1005B2CAB /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 67F9C20B146A3F6F005B2CAB /* ananas-Info.plist */;
@@ -132,6 +154,6 @@
 		);
 		name = "/Users/xukun/Documents/workspace/svn/trunk/ananas/project/ananas-Info.plist";
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 }
