@@ -8,7 +8,6 @@ import jananas.json.impl.handler.SajLocator_internal;
 import java.io.IOException;
 import java.io.Reader;
 
-
 class SajParserImpl implements SajParser {
 
 	static final int TYPE_DICT = 1;
@@ -270,13 +269,15 @@ class SajParserImpl implements SajParser {
 				}
 			} else {
 				// tow parts
-				final String part1 = s.substring(0, ie);
-				final String part2 = s.substring(ie + 1);
+				String part1 = s.substring(0, ie);
+				String part2 = s.substring(ie + 1);
+				if (part2.startsWith("+")) {
+					part2 = part2.substring(1);
+				}
 				final double np1 = Double.parseDouble(part1);
 				final int np2 = Integer.parseInt(part2);
-				throw new JSONException("unsupported float number:"
-						+ (np1 + "e" + np2));
-				// h.onDouble(n);
+				final double n = np1 * Math.pow(10, np2);
+				h.onDouble(n);
 			}
 		}
 

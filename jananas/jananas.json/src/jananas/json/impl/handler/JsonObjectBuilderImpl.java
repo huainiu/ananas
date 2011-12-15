@@ -11,8 +11,6 @@ import jananas.json.object.JSON_string;
 
 import java.util.Stack;
 
-
-
 class JsonObjectBuilderImpl extends JsonObjectBuilder {
 
 	private final Stack<JSON_object> mStack;
@@ -64,18 +62,16 @@ class JsonObjectBuilderImpl extends JsonObjectBuilder {
 	}
 
 	private void push(JSON_object obj) {
-		this.mStack.push(obj);
-	}
 
-	private void pop() {
-
-		final JSON_object child = this.mStack.pop();
+		final JSON_object child, parent;
+		child = obj;
 		if (this.mStack.empty()) {
-			this.mRootObj = child;
-			return;
+			this.mRootObj = obj;
+			parent = null;
+		} else {
+			parent = this.mStack.peek();
 		}
-
-		final JSON_object parent = this.mStack.peek();
+		this.mStack.push(child);
 
 		if (parent instanceof JSON_dictionary) {
 			final JSON_dictionary pDict = (JSON_dictionary) parent;
@@ -87,10 +83,17 @@ class JsonObjectBuilderImpl extends JsonObjectBuilder {
 			final JSON_array pArray = (JSON_array) parent;
 			pArray.add(child);
 
+		} else if (parent == null) {
+			return;
+
 		} else {
 			throw new JSONException("bad type,\n    parent:" + parent
 					+ "\n    child:" + child);
 		}
+	}
+
+	private void pop() {
+		this.mStack.pop();
 	}
 
 	@Override

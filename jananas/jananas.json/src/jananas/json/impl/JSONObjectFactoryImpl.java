@@ -12,8 +12,6 @@ import jananas.json.object.JSON_string;
 import java.util.Hashtable;
 import java.util.Vector;
 
-
-
 class JSONObjectFactoryImpl implements JSONObjectFactory {
 
 	static class MyJSONObjectCast implements JSONObjectCast {

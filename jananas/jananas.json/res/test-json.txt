@@ -1,3 +1,33 @@
 {
-"output":"hello world!"
+
+"output":"hello world!",
+
+"a_null":null,
+"a_string":"hey, this is a string!",
+
+"a_boolean_true":true,
+"a_boolean_false":false,
+
+"a_int_0":      0 ,
+"a_int_+":   0217 ,
+"a_int_-":  -0217 ,
+
+"a_double_0":    0.00000,
+"a_double_-":   -3.1415926,
+"a_double_+":    3.1415926,
+"a_double_large":314159274857485746336845959473363255254647859584736363625256734784494948483736356.373736,
+"a_double_e":3.1415927485748e80,
+"a_double_e-":3.1415927485748e-80,
+"a_double_e+":3.1415927485748e+80,
+
+
+"a_array_0":[],
+"a_array_1":[0],
+"a_array_2":[0,1],
+
+
+
+"a_dict_0":{  },
+"a_dict_1":{  "k":"v"  }
+
 }
