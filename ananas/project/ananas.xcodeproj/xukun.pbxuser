@@ -12,6 +12,7 @@
 		activeSDKPreference = iphonesimulator3.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* ananas */;
 		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* ananas */,
 		);
 		codeSenseManager = 6775FEA9146A3D830099C340 /* Code sense */;
 		executables = (
@@ -62,8 +63,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 343631515;
-			PBXWorkspaceStateSaveDate = 343631515;
+			PBXPerProjectTemplateStateSaveDate = 343703376;
+			PBXWorkspaceStateSaveDate = 343703376;
 		};
 		perUserProjectItems = {
 			6712E2FE146A4A83003D555F /* PlistBookmark */ = 6712E2FE146A4A83003D555F /* PlistBookmark */;
@@ -73,11 +74,21 @@
 			676FC944147B76F7007876E8 /* PBXTextBookmark */ = 676FC944147B76F7007876E8 /* PBXTextBookmark */;
 			676FC945147B76F7007876E8 /* PBXTextBookmark */ = 676FC945147B76F7007876E8 /* PBXTextBookmark */;
 			676FC946147B76F7007876E8 /* PBXTextBookmark */ = 676FC946147B76F7007876E8 /* PBXTextBookmark */;
-			676FC947147B76F7007876E8 /* XCBuildMessageTextBookmark */ = 676FC947147B76F7007876E8 /* XCBuildMessageTextBookmark */;
-			676FC952147B79BD007876E8 /* PBXTextBookmark */ = 676FC952147B79BD007876E8 /* PBXTextBookmark */;
+			678E3F3D147B9CD3000A1C4E /* PBXTextBookmark */ = 678E3F3D147B9CD3000A1C4E /* PBXTextBookmark */;
+			67DEE605147C86C0006B6A70 /* PBXTextBookmark */ = 67DEE605147C86C0006B6A70 /* PBXTextBookmark */;
+			67DEE606147C86C0006B6A70 /* PBXTextBookmark */ = 67DEE606147C86C0006B6A70 /* PBXTextBookmark */;
+			67DEE607147C86C0006B6A70 /* PBXTextBookmark */ = 67DEE607147C86C0006B6A70 /* PBXTextBookmark */;
+			67DEE608147C86C0006B6A70 /* PBXTextBookmark */ = 67DEE608147C86C0006B6A70 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6775FEA8146A3D830099C340 /* Source Control */;
 		userBuildSettings = {
+		};
+	};
+	32CA4F630368D1EE00C91783 /* ananas_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {832, 531}}";
+			sepNavSelRange = "{181, 0}";
+			sepNavVisRange = "{0, 181}";
 		};
 	};
 	6712E2FE146A4A83003D555F /* PlistBookmark */ = {
@@ -90,6 +101,20 @@
 		name = "/Users/xukun/Documents/workspace/ananas/project/ananas-Info.plist";
 		rLen = 0;
 		rLoc = 9223372036854775808;
+	};
+	6712E30C146A4AFA003D555F /* ANClass.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {832, 531}}";
+			sepNavSelRange = "{277, 0}";
+			sepNavVisRange = "{0, 277}";
+		};
+	};
+	6712E30D146A4AFA003D555F /* ANClass.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {832, 645}}";
+			sepNavSelRange = "{167, 0}";
+			sepNavVisRange = "{0, 167}";
+		};
 	};
 	6712E30E146A4AFA003D555F /* ANObject.h */ = {
 		uiCtxt = {
@@ -131,7 +156,7 @@
 	};
 	676FC931147B67DA007876E8 /* ANConnection.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {832, 1300}}";
+			sepNavIntBoundsRect = "{{0, 0}, {832, 1261}}";
 			sepNavSelRange = "{778, 0}";
 			sepNavVisRange = "{0, 605}";
 		};
@@ -200,25 +225,6 @@
 		vrLen = 810;
 		vrLoc = 0;
 	};
-	676FC947147B76F7007876E8 /* XCBuildMessageTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "Expected ':' before ';' token";
-		fRef = 676FC931147B67DA007876E8 /* ANConnection.h */;
-		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 72;
-		rType = 1;
-	};
-	676FC952147B79BD007876E8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 676FC931147B67DA007876E8 /* ANConnection.h */;
-		name = "ANConnection.h: 64";
-		rLen = 0;
-		rLoc = 778;
-		rType = 0;
-		vrLen = 605;
-		vrLoc = 0;
-	};
 	6775FE99146A3D7C0099C340 /* ananas */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -260,6 +266,56 @@
 	6775FEA9146A3D830099C340 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	678E3F3D147B9CD3000A1C4E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 676FC931147B67DA007876E8 /* ANConnection.h */;
+		name = "ANConnection.h: 64";
+		rLen = 0;
+		rLoc = 778;
+		rType = 0;
+		vrLen = 605;
+		vrLoc = 0;
+	};
+	67DEE605147C86C0006B6A70 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6712E30D146A4AFA003D555F /* ANClass.m */;
+		name = "ANClass.m: 15";
+		rLen = 0;
+		rLoc = 167;
+		rType = 0;
+		vrLen = 167;
+		vrLoc = 0;
+	};
+	67DEE606147C86C0006B6A70 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* ananas_Prefix.pch */;
+		name = "ananas_Prefix.pch: 9";
+		rLen = 0;
+		rLoc = 181;
+		rType = 0;
+		vrLen = 181;
+		vrLoc = 0;
+	};
+	67DEE607147C86C0006B6A70 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6712E30C146A4AFA003D555F /* ANClass.h */;
+		name = "ANClass.h: 28";
+		rLen = 0;
+		rLoc = 277;
+		rType = 0;
+		vrLen = 277;
+		vrLoc = 0;
+	};
+	67DEE608147C86C0006B6A70 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6712E30C146A4AFA003D555F /* ANClass.h */;
+		name = "ANClass.h: 28";
+		rLen = 0;
+		rLoc = 277;
+		rType = 0;
+		vrLen = 277;
+		vrLoc = 0;
 	};
 	67F9C20C146A3F6F005B2CAB /* main.m */ = {
 		uiCtxt = {
