@@ -205,27 +205,85 @@ class SajParserImpl implements SajParser {
 		}
 
 		private String _readString() throws IOException {
-
+			final char escapeBuf[] = new char[8];
+			int cbInEsBuf = 0;
 			this._readAndCheck("\"");
-			StringBuffer sbuf = new StringBuffer();
+			final StringBuffer sbuf = new StringBuffer();
 			for (;;) {
 				final int ch = this._read();
-				if (ch == '"') {
-					// end of string
-					return sbuf.toString();
-				} else if (ch < 0) {
-					// EOF
-					throw new JSONException("EOF in a string.");
-				} else {
-					if (ch == '\\') {
-						System.err
-								.println(this
-										+ "[warning]:\n    current implement unsupport escaped string!!!\n");
+				if (cbInEsBuf > 0) {
+					// in escaping
+					escapeBuf[cbInEsBuf++] = (char) ch;
+					if (cbInEsBuf == 2) {
+						// like "\n"
+						final String ch2 = this._UnescapeChar(escapeBuf, 0,
+								cbInEsBuf);
+						if (ch2 != null) {
+							cbInEsBuf = 0;
+							sbuf.append(ch2);
+						}
+					} else if (cbInEsBuf == 6) {
+						// like "\u1234"
+						final String ch2 = this._UnescapeChar(escapeBuf, 0,
+								cbInEsBuf);
+						cbInEsBuf = 0;
+						sbuf.append(ch2);
 					}
-					sbuf.append((char) ch);
+				} else {
+					// out of escaping
+					if (ch == '"') {
+						// end of string
+						return sbuf.toString();
+					} else if (ch < 0) {
+						// EOF
+						throw new JSONException("EOF in a string.");
+					} else if (ch == '\\') {
+						cbInEsBuf = 1;
+						escapeBuf[0] = '\\';
+					} else {
+						sbuf.append((char) ch);
+					}
 				}
 			}
+		}
 
+		private String _UnescapeChar(char chs[], int off, int len) {
+
+			if (len == 2) {
+				// like "\n"
+				final char ch0 = chs[off];
+				final char ch1 = chs[off + 1];
+				if (ch0 == '\\') {
+					switch (ch1) {
+					case '"':
+						return "\"";
+					case '\\':
+						return "\\";
+					case '/':
+						return "/";
+					case 'b':
+						return "\b";
+					case 'f':
+						return "\f";
+					case 'n':
+						return "\n";
+					case 'r':
+						return "\r";
+					case 't':
+						return "\t";
+					case 'u':
+						return null;
+					}
+				}
+			} else if (len == 6) {
+				// like "\u1234"
+				String s = new String(chs, off + 2, len - 2);
+				int n = Integer.parseInt(s, 16);
+				char ch = (char) n;
+				return ("" + ch);
+			}
+			String s = new String(chs, off, len);
+			throw new JSONException("bad JSON escaped string: \"" + s + "\"");
 		}
 
 		private int _read() throws IOException {

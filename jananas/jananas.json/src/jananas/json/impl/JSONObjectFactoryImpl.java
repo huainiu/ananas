@@ -286,7 +286,55 @@ class JSONObjectFactoryImpl implements JSONObjectFactory {
 		}
 
 		public String toString() {
-			return ('"' + this.mValue + '"');
+			final char[] chs = this.mValue.toCharArray();
+			final StringBuilder sb = new StringBuilder();
+			final int len = chs.length;
+			sb.append('"');
+			for (int i = 0; i < len; i++) {
+				final char ch = chs[i];
+				if (ch > 127) {
+					// hex
+					boolean hex = false;
+					if (hex) {
+						String s = "0000" + Integer.toHexString(ch);
+						s = s.substring(s.length() - 4);
+						sb.append("\\u" + s);
+					} else {
+						sb.append(ch);
+					}
+				} else {
+					switch (ch) {
+					case '"':
+						sb.append("\\\"");
+						break;
+					case '\\':
+						sb.append("\\\\");
+						break;
+					case '/':
+						sb.append("\\/");
+						break;
+					case '\b':
+						sb.append("\\b");
+						break;
+					case '\f':
+						sb.append("\\f");
+						break;
+					case '\n':
+						sb.append("\\n");
+						break;
+					case '\r':
+						sb.append("\\r");
+						break;
+					case '\t':
+						sb.append("\\t");
+						break;
+					default:
+						sb.append((char) ch);
+					}
+				}
+			}
+			sb.append('"');
+			return sb.toString();
 		}
 
 		@Override
