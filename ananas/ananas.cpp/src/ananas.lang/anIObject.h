@@ -1,16 +1,13 @@
 #ifndef __anIObject_h__
 #define __anIObject_h__
 
-
-
-
 class anIObject {
 
 public:
-	virtual ~anIObject(void);
+	anIObject() {
+	}
+	virtual ~anIObject() {
+	}
 };
 
-
-
-
-#endif __anIObject_h__
+#endif // __anIObject_h__

@@ -3,10 +3,7 @@
 
 #include "anIObject.h"
 
-
-
-
-class anCObject :  public virtual anIObject {
+class anCObject: public virtual anIObject {
 
 public:
 
@@ -14,7 +11,4 @@ public:
 	virtual ~anCObject();
 };
 
-
-
-
-#endif __anCObject_h__
+#endif // __anCObject_h__
