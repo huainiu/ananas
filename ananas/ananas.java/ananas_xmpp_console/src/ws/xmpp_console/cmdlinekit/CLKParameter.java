@@ -6,5 +6,7 @@ public interface CLKParameter {
 
 	String getValue();
 
+	String getDescription();
+
 	boolean isOption();
 }

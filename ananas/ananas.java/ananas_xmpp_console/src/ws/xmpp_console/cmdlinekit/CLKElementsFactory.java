@@ -2,9 +2,14 @@ package ws.xmpp_console.cmdlinekit;
 
 public interface CLKElementsFactory {
 
-	CLKCommandSet newCommandSet();
+	CLKMutableCommandSet newCommandSet();
 
 	CLKRunLoop newRunLoop();
 
-	CLKParameterList newParameterList();
+	CLKMutableParameterList newParameterList();
+
+	CLKMutableParameter newParameter(String name);
+
+	CLKMutableParameter newParameter(String name, String value,
+			boolean isOption, String description);
 }

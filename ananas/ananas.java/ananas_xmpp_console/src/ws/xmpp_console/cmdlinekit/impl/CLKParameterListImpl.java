@@ -1,26 +1,36 @@
 package ws.xmpp_console.cmdlinekit.impl;
 
+import java.util.Hashtable;
+
+import ws.xmpp_console.cmdlinekit.CLKMutableParameterList;
 import ws.xmpp_console.cmdlinekit.CLKParameter;
 import ws.xmpp_console.cmdlinekit.CLKParameterList;
 
-public class CLKParameterListImpl implements CLKParameterList {
+class CLKParameterListImpl implements CLKParameterList, CLKMutableParameterList {
+
+	private final Hashtable<String, CLKParameter> mTable = new Hashtable<String, CLKParameter>();
+
+	public CLKParameterListImpl() {
+	}
 
 	@Override
 	public CLKParameter[] listParameters() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mTable.values().toArray(new CLKParameter[0]);
 	}
 
 	@Override
 	public CLKParameter getParameter(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mTable.get(name);
 	}
 
 	@Override
 	public void addParameter(CLKParameter param) {
-		// TODO Auto-generated method stub
-
+		if (param != null) {
+			String name = param.getName();
+			if (name != null) {
+				this.mTable.put(name, param);
+			}
+		}
 	}
 
 }

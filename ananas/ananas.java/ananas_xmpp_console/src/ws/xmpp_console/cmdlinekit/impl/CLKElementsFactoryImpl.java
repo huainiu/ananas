@@ -1,14 +1,15 @@
 package ws.xmpp_console.cmdlinekit.impl;
 
-import ws.xmpp_console.cmdlinekit.CLKCommandSet;
 import ws.xmpp_console.cmdlinekit.CLKElementsFactory;
-import ws.xmpp_console.cmdlinekit.CLKParameterList;
+import ws.xmpp_console.cmdlinekit.CLKMutableCommandSet;
+import ws.xmpp_console.cmdlinekit.CLKMutableParameter;
+import ws.xmpp_console.cmdlinekit.CLKMutableParameterList;
 import ws.xmpp_console.cmdlinekit.CLKRunLoop;
 
 public class CLKElementsFactoryImpl implements CLKElementsFactory {
 
 	@Override
-	public CLKCommandSet newCommandSet() {
+	public CLKMutableCommandSet newCommandSet() {
 		return new CLKCommandSetImpl();
 	}
 
@@ -18,8 +19,24 @@ public class CLKElementsFactoryImpl implements CLKElementsFactory {
 	}
 
 	@Override
-	public CLKParameterList newParameterList() {
+	public CLKMutableParameterList newParameterList() {
 		return new CLKParameterListImpl();
+	}
+
+	@Override
+	public CLKMutableParameter newParameter(String name) {
+		return new CLKParameterImpl(name);
+	}
+
+	@Override
+	public CLKMutableParameter newParameter(String name, String value,
+			boolean isOption, String description) {
+
+		CLKParameterImpl param = new CLKParameterImpl(name);
+		param.setDescription(description);
+		param.setOption(isOption);
+		param.setValue(value);
+		return param;
 	}
 
 }

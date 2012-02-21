@@ -22,4 +22,6 @@ public interface CLKExecuteContext {
 
 	PrintStream getPrint();
 
+	CLKPrompt getPrompt();
+
 }

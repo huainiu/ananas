@@ -6,68 +6,76 @@ import java.io.PrintStream;
 
 public class DefaultCLKExecuteContext implements CLKExecuteContext {
 
-	private CLKCommand command;
-	private CLKCommandSet commandSet;
-	private CLKElementsFactory elementsFactory;
-	private CLKRunLoop runLoop;
-	private PrintStream out;
-	private InputStream in;
-	private CLKParameterList paramList;
+	public CLKCommand mCommand;
+	public CLKCommandSet mCommandSet;
+	public CLKElementsFactory mElementsFactory;
+	public CLKRunLoop mRunLoop;
+	public PrintStream mOut;
+	public InputStream mIn;
+	public CLKParameterList mParamList;
+	private CLKPrompt mPrompt;
 
 	public DefaultCLKExecuteContext() {
-		this.elementsFactory = DefaultCLKElementsFactory.getFactory();
-		this.out = System.out;
-		this.in = System.in;
+		this.mElementsFactory = DefaultCLKElementsFactory.getFactory();
+		this.mOut = System.out;
+		this.mIn = System.in;
+		this.mPrompt = new DefaultCLKPrompt("input command:");
 	}
 
 	public DefaultCLKExecuteContext(CLKExecuteContext p) {
-		this.command = p.getCommand();
-		this.commandSet = p.getCommandSet();
-		this.elementsFactory = p.getElementsFactory();
-		this.runLoop = p.getRunLoop();
-		this.in = p.getInput();
-		this.out = p.getPrint();
-		this.paramList = p.getParameterList();
+		this.mCommand = p.getCommand();
+		this.mCommandSet = p.getCommandSet();
+		this.mElementsFactory = p.getElementsFactory();
+		this.mRunLoop = p.getRunLoop();
+		this.mIn = p.getInput();
+		this.mOut = p.getPrint();
+		this.mParamList = p.getParameterList();
+		this.mPrompt = p.getPrompt();
 	}
 
 	@Override
 	public CLKCommand getCommand() {
-		return this.command;
+		return this.mCommand;
 	}
 
 	@Override
 	public CLKCommandSet getCommandSet() {
-		return this.commandSet;
+		return this.mCommandSet;
 	}
 
 	@Override
 	public CLKElementsFactory getElementsFactory() {
-		return this.elementsFactory;
+		return this.mElementsFactory;
 	}
 
 	@Override
 	public CLKRunLoop getRunLoop() {
-		return this.runLoop;
+		return this.mRunLoop;
 	}
 
 	@Override
 	public InputStream getInput() {
-		return this.in;
+		return this.mIn;
 	}
 
 	@Override
 	public OutputStream getOutput() {
-		return this.out;
+		return this.mOut;
 	}
 
 	@Override
 	public PrintStream getPrint() {
-		return this.out;
+		return this.mOut;
 	}
 
 	@Override
 	public CLKParameterList getParameterList() {
-		return this.paramList;
+		return this.mParamList;
+	}
+
+	@Override
+	public CLKPrompt getPrompt() {
+		return this.mPrompt;
 	}
 
 }

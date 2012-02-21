@@ -6,6 +6,4 @@ public interface CLKParameterList {
 
 	CLKParameter getParameter(String name);
 
-	void addParameter(CLKParameter param);
-
 }
