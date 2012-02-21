@@ -12,4 +12,7 @@ public interface CLKElementsFactory {
 
 	CLKMutableParameter newParameter(String name, String value,
 			boolean isOption, String description);
+
+	CLKInputDialog newInputDialog();
+
 }

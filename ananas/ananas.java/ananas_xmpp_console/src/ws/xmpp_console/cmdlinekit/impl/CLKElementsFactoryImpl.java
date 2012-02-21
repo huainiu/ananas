@@ -1,6 +1,7 @@
 package ws.xmpp_console.cmdlinekit.impl;
 
 import ws.xmpp_console.cmdlinekit.CLKElementsFactory;
+import ws.xmpp_console.cmdlinekit.CLKInputDialog;
 import ws.xmpp_console.cmdlinekit.CLKMutableCommandSet;
 import ws.xmpp_console.cmdlinekit.CLKMutableParameter;
 import ws.xmpp_console.cmdlinekit.CLKMutableParameterList;
@@ -37,6 +38,11 @@ public class CLKElementsFactoryImpl implements CLKElementsFactory {
 		param.setOption(isOption);
 		param.setValue(value);
 		return param;
+	}
+
+	@Override
+	public CLKInputDialog newInputDialog() {
+		return new CLKInputDialogImpl();
 	}
 
 }

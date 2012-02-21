@@ -1,9 +1,10 @@
 package ws.xmpp_console.cmdlinekit.command;
 
+import ws.xmpp_console.cmdlinekit.CLKElementsFactory;
 import ws.xmpp_console.cmdlinekit.CLKExecuteContext;
-import ws.xmpp_console.cmdlinekit.CLKParameterList;
+import ws.xmpp_console.cmdlinekit.CLKInputDialog;
 
-public class TheSampleCommand  extends AbstractCLKCommand {
+public class TheSampleCommand extends AbstractCLKCommand {
 
 	public TheSampleCommand() {
 		this.registerParameter("aaa", "def-val", true, "desc a");
@@ -18,11 +19,9 @@ public class TheSampleCommand  extends AbstractCLKCommand {
 	@Override
 	public void execute(CLKExecuteContext context) {
 
-		CLKParameterList plist = context.getParameterList();
-		String aaa = this.getParameterValue(plist, "aaa");
-		String bbb = this.getParameterValue(plist, "bbb");
-
-		throw new RuntimeException(this + " aaa:" + aaa + " bbb:" + bbb);
-
+		CLKElementsFactory factory = context.getElementsFactory();
+		CLKInputDialog dlg = factory.newInputDialog();
+		String rlt = dlg.readInput(context, "password:", "");
+		context.getPrint().println("rlt is :" + rlt);
 	}
 }

@@ -7,7 +7,6 @@ import ws.xmpp_console.cmdlinekit.CLKCommandSet;
 import ws.xmpp_console.cmdlinekit.CLKMutableCommandSet;
 import ws.xmpp_console.cmdlinekit.command.TheExitCommand;
 import ws.xmpp_console.cmdlinekit.command.TheHelpCommand;
-import ws.xmpp_console.cmdlinekit.command.TheTestCommand;
 
 class CLKCommandSetImpl implements CLKCommandSet, CLKMutableCommandSet {
 
