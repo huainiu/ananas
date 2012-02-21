@@ -8,7 +8,12 @@ import ws.xmpp_console.cmdlinekit.CLKExecuteContext;
 import ws.xmpp_console.cmdlinekit.CLKParameter;
 import ws.xmpp_console.cmdlinekit.CLKParameterList;
 
-public class DefaultHelpCommand implements CLKCommand {
+public class TheHelpCommand extends AbstractCLKCommand {
+
+	public TheHelpCommand() {
+		this.registerParameter("cmd", "", true,
+				"the command name witch to show detail help.");
+	}
 
 	@Override
 	public String getName() {
@@ -17,12 +22,13 @@ public class DefaultHelpCommand implements CLKCommand {
 
 	@Override
 	public String getHelpTitle() {
-		return "title of " + this.getName();
+		return "show help info";
 	}
 
 	@Override
 	public String getHelpContent() {
-		return "content of " + this.getName();
+		return ("show help info, "
+				+ "use 'help -cmd <command>' to show detail help content for special command.");
 	}
 
 	@Override
@@ -106,11 +112,6 @@ public class DefaultHelpCommand implements CLKCommand {
 		} else {
 			return str;
 		}
-	}
-
-	@Override
-	public CLKParameterList getParameterList() {
-		return null;
 	}
 
 }

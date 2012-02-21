@@ -13,7 +13,7 @@ public class DefaultCLKExecuteContext implements CLKExecuteContext {
 	public PrintStream mOut;
 	public InputStream mIn;
 	public CLKParameterList mParamList;
-	private CLKPrompt mPrompt;
+	public CLKPrompt mPrompt;
 
 	public DefaultCLKExecuteContext() {
 		this.mElementsFactory = DefaultCLKElementsFactory.getFactory();

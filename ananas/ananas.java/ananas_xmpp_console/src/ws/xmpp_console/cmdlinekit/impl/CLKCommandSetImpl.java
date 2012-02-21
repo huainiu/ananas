@@ -5,9 +5,9 @@ import java.util.Hashtable;
 import ws.xmpp_console.cmdlinekit.CLKCommand;
 import ws.xmpp_console.cmdlinekit.CLKCommandSet;
 import ws.xmpp_console.cmdlinekit.CLKMutableCommandSet;
-import ws.xmpp_console.cmdlinekit.command.DefaultExitCommand;
-import ws.xmpp_console.cmdlinekit.command.DefaultHelpCommand;
-import ws.xmpp_console.cmdlinekit.command.DefaultTestCommand;
+import ws.xmpp_console.cmdlinekit.command.TheExitCommand;
+import ws.xmpp_console.cmdlinekit.command.TheHelpCommand;
+import ws.xmpp_console.cmdlinekit.command.TheTestCommand;
 
 class CLKCommandSetImpl implements CLKCommandSet, CLKMutableCommandSet {
 
@@ -15,10 +15,8 @@ class CLKCommandSetImpl implements CLKCommandSet, CLKMutableCommandSet {
 
 	public CLKCommandSetImpl() {
 		this.mTable = new Hashtable<String, CLKCommand>();
-
-		this.addCommand(new DefaultHelpCommand());
-		this.addCommand(new DefaultExitCommand());
-		this.addCommand(new DefaultTestCommand());
+		this.addCommand(new TheHelpCommand());
+		this.addCommand(new TheExitCommand());
 	}
 
 	@Override

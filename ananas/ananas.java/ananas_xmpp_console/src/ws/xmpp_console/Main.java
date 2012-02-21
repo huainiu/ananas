@@ -1,13 +1,11 @@
 package ws.xmpp_console;
 
 import ws.xmpp_console.cmdlinekit.CLKElementsFactory;
-import ws.xmpp_console.cmdlinekit.CLKExecuteContext;
 import ws.xmpp_console.cmdlinekit.CLKMutableCommandSet;
-import ws.xmpp_console.cmdlinekit.CLKParameterList;
 import ws.xmpp_console.cmdlinekit.CLKRunLoop;
 import ws.xmpp_console.cmdlinekit.DefaultCLKElementsFactory;
 import ws.xmpp_console.cmdlinekit.DefaultCLKExecuteContext;
-import ws.xmpp_console.cmdlinekit.command.AbstractCLKCommand;
+import ws.xmpp_console.cmdlinekit.command.TheDevToolsCommand;
 
 public class Main {
 
@@ -19,33 +17,9 @@ public class Main {
 		CLKRunLoop runloop = factory.newRunLoop();
 		DefaultCLKExecuteContext context = new DefaultCLKExecuteContext();
 		context.mCommandSet = cmdset;
-		cmdset.addCommand(new MySampleCommand());
+		cmdset.addCommand(new TheDevToolsCommand());
 		runloop.run(context);
 
-	}
-
-	private static class MySampleCommand extends AbstractCLKCommand {
-
-		public MySampleCommand() {
-			this.registerParameter("aaa", "def-val", true, "desc a");
-			this.registerParameter("bbb", null, false, "desc b");
-		}
-
-		@Override
-		public String getName() {
-			return "sample";
-		}
-
-		@Override
-		public void execute(CLKExecuteContext context) {
-
-			CLKParameterList plist = context.getParameterList();
-			String aaa = this.getParameterValue(plist, "aaa");
-			String bbb = this.getParameterValue(plist, "bbb");
-
-			throw new RuntimeException(this + " aaa:" + aaa + " bbb:" + bbb);
-
-		}
 	}
 
 }

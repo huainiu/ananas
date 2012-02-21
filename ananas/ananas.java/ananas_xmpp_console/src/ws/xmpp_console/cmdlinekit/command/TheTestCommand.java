@@ -7,7 +7,7 @@ import ws.xmpp_console.cmdlinekit.CLKExecuteContext;
 import ws.xmpp_console.cmdlinekit.CLKParameter;
 import ws.xmpp_console.cmdlinekit.CLKParameterList;
 
-public class DefaultTestCommand implements CLKCommand {
+public class TheTestCommand implements CLKCommand {
 
 	@Override
 	public String getName() {

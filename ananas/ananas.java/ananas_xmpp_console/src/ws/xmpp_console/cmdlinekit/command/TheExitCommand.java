@@ -4,7 +4,7 @@ import ws.xmpp_console.cmdlinekit.CLKCommand;
 import ws.xmpp_console.cmdlinekit.CLKExecuteContext;
 import ws.xmpp_console.cmdlinekit.CLKParameterList;
 
-public class DefaultExitCommand implements CLKCommand {
+public class TheExitCommand implements CLKCommand {
 
 	@Override
 	public String getName() {
@@ -13,12 +13,12 @@ public class DefaultExitCommand implements CLKCommand {
 
 	@Override
 	public String getHelpTitle() {
-		return "title of " + this.getName();
+		return "exit the app";
 	}
 
 	@Override
 	public String getHelpContent() {
-		return "content of " + this.getName();
+		return "";
 	}
 
 	@Override
