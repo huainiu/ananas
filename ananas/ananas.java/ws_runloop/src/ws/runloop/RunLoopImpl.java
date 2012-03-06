@@ -1,6 +1,8 @@
 package ws.runloop;
 
 import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.Vector;
 
 class RunLoopImpl {
 
@@ -39,7 +41,7 @@ class RunLoopImpl {
 
 		public void registerRunLoop(MyRunLoop runloop) {
 			this.doCleanup();
-			this.mTable.put(runloop.mThread, runloop);
+			this.mTable.put(runloop.getThread(), runloop);
 		}
 
 		private void doCleanup() {
@@ -58,33 +60,237 @@ class RunLoopImpl {
 
 	class MyTaskFIFO {
 
+		private final MySyncObject mSyncObject;
+
+		private final LinkedList<Runnable> mList = new LinkedList<Runnable>();
+
+		public MyTaskFIFO(MySyncObject syncObject) {
+			this.mSyncObject = syncObject;
+		}
+
+		public void push(Runnable task) {
+			if (task != null) {
+				this._doTaskIO(task);
+				this.mSyncObject.doWakeup();
+			}
+		}
+
+		public Runnable pop() {
+			return this._doTaskIO(null);
+		}
+
+		private synchronized Runnable _doTaskIO(Runnable runn) {
+			if (runn == null) {
+				return this.mList.pollFirst();
+			} else {
+				this.mList.addLast(runn);
+				return null;
+			}
+		}
+
 	}
 
-	class MyRunLoop implements RunLoop {
+	class MySyncObject {
+
+		public void doSleep(long ms) {
+			try {
+				if (ms < 1)
+					ms = 1;
+				// System.out.println(this + ".doSleep:" + ms);
+				synchronized (this) {
+					this.wait(ms);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		public void doWakeup() {
+			try {
+				synchronized (this) {
+					this.notifyAll();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	class MyThreadBind {
 
 		private final Thread mThread;
-		private final MyTaskFIFO mFIFO = new MyTaskFIFO();
+
+		public MyThreadBind(Thread thd) {
+			this.mThread = thd;
+			this.checkThread();
+		}
+
+		public void checkThread() {
+			Thread thd = Thread.currentThread();
+			if (thd.getId() != this.mThread.getId()) {
+				throw new RuntimeException("different thread!");
+			}
+		}
+
+		public Thread getThread() {
+			return this.mThread;
+		}
+	}
+
+	class MyRunLoop extends MyThreadBind implements RunLoop {
+
+		private final MyTaskFIFO mFIFO;
+		private final MySyncObject mSyncObject = new MySyncObject();
+		private final MyTimerManager mTimerMngr;
 
 		public MyRunLoop(Thread thd) {
-			this.mThread = thd;
+			super(thd);
+			this.checkThread();
+			this.mFIFO = new MyTaskFIFO(this.mSyncObject);
+			this.mTimerMngr = new MyTimerManager(thd);
 		}
 
 		@Override
-		public void run(long ms) {
-			// TODO Auto-generated method stub
+		public void run(long timeout) {
 
+			this.checkThread();
+
+			timeout = (timeout > 0) ? timeout : 0;
+			long now;
+			now = System.currentTimeMillis();
+			final long endtime = now + timeout;
+
+			while (now <= endtime) {
+				final long ms1 = this.mTimerMngr.fireAndGetNextInterval(now);
+				Runnable runn = this.mFIFO.pop();
+				if (runn != null) {
+					this._safe_exe(runn);
+					return;
+				}
+				final long ms2 = endtime - now;
+				this.mSyncObject.doSleep((ms1 < ms2) ? ms1 : ms2);
+				now = System.currentTimeMillis();
+			}
+		}
+
+		private void _safe_exe(Runnable runn) {
+			try {
+				runn.run();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		@Override
 		public void addTask(Runnable task) {
-			// TODO Auto-generated method stub
-
+			this.mFIFO.push(task);
 		}
 
 		@Override
 		public RunLoopTimer startTimer(long delay, long interval, Runnable task) {
-			// TODO Auto-generated method stub
-			return null;
+			MyTimer timer = new MyTimer(this, delay, interval, task);
+			this.addTask(timer);
+			return timer;
+		}
+	}
+
+	class MyTimerManager extends MyThreadBind {
+
+		private final Vector<MyTimer> mList = new Vector<MyTimer>();
+
+		public MyTimerManager(Thread thd) {
+			super(thd);
+		}
+
+		public long fireAndGetNextInterval(long now) {
+			this.checkThread();
+			long nextIV = 3600 * 1000;
+			final MyTimer[] array = this.mList.toArray(new MyTimer[0]);
+			for (MyTimer timer : array) {
+				final long niv = timer.fireAndGetNextInterval(now);
+				if (niv < nextIV && niv >= 0) {
+					nextIV = niv;
+				}
+				if (timer.isStopped()) {
+					this.mList.remove(timer);
+				}
+			}
+			return nextIV;
+		}
+
+		public void addTimer(MyTimer timer) {
+			this.checkThread();
+			this.mList.addElement(timer);
+		}
+	}
+
+	class MyTimer implements RunLoopTimer, Runnable {
+
+		private final MyRunLoop mOwnerRunLoop;
+		private final Runnable mTask;
+		private final long mInterval;
+		private final long mDelay;
+		//
+		private boolean mIsStopped = false;
+		private boolean mIsStarted = false;
+		private long mNextFireTime;
+
+		public MyTimer(MyRunLoop runloop, long delay, long interval,
+				Runnable task) {
+
+			this.mTask = task;
+			this.mDelay = delay;
+			this.mInterval = interval;
+			this.mOwnerRunLoop = runloop;
+
+			this.mNextFireTime = System.currentTimeMillis() + this.mDelay;
+		}
+
+		public long fireAndGetNextInterval(long now) {
+			if (this.mIsStopped) {
+				return (3600 * 1000);
+			}
+			if (this.mNextFireTime <= now) {
+				// fire
+				this._fire();
+				if (this.mInterval > 0) {
+					this.mNextFireTime = now + this.mInterval;
+					return this.mInterval;
+				} else {
+					this.mIsStopped = true;
+					return (3600 * 1000);
+				}
+			} else {
+				return (this.mNextFireTime - now);
+			}
+		}
+
+		private void _fire() {
+			try {
+				this.mTask.run();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		public boolean isStopped() {
+			return this.mIsStopped;
+		}
+
+		@Override
+		public void stop() {
+			this.mIsStopped = true;
+		}
+
+		@Override
+		public void run() {
+			// load self
+			if (this.mIsStarted) {
+				throw new RuntimeException("already started");
+			} else {
+				this.mIsStarted = true;
+			}
+			this.mOwnerRunLoop.mTimerMngr.addTimer(this);
 		}
 	}
 
