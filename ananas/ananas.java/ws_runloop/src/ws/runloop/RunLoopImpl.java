@@ -152,24 +152,16 @@ class RunLoopImpl {
 
 		@Override
 		public void run(long timeout) {
-
 			this.checkThread();
-
 			timeout = (timeout > 0) ? timeout : 0;
-			long now;
-			now = System.currentTimeMillis();
-			final long endtime = now + timeout;
-
-			while (now <= endtime) {
-				final long ms1 = this.mTimerMngr.fireAndGetNextInterval(now);
-				Runnable runn = this.mFIFO.pop();
-				if (runn != null) {
-					this._safe_exe(runn);
-					return;
-				}
-				final long ms2 = endtime - now;
-				this.mSyncObject.doSleep((ms1 < ms2) ? ms1 : ms2);
-				now = System.currentTimeMillis();
+			final long now = System.currentTimeMillis();
+			final long ms1 = this.mTimerMngr.fireAndGetNextInterval(now);
+			final Runnable runn = this.mFIFO.pop();
+			if (runn != null) {
+				this._safe_exe(runn);
+				return;
+			} else {
+				this.mSyncObject.doSleep((ms1 < timeout) ? ms1 : timeout);
 			}
 		}
 
@@ -183,11 +175,19 @@ class RunLoopImpl {
 
 		@Override
 		public void addTask(Runnable task) {
+			if (task == null)
+				return;
 			this.mFIFO.push(task);
 		}
 
 		@Override
 		public RunLoopTimer startTimer(long delay, long interval, Runnable task) {
+			if (delay < 0)
+				delay = 0;
+			if (interval < 0)
+				interval = 0;
+			if (task == null)
+				return null;
 			MyTimer timer = new MyTimer(this, delay, interval, task);
 			this.addTask(timer);
 			return timer;

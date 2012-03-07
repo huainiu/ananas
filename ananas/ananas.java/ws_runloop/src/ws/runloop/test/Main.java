@@ -105,7 +105,7 @@ public class Main implements Runnable {
 				// Main.this.m_rlWorker.startTimer(15000, 5000, new
 				// MyTimerTest());
 
-				RunLoopTimer pnew = Main.this.m_rlMain.startTimer(159, 100,
+				RunLoopTimer pnew = Main.this.m_rlWorker.startTimer(3300, 2400,
 						new MyTimerTest());
 				RunLoopTimer pold = Main.this.m_curTimer;
 				Main.this.m_curTimer = pnew;
