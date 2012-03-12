@@ -1,9 +1,26 @@
 <html>
 <head>
 <style type='text/css'>
-.c {margin :0px;width:16px;height:16px;background:red;position:absolute;}
-.d {margin :0px;width:16px;height:16px;background:gray;position:absolute;}
-.f {background:black;position:absolute;}
+.c {
+	margin: 0px;
+	width: 16px;
+	height: 16px;
+	background: red;
+	position: absolute;
+}
+
+.d {
+	margin: 0px;
+	width: 16px;
+	height: 16px;
+	background: gray;
+	position: absolute;
+}
+
+.f {
+	background: black;
+	position: absolute;
+}
 </style>
 
 <![CDATA[
@@ -16,13 +33,30 @@
 
 ]]>
 
+<script type='text/javascript'>
+// <!--
+
+function showQRCode () {
+	var qrc = document.getElementById("qr-code");
+	qrc.setAttribute( "class" , "f" );
+	qrc.setAttribute( "style" , "width: 256px; height: 256px; top: 64px; left: 512px;" );
+}
+
+// -->
+</script>
 
 </head>
 <body>
-<div class="f" style="width: 256px; height: 256px; top:128px; left:128px; ">
-<div class="c" style="left: 16px; top: 16px; "></div>
-<div class="d" style="left: 128px; top: 128px; "></div>
-</div>
+	<div class="f"
+		style="width: 256px; height: 256px; top: 64px; left: 18px;">
+		<div class="c" style="left: 16px; top: 16px;"></div>
+		<div class="d" style="left: 128px; top: 128px;"></div>
+	</div>
+	
+	<div id='qr-code' onclick='showQRCode()' >open qr-code</div>
+	
+	
+	
 </body>
 </html>
 
