@@ -6,4 +6,5 @@ public interface IRoadmapServiceConnector {
 
 	void disconnect();
 
+	IRoadmapServiceBinderEx getBinderEx();
 }

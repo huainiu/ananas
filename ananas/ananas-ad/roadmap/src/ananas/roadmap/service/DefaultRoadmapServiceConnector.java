@@ -1,5 +1,7 @@
 package ananas.roadmap.service;
 
+import ananas.roadmap.jsonable.Jsonable;
+import ananas.roadmap.jsonable.cmd.DoIsGpsOn;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +48,8 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			if (service instanceof IRoadmapServiceBinder) {
 				IRoadmapServiceBinder binder = (IRoadmapServiceBinder) service;
-				DefaultRoadmapServiceConnector.this.mBinderProxy.setTarget(binder);
+				DefaultRoadmapServiceConnector.this.mBinderProxy
+						.setTarget(binder);
 			}
 		}
 
@@ -55,5 +58,33 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 			DefaultRoadmapServiceConnector.this.mBinderProxy.setTarget(null);
 		}
 	};
+
+	private final IRoadmapServiceBinderEx mBinderEx = new IRoadmapServiceBinderEx() {
+
+		@Override
+		public boolean isGpsOn() {
+			DoIsGpsOn cmd = new DoIsGpsOn();
+			cmd = (DoIsGpsOn) this._exeCommand(cmd);
+			return cmd.isOn;
+		}
+
+		@Override
+		public void setGpsOn(boolean enable) {
+			DoSetGpsOn cmd = new DoSetGpsOn();
+			this._exeCommand(cmd);
+		}
+
+		private Jsonable _exeCommand(Jsonable cmd) {
+			String str = Jsonable.save(cmd);
+			IRoadmapServiceBinder binder = DefaultRoadmapServiceConnector.this.mBinderProxy;
+			str = binder.invoke(str);
+			return Jsonable.load(str);
+		}
+	};
+
+	@Override
+	public IRoadmapServiceBinderEx getBinderEx() {
+		return this.mBinderEx;
+	}
 
 }
