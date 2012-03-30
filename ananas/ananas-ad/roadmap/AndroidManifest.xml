@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <service android:label="@string/app_name" android:name=".service.RoadmapService"></service>
+        <uses-library android:name="com.google.android.maps"/>
+        <activity android:name="MapsActivity"></activity>
     </application>
 
 </manifest>
