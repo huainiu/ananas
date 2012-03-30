@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.ToggleButton;
 
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
 
 public class MapsActivity extends MapActivity {
 
@@ -23,6 +24,10 @@ public class MapsActivity extends MapActivity {
 		super.onCreate(bundle);
 		this.setContentView(R.layout.ui_maps);
 		this.mServConn = new DefaultRoadmapServiceConnector(this);
+
+		// zoom control
+		MapView mapView = (MapView) findViewById(R.id.mapview);
+		mapView.setBuiltInZoomControls(true);
 
 		// GPS on/off
 		ToggleButton btn_gps = (ToggleButton) this

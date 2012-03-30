@@ -5,13 +5,13 @@ import org.json.JSONObject;
 
 import ananas.roadmap.service.IRoadmapServiceBinderEx;
 
-public class DoIsGpsOn extends JsonableBinderCommand {
+public class DoSetGpsOn extends JsonableBinderCommand {
 
 	public boolean mIsOn;
 
 	@Override
 	public void execute(IRoadmapServiceBinderEx binder) {
-		this.mIsOn = binder.isGpsOn();
+		binder.setGpsOn(this.mIsOn);
 	}
 
 	private final static String field_is_on = "is_on";
@@ -28,7 +28,7 @@ public class DoIsGpsOn extends JsonableBinderCommand {
 	@Override
 	protected void onSave(JSONObject jo) {
 		try {
-			jo.put(field_is_on, this.mIsOn);
+			jo.put(field_is_on, mIsOn);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

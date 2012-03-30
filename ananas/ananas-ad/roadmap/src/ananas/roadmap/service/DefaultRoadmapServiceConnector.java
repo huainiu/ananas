@@ -2,6 +2,7 @@ package ananas.roadmap.service;
 
 import ananas.roadmap.jsonable.Jsonable;
 import ananas.roadmap.jsonable.cmd.DoIsGpsOn;
+import ananas.roadmap.jsonable.cmd.DoSetGpsOn;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -65,12 +66,13 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 		public boolean isGpsOn() {
 			DoIsGpsOn cmd = new DoIsGpsOn();
 			cmd = (DoIsGpsOn) this._exeCommand(cmd);
-			return cmd.isOn;
+			return cmd.mIsOn;
 		}
 
 		@Override
 		public void setGpsOn(boolean enable) {
 			DoSetGpsOn cmd = new DoSetGpsOn();
+			cmd.mIsOn = enable;
 			this._exeCommand(cmd);
 		}
 
