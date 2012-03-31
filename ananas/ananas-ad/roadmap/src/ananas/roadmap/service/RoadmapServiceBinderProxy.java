@@ -18,9 +18,9 @@ public class RoadmapServiceBinderProxy implements IRoadmapServiceBinder {
 			return null;
 		}
 		String ret = tar.invoke(param);
-		System.out.println(this + ".invoke");
-		System.out.println("    param=" + param);
-		System.out.println("      ret=" + ret);
+		// System.out.println(this + ".invoke");
+		// System.out.println("    param=" + param);
+		// System.out.println("      ret=" + ret);
 		return ret;
 	}
 

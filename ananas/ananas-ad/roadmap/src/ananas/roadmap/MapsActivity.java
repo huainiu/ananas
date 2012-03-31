@@ -2,17 +2,25 @@ package ananas.roadmap;
 
 import ananas.roadmap.service.DefaultRoadmapServiceConnector;
 import ananas.roadmap.service.IRoadmapServiceConnector;
+import ananas.roadmap.service.IRoadmapServiceConnector.ConnectionListener;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ToggleButton;
 
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.MyLocationOverlay;
 
-public class MapsActivity extends MapActivity {
+public class MapsActivity extends MapActivity implements ConnectionListener {
 
 	private IRoadmapServiceConnector mServConn;
+	private MapView mMapView;
+	private ToggleButton mBtnGps;
+	private MyLocationOverlay mMyLocOver;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -24,15 +32,19 @@ public class MapsActivity extends MapActivity {
 		super.onCreate(bundle);
 		this.setContentView(R.layout.ui_maps);
 		this.mServConn = new DefaultRoadmapServiceConnector(this);
+		this.mServConn.setConnectionListener(this);
 
 		// zoom control
-		MapView mapView = (MapView) findViewById(R.id.mapview);
-		mapView.setBuiltInZoomControls(true);
+		this.mMapView = (MapView) findViewById(R.id.mapview);
+		this.mMapView.setBuiltInZoomControls(true);
+		MyLocationOverlay myloc = new MyLocationOverlay(this, this.mMapView);
+		// myloc.enableMyLocation();
+		this.mMapView.getOverlays().add(myloc);
+		this.mMyLocOver = myloc;
 
 		// GPS on/off
-		ToggleButton btn_gps = (ToggleButton) this
-				.findViewById(R.id.toggle_gps);
-		btn_gps.setOnClickListener(new OnClickListener() {
+		this.mBtnGps = (ToggleButton) this.findViewById(R.id.toggle_gps);
+		this.mBtnGps.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -43,8 +55,13 @@ public class MapsActivity extends MapActivity {
 	}
 
 	protected void _switchGps() {
-		boolean ison = this.mServConn.getBinderEx().isGpsOn();
-		this.mServConn.getBinderEx().setGpsOn(!ison);
+		boolean isOn = this.mBtnGps.isChecked();
+		this.mServConn.getBinderEx().setGpsOn(isOn);
+		if (isOn) {
+			this.mMyLocOver.enableMyLocation();
+		} else {
+			this.mMyLocOver.disableMyLocation();
+		}
 	}
 
 	@Override
@@ -57,6 +74,42 @@ public class MapsActivity extends MapActivity {
 	protected void onStop() {
 		this.mServConn.disconnect();
 		super.onStop();
+	}
+
+	private static final int menu_item_home = 3;
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		boolean ret = super.onCreateOptionsMenu(menu);
+		int groupId = 1;
+		int order = 1;
+		menu.add(groupId, menu_item_home, order, "home");
+		return ret;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean ret = super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		case menu_item_home: {
+			Intent intent = new Intent(this, RoadmapActivity.class);
+			this.startActivity(intent);
+			break;
+		}
+		default:
+		}
+		return ret;
+	}
+
+	@Override
+	public void onConnected(IRoadmapServiceConnector conn) {
+		boolean isOn = conn.getBinderEx().isGpsOn();
+		this.mBtnGps.setChecked(isOn);
+	}
+
+	@Override
+	public void onDisconnected(IRoadmapServiceConnector conn) {
+
 	}
 
 }

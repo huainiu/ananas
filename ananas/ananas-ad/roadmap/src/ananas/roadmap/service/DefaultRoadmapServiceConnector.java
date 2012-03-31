@@ -20,8 +20,8 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 
 	@Override
 	public void connect() {
+		this._startService();
 		this._bindService();
-
 	}
 
 	@Override
@@ -29,10 +29,11 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 		this._unbindService();
 	}
 
-	/*
-	 * private void _startService() { Intent intent = new Intent(this.mContext,
-	 * RoadmapService.class); this.mContext.startService(intent); }
-	 */
+	private void _startService() {
+		Intent intent = new Intent(this.mContext, RoadmapService.class);
+		this.mContext.startService(intent);
+	}
+
 	private void _bindService() {
 		Intent intent = new Intent(this.mContext, RoadmapService.class);
 		this.mContext.bindService(intent, this.mServiceConn,
@@ -51,12 +52,20 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 				IRoadmapServiceBinder binder = (IRoadmapServiceBinder) service;
 				DefaultRoadmapServiceConnector.this.mBinderProxy
 						.setTarget(binder);
+				final ConnectionListener listener = DefaultRoadmapServiceConnector.this.mConnListener;
+				if (listener != null) {
+					listener.onConnected(DefaultRoadmapServiceConnector.this);
+				}
 			}
 		}
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
 			DefaultRoadmapServiceConnector.this.mBinderProxy.setTarget(null);
+			final ConnectionListener listener = DefaultRoadmapServiceConnector.this.mConnListener;
+			if (listener != null) {
+				listener.onDisconnected(DefaultRoadmapServiceConnector.this);
+			}
 		}
 	};
 
@@ -83,10 +92,16 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 			return DefaultJsonable.load(str);
 		}
 	};
+	private ConnectionListener mConnListener;
 
 	@Override
 	public IRoadmapServiceBinderEx getBinderEx() {
 		return this.mBinderEx;
+	}
+
+	@Override
+	public void setConnectionListener(ConnectionListener l) {
+		this.mConnListener = l;
 	}
 
 }
