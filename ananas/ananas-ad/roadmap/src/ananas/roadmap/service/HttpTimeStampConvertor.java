@@ -194,19 +194,4 @@ public abstract class HttpTimeStampConvertor {
 		}
 	}
 
-	public static void main(String arg[]) {
-
-		System.out.println("test " + HttpTimeStampConvertor.class + " ... ");
-		final long ms = System.currentTimeMillis();
-		final String str = HttpTimeStampConvertor.getInstance()
-				.millisecondToString(ms);
-		final long ms2 = HttpTimeStampConvertor.getInstance()
-				.stringToMillisecond(str);
-		if ((ms / 1000) != (ms2 / 1000)) {
-			throw new RuntimeException("test failed " + ms + " not match "
-					+ ms2);
-		}
-		System.out.println("[OK]");
-	}
-
 }
