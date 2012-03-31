@@ -38,6 +38,9 @@ public class DefaultLocationRecordOutputStream implements
 	public void write(Location location) {
 		try {
 
+			String strTime = HttpTimeStampConvertor.getInstance()
+					.millisecondToString(location.getTime());
+
 			final JSONObject jo = new JSONObject();
 
 			jo.put("latitude", location.getLatitude());
@@ -45,6 +48,7 @@ public class DefaultLocationRecordOutputStream implements
 			jo.put("altitude", location.getAltitude());
 			jo.put("source", location.getProvider());
 			jo.put("accuracy", location.getAccuracy());
+			jo.put("time", strTime);
 
 			OutputStream os = this._getOutput();
 			String str = jo.toString() + "\n";
@@ -60,11 +64,12 @@ public class DefaultLocationRecordOutputStream implements
 
 	private OutputStream _getOutput() throws IOException {
 		if (this.mOutputStream == null && (!this.mIsClosed)) {
-			final String timestamp = System.currentTimeMillis() + "";
+			final String timestamp = HttpTimeStampConvertor.getInstance()
+					.millisecondToString(System.currentTimeMillis());
 			final File SDFile = android.os.Environment
 					.getExternalStorageDirectory();
 			final String path = SDFile.getAbsolutePath()
-					+ "/ananas/roadmap/rec_" + timestamp + ".txt";
+					+ "/ananas/roadmap/record_from_" + timestamp + ".txt";
 			File file = new File(path);
 			if (!file.exists()) {
 				file.getParentFile().mkdirs();
