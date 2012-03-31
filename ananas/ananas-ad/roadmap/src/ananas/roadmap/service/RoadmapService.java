@@ -54,13 +54,34 @@ public class RoadmapService extends Service {
 						10, listenerH);
 				lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
 						5000, 100, listenerL);
+
+				ILocationRecordOutputStream lros = new DefaultLocationRecordOutputStream();
+				RoadmapService.this._setCurrentLROS(lros);
+
 			} else {
 				lm.removeUpdates(listenerH);
 				lm.removeUpdates(listenerL);
+				RoadmapService.this._setCurrentLROS(null);
 			}
 		}
 
 	};
+
+	private ILocationRecordOutputStream mCurLROS;
+
+	private void _setCurrentLROS(ILocationRecordOutputStream lros) {
+		final ILocationRecordOutputStream pnew = lros;
+		final ILocationRecordOutputStream pold;
+		synchronized (this) {
+			pold = this.mCurLROS;
+			this.mCurLROS = pnew;
+		}
+		if (pold != null) {
+			pold.close();
+		}
+		if (pnew != null) {
+		}
+	}
 
 	private final LocationListener mLocationlistenerH = new MyLocationlistener();
 	private final LocationListener mLocationlistenerL = new MyLocationlistener();
@@ -70,6 +91,9 @@ public class RoadmapService extends Service {
 		@Override
 		public void onLocationChanged(Location location) {
 			System.out.println(this + ".onLocationChanged():" + location);
+			ILocationRecordOutputStream lros = RoadmapService.this.mCurLROS;
+			if (lros != null)
+				lros.write(location);
 		}
 
 		@Override
@@ -84,7 +108,6 @@ public class RoadmapService extends Service {
 
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub
 
 		}
 	};
