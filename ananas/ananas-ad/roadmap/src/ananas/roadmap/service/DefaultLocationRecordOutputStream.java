@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import org.json.JSONObject;
 
@@ -64,8 +66,7 @@ public class DefaultLocationRecordOutputStream implements
 
 	private OutputStream _getOutput() throws IOException {
 		if (this.mOutputStream == null && (!this.mIsClosed)) {
-			final String timestamp = HttpTimeStampConvertor.getInstance()
-					.millisecondToString(System.currentTimeMillis());
+			final String timestamp = this._getCurrentTimeString();
 			final File SDFile = android.os.Environment
 					.getExternalStorageDirectory();
 			final String path = SDFile.getAbsolutePath()
@@ -79,6 +80,31 @@ public class DefaultLocationRecordOutputStream implements
 			this.mOutputStream = fos;
 		}
 		return this.mOutputStream;
+	}
+
+	private String _add02(int n) {
+		String s = n + "";
+		if (s.length() == 1) {
+			s = '0' + s;
+		}
+		return s;
+	}
+
+	private String _getCurrentTimeString() {
+
+		final Calendar cale = Calendar.getInstance(TimeZone.getTimeZone(""));
+		cale.setTimeInMillis(System.currentTimeMillis());
+
+		final int yy, mm, dd, h, m, s;
+		dd = cale.get(Calendar.DAY_OF_MONTH);
+		mm = cale.get(Calendar.MONTH);
+		yy = cale.get(Calendar.YEAR);
+		h = cale.get(Calendar.HOUR_OF_DAY);
+		m = cale.get(Calendar.MINUTE);
+		s = cale.get(Calendar.SECOND);
+
+		return (yy + "" + _add02(mm + 1) + "" + _add02(dd) + "-" + _add02(h)
+				+ "" + _add02(m) + "" + _add02(s));
 	}
 
 }
