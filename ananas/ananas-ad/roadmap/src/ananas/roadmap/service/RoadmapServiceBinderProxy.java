@@ -1,6 +1,5 @@
 package ananas.roadmap.service;
 
-
 public class RoadmapServiceBinderProxy implements IRoadmapServiceBinder {
 
 	private IRoadmapServiceBinder mTarget;
@@ -18,7 +17,11 @@ public class RoadmapServiceBinderProxy implements IRoadmapServiceBinder {
 		if (tar == null) {
 			return null;
 		}
-		return tar.invoke(param);
+		String ret = tar.invoke(param);
+		System.out.println(this + ".invoke");
+		System.out.println("    param=" + param);
+		System.out.println("      ret=" + ret);
+		return ret;
 	}
 
 }

@@ -1,6 +1,6 @@
 package ananas.roadmap.service;
 
-import ananas.roadmap.jsonable.Jsonable;
+import ananas.android.jsonable.DefaultJsonable;
 import ananas.roadmap.jsonable.cmd.JsonableBinderCommand;
 import android.app.Service;
 import android.content.Intent;
@@ -20,10 +20,10 @@ public class RoadmapService extends Service {
 
 		@Override
 		public String invoke(String param) {
-			JsonableBinderCommand cmd = (JsonableBinderCommand) Jsonable
+			JsonableBinderCommand cmd = (JsonableBinderCommand) DefaultJsonable
 					.load(param);
 			cmd.execute(RoadmapService.this.mBinderEx);
-			return Jsonable.save(cmd);
+			return DefaultJsonable.save(cmd);
 		}
 	}
 

@@ -1,6 +1,6 @@
 package ananas.roadmap.service;
 
-import ananas.roadmap.jsonable.Jsonable;
+import ananas.android.jsonable.DefaultJsonable;
 import ananas.roadmap.jsonable.cmd.DoIsGpsOn;
 import ananas.roadmap.jsonable.cmd.DoSetGpsOn;
 import android.content.ComponentName;
@@ -76,11 +76,11 @@ public class DefaultRoadmapServiceConnector implements IRoadmapServiceConnector 
 			this._exeCommand(cmd);
 		}
 
-		private Jsonable _exeCommand(Jsonable cmd) {
-			String str = Jsonable.save(cmd);
+		private DefaultJsonable _exeCommand(DefaultJsonable cmd) {
+			String str = DefaultJsonable.save(cmd);
 			IRoadmapServiceBinder binder = DefaultRoadmapServiceConnector.this.mBinderProxy;
 			str = binder.invoke(str);
-			return Jsonable.load(str);
+			return DefaultJsonable.load(str);
 		}
 	};
 
