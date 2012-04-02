@@ -105,6 +105,11 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 	public void onConnected(IRoadmapServiceConnector conn) {
 		boolean isOn = conn.getBinderEx().isGpsOn();
 		this.mBtnGps.setChecked(isOn);
+		if (isOn) {
+			this.mMyLocOver.enableMyLocation();
+		} else {
+			this.mMyLocOver.disableMyLocation();
+		}
 	}
 
 	@Override
