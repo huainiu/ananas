@@ -23,6 +23,8 @@ public class RoadmapActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		this.mServConn.connect();
+
+		this.startActivity(new Intent(this, MapsActivity.class));
 	}
 
 	@Override

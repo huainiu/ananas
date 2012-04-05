@@ -46,6 +46,7 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 		MyLocationOverlay myloc = new MyLocationOverlay(this, this.mMapView);
 		// myloc.enableMyLocation();
 		this.mMapView.getOverlays().add(myloc);
+		this.mMapView.getOverlays().add(new ArmScaleOverlay());
 		this.mMyLocOver = myloc;
 
 		// GPS on/off
@@ -90,6 +91,8 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 
 	protected void _jumpToMyPos() {
 		GeoPoint point = this.mMyLocOver.getMyLocation();
+		if (point == null)
+			return;
 		this.mMapView.getController().animateTo(point);
 	}
 
