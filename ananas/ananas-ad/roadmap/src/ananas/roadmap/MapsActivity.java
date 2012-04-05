@@ -2,6 +2,7 @@ package ananas.roadmap;
 
 import ananas.roadmap.service.DefaultRoadmapServiceConnector;
 import ananas.roadmap.service.IRoadmapServiceConnector;
+import ananas.roadmap.service.RoadmapService;
 import ananas.roadmap.service.IRoadmapServiceConnector.ConnectionListener;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,6 +77,7 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 		super.onStop();
 	}
 
+	private static final int menu_item_exit = 2;
 	private static final int menu_item_home = 3;
 
 	@Override
@@ -83,6 +85,7 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 		boolean ret = super.onCreateOptionsMenu(menu);
 		int groupId = 1;
 		int order = 1;
+		menu.add(groupId, menu_item_exit, order, "exit");
 		menu.add(groupId, menu_item_home, order, "home");
 		return ret;
 	}
@@ -91,6 +94,16 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean ret = super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
+		case menu_item_exit: {
+
+			this.stopService(new Intent(this, RoadmapService.class));
+
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			startActivity(intent);
+
+			break;
+		}
 		case menu_item_home: {
 			Intent intent = new Intent(this, RoadmapActivity.class);
 			this.startActivity(intent);
