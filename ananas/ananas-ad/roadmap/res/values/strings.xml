@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, RoadmapActivity!</string>
     <string name="app_name">Roadmap</string>
+    <string name="map_type_sat">Sat</string>
+    <string name="map_type_plain">map</string>
+    <string name="jump_to_my_pos">myPos</string>
 
 </resources>

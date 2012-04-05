@@ -12,29 +12,32 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
+            android:id="@+id/button_map_type_plain"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:text="Button" />
+            android:layout_weight="0.1"
+            android:text="@string/map_type_plain" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:id="@+id/button_map_type_sat"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:text="Button" />
+            android:layout_weight="0.1"
+            android:text="@string/map_type_sat" />
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
+            android:id="@+id/button_jump_to_my_pos"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:text="Button" />
+            android:layout_weight="0.1"
+            android:text="@string/jump_to_my_pos" />
 
         <ToggleButton
             android:id="@+id/toggle_gps"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
+            android:layout_weight="0.1"
             android:text="gps" />
-
     </LinearLayout>
 
     <com.google.android.maps.MapView

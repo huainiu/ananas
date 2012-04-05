@@ -2,16 +2,18 @@ package ananas.roadmap;
 
 import ananas.roadmap.service.DefaultRoadmapServiceConnector;
 import ananas.roadmap.service.IRoadmapServiceConnector;
-import ananas.roadmap.service.RoadmapService;
 import ananas.roadmap.service.IRoadmapServiceConnector.ConnectionListener;
+import ananas.roadmap.service.RoadmapService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ToggleButton;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
@@ -22,6 +24,9 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 	private MapView mMapView;
 	private ToggleButton mBtnGps;
 	private MyLocationOverlay mMyLocOver;
+	private Button mBtnMapTypePlain;
+	private Button mBtnJumpToMyPos;
+	private Button mBtnMapTypeSat;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -45,6 +50,13 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 
 		// GPS on/off
 		this.mBtnGps = (ToggleButton) this.findViewById(R.id.toggle_gps);
+		this.mBtnJumpToMyPos = (Button) this
+				.findViewById(R.id.button_jump_to_my_pos);
+		this.mBtnMapTypePlain = (Button) this
+				.findViewById(R.id.button_map_type_plain);
+		this.mBtnMapTypeSat = (Button) this
+				.findViewById(R.id.button_map_type_sat);
+
 		this.mBtnGps.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -52,7 +64,33 @@ public class MapsActivity extends MapActivity implements ConnectionListener {
 				MapsActivity.this._switchGps();
 			}
 		});
+		this.mBtnJumpToMyPos.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				MapsActivity.this._jumpToMyPos();
+			}
+		});
+		this.mBtnMapTypePlain.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				MapsActivity.this.mMapView.setSatellite(false);
+			}
+		});
+		this.mBtnMapTypeSat.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				MapsActivity.this.mMapView.setSatellite(true);
+			}
+		});
+
+	}
+
+	protected void _jumpToMyPos() {
+		GeoPoint point = this.mMyLocOver.getMyLocation();
+		this.mMapView.getController().animateTo(point);
 	}
 
 	protected void _switchGps() {
