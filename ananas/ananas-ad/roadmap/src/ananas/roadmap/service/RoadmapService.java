@@ -1,7 +1,11 @@
 package ananas.roadmap.service;
 
 import ananas.android.jsonable.DefaultJsonable;
+import ananas.roadmap.R;
+import ananas.roadmap.RoadmapActivity;
 import ananas.roadmap.jsonable.cmd.JsonableBinderCommand;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -110,6 +114,24 @@ public class RoadmapService extends Service {
 		public void onStatusChanged(String provider, int status, Bundle extras) {
 
 		}
-	};
+	}
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		{
+			int id = R.drawable.ic_launcher;
+			String appName = this.getString(R.string.app_name);
+			Notification notification = new Notification(id, appName,
+					System.currentTimeMillis());
+
+			PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+					new Intent(this, RoadmapActivity.class), 0);
+			notification.setLatestEventInfo(this, appName, null, contentIntent);
+
+			this.startForeground(id, notification);
+		}
+	}
 
 }
