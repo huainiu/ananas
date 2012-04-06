@@ -8,6 +8,7 @@ import android.graphics.Rect;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
+import com.google.android.maps.Projection;
 
 public class ArmScaleOverlay extends Overlay {
 
@@ -72,14 +73,58 @@ public class ArmScaleOverlay extends Overlay {
 	private ScaleProperties calcScaleProperties(MapView mapView,
 			ScaleProperties sp) {
 
-		final int widthMax = mapView.getWidth() - 50;
-		final GeoPoint point = mapView.getMapCenter();
-		// mapView.getProjection().metersToEquatorPixels( )
+		final double earth_R = 6378137;
+		final double earth_C = 2 * Math.PI * earth_R;
+
+		final int height = mapView.getHeight();
+		final int width = mapView.getWidth();
+		final int full_width = width - 100;
+
+		final Projection proj = mapView.getProjection();
+		final GeoPoint gp1 = proj.fromPixels(0, height / 2);
+		final GeoPoint gp2 = proj.fromPixels(full_width, height / 2);
+
+		final double lat1 = gp1.getLatitudeE6() * 0.000001;
+		final double lon1 = gp1.getLongitudeE6() * 0.000001;
+		final double lat2 = gp2.getLatitudeE6() * 0.000001;
+		final double lon2 = gp2.getLongitudeE6() * 0.000001;
+
+		final double coslat = Math.cos((lat1 + lat2) * Math.PI / 360.0);
+
+		// to meters
+		double diff = Math.abs(lon1 - lon2) % 180;
+		final double full_meters = coslat * earth_C * (diff / 360);
+
+		// ////////////
+
+		int[] scale_len = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000,
+				5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000,
+				2000000, 5000000, 10000000 };
+		int scale_meters = 1;
+		for (int i = scale_len.length - 1; i > 0; i--) {
+			if (scale_len[i] < full_meters) {
+				scale_meters = scale_len[i];
+				break;
+			}
+		}
+		if (scale_meters == 1) {
+			System.err.println("meters==1");
+			System.err.println("lat1:" + lat1 + " lon1:" + lon1 + " lat2:"
+					+ lat2 + " lon2:" + lon2);
+		}
 
 		if (sp == null)
-			return new ScaleProperties();
-		else
-			return sp;
-	}
+			sp = new ScaleProperties();
 
+		if (scale_meters >= 1000) {
+			sp.distance = scale_meters / 1000;
+			sp.distanceUnit = "km";
+		} else {
+			sp.distance = scale_meters;
+			sp.distanceUnit = "m";
+		}
+		sp.width = (float) ((scale_meters / full_meters) * full_width);
+
+		return sp;
+	}
 }
