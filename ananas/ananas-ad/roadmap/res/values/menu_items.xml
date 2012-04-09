@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="menu_item_show_mypos">show myPos</string>
+    <string name="menu_item_goto_mypos">goto myPos</string>
+    <string name="menu_item_rec_mypos">record myPos</string>
+    <string name="menu_item_exit">exit</string>
+
+</resources>

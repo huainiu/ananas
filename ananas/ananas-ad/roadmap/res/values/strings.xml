@@ -6,5 +6,7 @@
     <string name="map_type_sat">Sat</string>
     <string name="map_type_plain">map</string>
     <string name="jump_to_my_pos">myPos</string>
-
+    <string name="app_service2_name">roadmap service 2</string>
+    <string name="gps">gps</string>
+    
 </resources>
