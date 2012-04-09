@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
@@ -67,18 +68,24 @@ public class RoadmapActivity2 extends MapActivity {
 
 	@Override
 	protected void onStop() {
-		super.onStop();
 		this._unbindService();
+		super.onStop();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		final boolean rlt = super.onCreateOptionsMenu(menu);
 		final Vector<Integer> v = new Vector<Integer>();
+
 		v.add(R.string.menu_item_show_mypos);
 		v.add(R.string.menu_item_goto_mypos);
 		v.add(R.string.menu_item_rec_mypos);
+
+		v.add(R.string.menu_item_map_type_map);
+		v.add(R.string.menu_item_map_type_sat);
+
 		v.add(R.string.menu_item_exit);
+
 		for (Integer item : v) {
 			int groupId = 0;
 			int itemId = item;
@@ -104,6 +111,14 @@ public class RoadmapActivity2 extends MapActivity {
 			RoadmapActivity2.this._recMyPos();
 			break;
 		}
+		case R.string.menu_item_map_type_map: {
+			RoadmapActivity2.this.mMapView.setSatellite(false);
+			break;
+		}
+		case R.string.menu_item_map_type_sat: {
+			RoadmapActivity2.this.mMapView.setSatellite(true);
+			break;
+		}
 		case R.string.menu_item_exit: {
 			RoadmapActivity2.this._exitApp();
 			break;
@@ -119,21 +134,26 @@ public class RoadmapActivity2 extends MapActivity {
 		this.mMyLocOver.disableCompass();
 
 		this.mBinder.exit();
-		this.finish();
+
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		startActivity(intent);
 	}
 
 	private void _recMyPos() {
 		String cur = this.mBinder.currentRecording();
 		if (cur == null) {
-			this.mBinder.startRecording(null, 0, 0);
+			this.mBinder.startRecording();
 		} else {
 			this.mBinder.stopRecording();
 		}
 	}
 
 	private void _gotoMyPos() {
-		// TODO Auto-generated method stub
-
+		GeoPoint point = this.mMyLocOver.getMyLocation();
+		if (point == null)
+			return;
+		this.mMapView.getController().animateTo(point);
 	}
 
 	private void _showMyPos() {

@@ -5,5 +5,7 @@
     <string name="menu_item_goto_mypos">goto myPos</string>
     <string name="menu_item_rec_mypos">record myPos</string>
     <string name="menu_item_exit">exit</string>
+    <string name="menu_item_map_type_map">plain map</string>
+    <string name="menu_item_map_type_sat">sat map</string>
 
 </resources>
