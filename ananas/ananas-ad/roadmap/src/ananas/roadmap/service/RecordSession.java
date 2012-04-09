@@ -134,11 +134,39 @@ public class RecordSession {
 		}
 
 		public void writeHeader() {
-			mps.println("[header]");
+			String str = "";
+
+			str += ("\"" + "timestamp" + "\"" + "\t");
+			str += ("\"" + "longitude" + "\"" + "\t");
+			str += ("\"" + "latitude" + "\"" + "\t");
+			str += ("\"" + "altitude" + "\"" + "\t");
+			str += ("\"" + "source" + "\"" + "\t");
+			str += ("\"" + "accuracy" + "\"" + "\t");
+
+			mps.println(str);
 		}
 
 		public void writeRec(Location location) {
-			mps.println(location);
+
+			String source = location.getProvider();
+			long time = location.getTime();
+			double lon = location.getLongitude();
+			double lat = location.getLatitude();
+			double alt = location.getAltitude();
+			float acc = location.getAccuracy();
+
+			String str = "";
+			String httime = HttpTimeStampConvertor.getInstance()
+					.millisecondToString(time);
+
+			str += ("\"" + httime + "\"" + "\t");
+			str += (lon + "\t");
+			str += (lat + "\t");
+			str += (alt + "\t");
+			str += ("\"" + source + "\"" + "\t");
+			str += (acc + "\t");
+
+			mps.println(str);
 		}
 
 		public void writeEnd() {

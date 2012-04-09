@@ -38,48 +38,59 @@ public class RoadmapService2 extends Service {
 
 	@Override
 	public IBinder onBind(Intent arg0) {
+		System.out.println(this + ".onBind()");
+		this._startForeground();
 		return this.mBinder;
 	}
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
+		System.out.println(this + ".onConfigurationChanged()");
 		super.onConfigurationChanged(newConfig);
 	}
 
 	@Override
 	public void onCreate() {
+		System.out.println(this + ".onCreate()");
 		super.onCreate();
-		this._startForeground();
 	}
 
 	@Override
 	public void onDestroy() {
+		System.out.println(this + ".onDestroy()");
 		this._setCurRec(null);
 		super.onDestroy();
 	}
 
 	@Override
 	public void onLowMemory() {
+		System.out.println(this + ".onLowMemory()");
 		super.onLowMemory();
 	}
 
 	@Override
 	public void onRebind(Intent intent) {
+		System.out.println(this + ".onRebind()");
 		super.onRebind(intent);
+		this._startForeground();
 	}
 
 	@Override
 	public void onStart(Intent intent, int startId) {
+		System.out.println(this + ".onStart()");
 		super.onStart(intent, startId);
+		this._startForeground();
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		System.out.println(this + ".onStartCommand()");
 		return super.onStartCommand(intent, flags, startId);
 	}
 
 	@Override
 	public boolean onUnbind(Intent intent) {
+		System.out.println(this + ".onUnbind()");
 		return super.onUnbind(intent);
 	}
 
@@ -127,7 +138,7 @@ public class RoadmapService2 extends Service {
 		@Override
 		public void exit() {
 			RoadmapService2.this._setCurRec(null);
-			RoadmapService2.this.stopForeground(true);
+			RoadmapService2.this._stopForeground();
 		}
 
 	}
@@ -147,7 +158,13 @@ public class RoadmapService2 extends Service {
 		return oldRec;
 	}
 
+	private void _stopForeground() {
+		System.out.println(this + "._stopForeground()");
+		this.stopForeground(true);
+	}
+
 	private void _startForeground() {
+		System.out.println(this + "._startForeground()");
 		int id = R.drawable.ic_launcher;
 		String appName = this.getString(R.string.app_name);
 		Notification notification = new Notification(id, appName, 0);

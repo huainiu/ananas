@@ -4,7 +4,6 @@ import java.util.Vector;
 
 import ananas.roadmap.RoadmapService2.IRoadmapService2Binder;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -40,7 +39,6 @@ public class RoadmapActivity2 extends MapActivity {
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setContentView(R.layout.ui_maps_2);
-		this._startService();
 
 		//
 		this.mMapView = (MapView) this.findViewById(R.id.mapview);
@@ -62,12 +60,15 @@ public class RoadmapActivity2 extends MapActivity {
 
 	@Override
 	protected void onStart() {
+		System.out.println(this + ".onStart()");
 		super.onStart();
+		this._startService();
 		this._bindService();
 	}
 
 	@Override
 	protected void onStop() {
+		System.out.println(this + ".onStop()");
 		this._unbindService();
 		super.onStop();
 	}
@@ -134,6 +135,7 @@ public class RoadmapActivity2 extends MapActivity {
 		this.mMyLocOver.disableCompass();
 
 		this.mBinder.exit();
+		this._stopService();
 
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
@@ -172,9 +174,14 @@ public class RoadmapActivity2 extends MapActivity {
 		this.startService(intent);
 	}
 
+	private void _stopService() {
+		Intent intent = new Intent(this, RoadmapService2.class);
+		this.stopService(intent);
+	}
+
 	private void _bindService() {
 		Intent intent = new Intent(this, RoadmapService2.class);
-		this.bindService(intent, this.mServConn, Context.BIND_AUTO_CREATE);
+		this.bindService(intent, this.mServConn, 0);
 	}
 
 	private void _unbindService() {
