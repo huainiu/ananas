@@ -3,6 +3,7 @@ package ananas.roadmap;
 import java.util.Vector;
 
 import ananas.roadmap.RoadmapService2.IRoadmapService2Binder;
+import ananas.roadmap.service.StatusClient;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -11,6 +12,7 @@ import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -21,13 +23,7 @@ public class RoadmapActivity2 extends MapActivity {
 
 	private MapView mMapView;
 	private MyLocationOverlay mMyLocOver;
-	private boolean mIsVisibleMyPos;
-
-	class Const {
-
-		public static final String bool_true = "yes";
-		public static final String bool_false = "no";
-	}
+	private TextView mStatusView;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -42,6 +38,7 @@ public class RoadmapActivity2 extends MapActivity {
 
 		//
 		this.mMapView = (MapView) this.findViewById(R.id.mapview);
+		this.mStatusView = (TextView) this.findViewById(R.id.textViewStatus);
 
 		this._initMapView();
 	}
@@ -126,6 +123,9 @@ public class RoadmapActivity2 extends MapActivity {
 		}
 		default:
 		}
+
+		this._updateStatus();
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -143,8 +143,12 @@ public class RoadmapActivity2 extends MapActivity {
 	}
 
 	private void _recMyPos() {
-		String cur = this.mBinder.currentRecording();
-		if (cur == null) {
+		StatusClient sc = new StatusClient(this.mBinder);
+		sc.update();
+		final boolean newVal = !sc.isRecording;
+		sc.isRecording = newVal;
+		sc.commit();
+		if (newVal) {
 			this.mBinder.startRecording();
 		} else {
 			this.mBinder.stopRecording();
@@ -158,9 +162,25 @@ public class RoadmapActivity2 extends MapActivity {
 		this.mMapView.getController().animateTo(point);
 	}
 
+	private void _initShowMyPos() {
+		StatusClient sc = new StatusClient(this.mBinder);
+		sc.update();
+		if (sc.isMyPosVisible) {
+			this.mMyLocOver.enableMyLocation();
+			this.mMyLocOver.enableCompass();
+		} else {
+			this.mMyLocOver.disableCompass();
+			this.mMyLocOver.disableMyLocation();
+		}
+	}
+
 	private void _showMyPos() {
-		mIsVisibleMyPos = !mIsVisibleMyPos;
-		if (this.mIsVisibleMyPos) {
+		StatusClient sc = new StatusClient(this.mBinder);
+		sc.update();
+		final boolean newVal = !sc.isMyPosVisible;
+		sc.isMyPosVisible = newVal;
+		sc.commit();
+		if (newVal) {
 			this.mMyLocOver.enableMyLocation();
 			this.mMyLocOver.enableCompass();
 		} else {
@@ -196,6 +216,9 @@ public class RoadmapActivity2 extends MapActivity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			RoadmapService2.IRoadmapService2Binder binder = (IRoadmapService2Binder) service;
 			RoadmapActivity2.this.mBinder = binder;
+
+			RoadmapActivity2.this._updateStatus();
+			RoadmapActivity2.this._initShowMyPos();
 		}
 
 		@Override
@@ -203,5 +226,21 @@ public class RoadmapActivity2 extends MapActivity {
 			RoadmapActivity2.this.mBinder = null;
 		}
 	};
+
+	private void _updateStatus() {
+		IRoadmapService2Binder binder = this.mBinder;
+		if (binder == null)
+			return;
+		StatusClient sc = new StatusClient(binder);
+		sc.update();
+		String strStatus = "";
+		if (sc.isRecording) {
+			strStatus += "[Rec]";
+		}
+		if (sc.isMyPosVisible) {
+			strStatus += "[myPos]";
+		}
+		this.mStatusView.setText(strStatus);
+	}
 
 }
