@@ -5,7 +5,9 @@ import java.util.Vector;
 import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
 import ananas.app.roadmap.util.ArmScaleOverlay;
 import ananas.app.roadmap.util.StatusClient;
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -139,7 +141,7 @@ public class RoadmapActivity extends MapActivity {
 			break;
 		}
 		case R.string.menu_item_exit: {
-			RoadmapActivity.this._exitApp();
+			RoadmapActivity.this._showExitAppDialog();
 			break;
 		}
 		default:
@@ -148,6 +150,28 @@ public class RoadmapActivity extends MapActivity {
 		this._updateStatus();
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void _showExitAppDialog() {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Are you sure you want to exit?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								// MyActivity.this.finish();
+								RoadmapActivity.this._exitApp();
+							}
+						})
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+
+		AlertDialog alert = builder.create();
+		alert.show();
 	}
 
 	private void _exitApp() {
