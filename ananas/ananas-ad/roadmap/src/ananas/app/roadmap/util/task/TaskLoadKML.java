@@ -1,9 +1,12 @@
-package ananas.app.roadmap;
+package ananas.app.roadmap.util.task;
 
 import java.io.File;
 
 import ananas.app.roadmap.util.RoadmapFileManager;
 import ananas.app.roadmap.util.Task;
+import ananas.app.roadmap.util.kml.KML_kml;
+import ananas.app.roadmap.util.kml.KmlDoc;
+import ananas.app.roadmap.util.kml.dom.KMLFeature;
 
 public class TaskLoadKML implements Task {
 
@@ -37,6 +40,12 @@ public class TaskLoadKML implements Task {
 			return;
 		}
 		System.out.println("load " + kmlfile.getAbsolutePath());
+
+		KmlDoc doc = KmlDoc.Factory.load(kmlfile);
+		KML_kml root = doc.getRoot();
+		KMLFeature feature = root.getFeature();
+
+		System.out.println("root feature = " + feature);
 
 	}
 }

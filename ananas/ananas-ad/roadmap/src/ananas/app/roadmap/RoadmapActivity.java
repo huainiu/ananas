@@ -7,6 +7,7 @@ import ananas.app.roadmap.util.ArmScaleOverlay;
 import ananas.app.roadmap.util.StatusClient;
 import ananas.app.roadmap.util.Task;
 import ananas.app.roadmap.util.TaskRunner;
+import ananas.app.roadmap.util.task.TaskLoadKML;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
