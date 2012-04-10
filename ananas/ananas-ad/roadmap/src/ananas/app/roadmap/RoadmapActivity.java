@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TextView;
@@ -75,26 +76,43 @@ public class RoadmapActivity extends MapActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		final boolean rlt = super.onCreateOptionsMenu(menu);
-		final Vector<Integer> v = new Vector<Integer>();
 
-		v.add(R.string.menu_item_show_mypos);
-		v.add(R.string.menu_item_goto_mypos);
-		v.add(R.string.menu_item_rec_mypos);
+		boolean use_old_code = true;
 
-		v.add(R.string.menu_item_map_type_map);
-		v.add(R.string.menu_item_map_type_sat);
+		if (use_old_code) {
+			// old
 
-		v.add(R.string.menu_item_exit);
+			final boolean rlt = super.onCreateOptionsMenu(menu);
+			final Vector<Integer> v = new Vector<Integer>();
 
-		for (Integer item : v) {
-			int groupId = 0;
-			int itemId = item;
-			int order = 0;
-			int titleRes = item;
-			menu.add(groupId, itemId, order, titleRes);
+			v.add(R.string.menu_item_show_mypos);
+			v.add(R.string.menu_item_goto_mypos);
+			v.add(R.string.menu_item_rec_mypos);
+
+			v.add(R.string.menu_item_map_type_map);
+			v.add(R.string.menu_item_map_type_sat);
+
+			v.add(R.string.menu_item_exit);
+
+			for (Integer item : v) {
+				int groupId = 0;
+				int itemId = item;
+				int order = 0;
+				int titleRes = item;
+				menu.add(groupId, itemId, order, titleRes);
+			}
+			return rlt;
+
+		} else {
+			// new
+			// 获取当前的菜单
+			MenuInflater inflater = getMenuInflater();
+			// 填充菜单
+			inflater.inflate(R.menu.ui_maps_op_menu, menu);
+
+			return true;
 		}
-		return rlt;
+
 	}
 
 	@Override
