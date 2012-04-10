@@ -8,36 +8,43 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
-        android:layout_height="64dp"
+        android:layout_height="48dp"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/button_map_type_plain"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.1"
-            android:text="@string/map_type_plain" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/hello"
+            android:src="@drawable/roadmap" />
 
-        <Button
-            android:id="@+id/button_map_type_sat"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayout_toolbar"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.1"
-            android:text="@string/map_type_sat" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/button_jump_to_my_pos"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.1"
-            android:text="@string/jump_to_my_pos" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="" />
 
-        <ToggleButton
-            android:id="@+id/toggle_gps"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.1"
-            android:text="@string/gps" />
+            <TextView
+                android:id="@+id/textViewStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/hello" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <com.google.android.maps.MapView

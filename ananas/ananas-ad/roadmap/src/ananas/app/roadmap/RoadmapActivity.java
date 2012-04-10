@@ -35,7 +35,7 @@ public class RoadmapActivity extends MapActivity {
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		this.setContentView(R.layout.ui_maps_2);
+		this.setContentView(R.layout.ui_maps);
 
 		//
 		this.mMapView = (MapView) this.findViewById(R.id.mapview);
