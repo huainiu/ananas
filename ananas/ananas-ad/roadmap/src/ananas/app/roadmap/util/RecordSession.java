@@ -41,8 +41,7 @@ public class RecordSession {
 	}
 
 	private File _genBasePath() {
-		File sdcard = android.os.Environment.getExternalStorageDirectory();
-		return new File(sdcard, "ananas/roadmap/record");
+		return RoadmapFileManager.Factory.getInstance().getRecordDirectory();
 	}
 
 	public void open() {

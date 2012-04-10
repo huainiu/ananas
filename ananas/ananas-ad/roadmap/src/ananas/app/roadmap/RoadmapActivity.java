@@ -5,6 +5,8 @@ import java.util.Vector;
 import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
 import ananas.app.roadmap.util.ArmScaleOverlay;
 import ananas.app.roadmap.util.StatusClient;
+import ananas.app.roadmap.util.Task;
+import ananas.app.roadmap.util.TaskRunner;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -28,6 +30,7 @@ public class RoadmapActivity extends MapActivity {
 	private MapView mMapView;
 	private MyLocationOverlay mMyLocOver;
 	private TextView mStatusView;
+	private TaskRunner mTaskRunner;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -79,7 +82,7 @@ public class RoadmapActivity extends MapActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		boolean use_old_code = true;
+		boolean use_old_code = false;
 
 		if (use_old_code) {
 			// old
@@ -120,27 +123,31 @@ public class RoadmapActivity extends MapActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.string.menu_item_goto_mypos: {
+		case R.id.menu_item_jump_to_mypos: {
 			RoadmapActivity.this._gotoMyPos();
 			break;
 		}
-		case R.string.menu_item_show_mypos: {
+		case R.id.menu_item_show_mypos_onoff: {
 			RoadmapActivity.this._showMyPos();
 			break;
 		}
-		case R.string.menu_item_rec_mypos: {
+		case R.id.menu_item_record_mypos_onoff: {
 			RoadmapActivity.this._recMyPos();
 			break;
 		}
-		case R.string.menu_item_map_type_map: {
+		case R.id.menu_item_select_maptype_plain: {
 			RoadmapActivity.this.mMapView.setSatellite(false);
 			break;
 		}
-		case R.string.menu_item_map_type_sat: {
+		case R.id.menu_item_select_maptype_sat: {
 			RoadmapActivity.this.mMapView.setSatellite(true);
 			break;
 		}
-		case R.string.menu_item_exit: {
+		case R.id.menu_item_load_kml: {
+			RoadmapActivity.this._loadKML();
+			break;
+		}
+		case R.id.menu_item_exit_app: {
 			RoadmapActivity.this._showExitAppDialog();
 			break;
 		}
@@ -150,6 +157,20 @@ public class RoadmapActivity extends MapActivity {
 		this._updateStatus();
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void _loadKML() {
+		TaskRunner runner = this._getTaskRunner();
+		Task task = new TaskLoadKML();
+		runner.addTask(task);
+	}
+
+	private TaskRunner _getTaskRunner() {
+		TaskRunner runner = this.mTaskRunner;
+		if (runner == null) {
+			this.mTaskRunner = runner = TaskRunner.Factory.newInstance();
+		}
+		return runner;
 	}
 
 	private void _showExitAppDialog() {
