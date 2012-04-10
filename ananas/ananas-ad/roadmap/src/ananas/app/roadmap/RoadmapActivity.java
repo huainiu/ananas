@@ -1,9 +1,10 @@
-package ananas.roadmap;
+package ananas.app.roadmap;
 
 import java.util.Vector;
 
-import ananas.roadmap.RoadmapService2.IRoadmapService2Binder;
-import ananas.roadmap.service.StatusClient;
+import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
+import ananas.app.roadmap.util.ArmScaleOverlay;
+import ananas.app.roadmap.util.StatusClient;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -19,7 +20,7 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 
-public class RoadmapActivity2 extends MapActivity {
+public class RoadmapActivity extends MapActivity {
 
 	private MapView mMapView;
 	private MyLocationOverlay mMyLocOver;
@@ -100,27 +101,27 @@ public class RoadmapActivity2 extends MapActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.string.menu_item_goto_mypos: {
-			RoadmapActivity2.this._gotoMyPos();
+			RoadmapActivity.this._gotoMyPos();
 			break;
 		}
 		case R.string.menu_item_show_mypos: {
-			RoadmapActivity2.this._showMyPos();
+			RoadmapActivity.this._showMyPos();
 			break;
 		}
 		case R.string.menu_item_rec_mypos: {
-			RoadmapActivity2.this._recMyPos();
+			RoadmapActivity.this._recMyPos();
 			break;
 		}
 		case R.string.menu_item_map_type_map: {
-			RoadmapActivity2.this.mMapView.setSatellite(false);
+			RoadmapActivity.this.mMapView.setSatellite(false);
 			break;
 		}
 		case R.string.menu_item_map_type_sat: {
-			RoadmapActivity2.this.mMapView.setSatellite(true);
+			RoadmapActivity.this.mMapView.setSatellite(true);
 			break;
 		}
 		case R.string.menu_item_exit: {
-			RoadmapActivity2.this._exitApp();
+			RoadmapActivity.this._exitApp();
 			break;
 		}
 		default:
@@ -192,17 +193,17 @@ public class RoadmapActivity2 extends MapActivity {
 	}
 
 	private void _startService() {
-		Intent intent = new Intent(this, RoadmapService2.class);
+		Intent intent = new Intent(this, RoadmapService.class);
 		this.startService(intent);
 	}
 
 	private void _stopService() {
-		Intent intent = new Intent(this, RoadmapService2.class);
+		Intent intent = new Intent(this, RoadmapService.class);
 		this.stopService(intent);
 	}
 
 	private void _bindService() {
-		Intent intent = new Intent(this, RoadmapService2.class);
+		Intent intent = new Intent(this, RoadmapService.class);
 		this.bindService(intent, this.mServConn, 0);
 	}
 
@@ -210,22 +211,22 @@ public class RoadmapActivity2 extends MapActivity {
 		this.unbindService(this.mServConn);
 	}
 
-	private RoadmapService2.IRoadmapService2Binder mBinder;
+	private RoadmapService.IRoadmapService2Binder mBinder;
 
 	private final ServiceConnection mServConn = new ServiceConnection() {
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
-			RoadmapService2.IRoadmapService2Binder binder = (IRoadmapService2Binder) service;
-			RoadmapActivity2.this.mBinder = binder;
+			RoadmapService.IRoadmapService2Binder binder = (IRoadmapService2Binder) service;
+			RoadmapActivity.this.mBinder = binder;
 
-			RoadmapActivity2.this._updateStatus();
-			RoadmapActivity2.this._initShowMyPos();
+			RoadmapActivity.this._updateStatus();
+			RoadmapActivity.this._initShowMyPos();
 		}
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
-			RoadmapActivity2.this.mBinder = null;
+			RoadmapActivity.this.mBinder = null;
 		}
 	};
 

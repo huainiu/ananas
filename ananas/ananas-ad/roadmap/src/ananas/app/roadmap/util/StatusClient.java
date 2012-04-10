@@ -1,9 +1,9 @@
-package ananas.roadmap.service;
+package ananas.app.roadmap.util;
 
 import java.lang.reflect.Field;
 
-import ananas.roadmap.RoadmapService2;
-import ananas.roadmap.RoadmapService2.IRoadmapService2Binder;
+import ananas.app.roadmap.RoadmapService;
+import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
 
 public class StatusClient {
 
@@ -22,7 +22,7 @@ public class StatusClient {
 	public boolean isRecording = true;
 	public boolean isMyPosVisible = true;
 
-	public StatusClient(RoadmapService2.IRoadmapService2Binder binder) {
+	public StatusClient(RoadmapService.IRoadmapService2Binder binder) {
 		this.mBinder = binder;
 	}
 

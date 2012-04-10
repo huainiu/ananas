@@ -1,8 +1,8 @@
-package ananas.roadmap;
+package ananas.app.roadmap;
 
 import java.util.Hashtable;
 
-import ananas.roadmap.service.RecordSession;
+import ananas.app.roadmap.util.RecordSession;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -11,7 +11,7 @@ import android.content.res.Configuration;
 import android.os.Binder;
 import android.os.IBinder;
 
-public class RoadmapService2 extends Service {
+public class RoadmapService extends Service {
 
 	public static interface IRoadmapService2Binder {
 
@@ -32,7 +32,7 @@ public class RoadmapService2 extends Service {
 	private final Hashtable<String, String> mProperties;
 	private RecordSession mCurRec;
 
-	public RoadmapService2() {
+	public RoadmapService() {
 		this.mProperties = new Hashtable<String, String>();
 	}
 
@@ -99,8 +99,8 @@ public class RoadmapService2 extends Service {
 		@Override
 		public String startRecording() {
 			try {
-				RecordSession newRec = new RecordSession(RoadmapService2.this);
-				RoadmapService2.this._setCurRec(newRec);
+				RecordSession newRec = new RecordSession(RoadmapService.this);
+				RoadmapService.this._setCurRec(newRec);
 				return newRec.getFullPath();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -110,7 +110,7 @@ public class RoadmapService2 extends Service {
 
 		@Override
 		public String stopRecording() {
-			RecordSession rec = RoadmapService2.this._setCurRec(null);
+			RecordSession rec = RoadmapService.this._setCurRec(null);
 			if (rec == null)
 				return null;
 			return rec.getFullPath();
@@ -119,17 +119,17 @@ public class RoadmapService2 extends Service {
 		@Override
 		public void setProperty(String key, String value) {
 			if (key != null && value != null)
-				RoadmapService2.this.mProperties.put(key, value);
+				RoadmapService.this.mProperties.put(key, value);
 		}
 
 		@Override
 		public String getProperty(String key) {
-			return RoadmapService2.this.mProperties.get(key);
+			return RoadmapService.this.mProperties.get(key);
 		}
 
 		@Override
 		public String currentRecording() {
-			RecordSession rec = RoadmapService2.this.mCurRec;
+			RecordSession rec = RoadmapService.this.mCurRec;
 			if (rec == null)
 				return null;
 			return rec.getFullPath();
@@ -137,8 +137,8 @@ public class RoadmapService2 extends Service {
 
 		@Override
 		public void exit() {
-			RoadmapService2.this._setCurRec(null);
-			RoadmapService2.this._stopForeground();
+			RoadmapService.this._setCurRec(null);
+			RoadmapService.this._stopForeground();
 		}
 
 	}
@@ -169,7 +169,7 @@ public class RoadmapService2 extends Service {
 		String appName = this.getString(R.string.app_name);
 		Notification notification = new Notification(id, appName, 0);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-				new Intent(this, RoadmapActivity2.class), 0);
+				new Intent(this, RoadmapActivity.class), 0);
 		notification.setLatestEventInfo(this, appName, null, contentIntent);
 		this.startForeground(id, notification);
 	}

@@ -1,4 +1,4 @@
-package ananas.android.jsonable;
+package ananas.app.roadmap.util.jsonable;
 
 import org.json.JSONObject;
 

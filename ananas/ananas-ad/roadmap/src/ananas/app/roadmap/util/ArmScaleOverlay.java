@@ -1,4 +1,4 @@
-package ananas.roadmap;
+package ananas.app.roadmap.util;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

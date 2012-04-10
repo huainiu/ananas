@@ -1,4 +1,4 @@
-package ananas.android.jsonable;
+package ananas.app.roadmap.util.jsonable;
 
 import java.lang.reflect.Field;
 
