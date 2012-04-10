@@ -66,6 +66,8 @@ public class RoadmapActivity2 extends MapActivity {
 	@Override
 	protected void onStop() {
 		System.out.println(this + ".onStop()");
+		this.mMyLocOver.disableCompass();
+		this.mMyLocOver.disableMyLocation();
 		this._unbindService();
 		super.onStop();
 	}
