@@ -1,29 +1,31 @@
 package ananas.app.roadmap.util.kml;
 
-import org.w3c.dom.Element;
-
 public class KML_obj_base implements IKMLObject {
 
-	private Element mTargetElement;
-	private KmlDoc mTargetDocument;
+	private IKMLObject mParent;
 
 	public KML_obj_base() {
 	}
 
 	@Override
-	public void bindTarget(KmlDoc document, Element element) {
-		this.mTargetDocument = document;
-		this.mTargetElement = element;
+	public boolean setParent(IKMLObject parent) {
+		this.mParent = parent;
+		return true;
 	}
 
 	@Override
-	public Element getTargetElement() {
-		return this.mTargetElement;
+	public boolean appendChild(IKMLObject child) {
+		return false;
 	}
 
 	@Override
-	public KmlDoc getTargetDocument() {
-		return this.mTargetDocument;
+	public boolean setAttribute(String name, String value) {
+		return false;
+	}
+
+	@Override
+	public IKMLObject getParent() {
+		return this.mParent;
 	}
 
 }

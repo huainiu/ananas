@@ -1,13 +1,13 @@
 package ananas.app.roadmap.util.kml;
 
-import org.w3c.dom.Element;
-
 public interface IKMLObject {
 
-	void bindTarget(KmlDoc document, Element element);
+	IKMLObject getParent();
 
-	Element getTargetElement();
+	boolean setParent(IKMLObject parent);
 
-	KmlDoc getTargetDocument();
+	boolean appendChild(IKMLObject child);
+
+	boolean setAttribute(String name, String value);
 
 }

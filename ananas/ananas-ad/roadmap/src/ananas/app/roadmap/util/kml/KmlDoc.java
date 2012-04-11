@@ -58,7 +58,7 @@ public interface KmlDoc {
 			IKMLObject kmlobj = this.mDomFactory.createKMLObject(element);
 			if (kmlobj == null)
 				return null;
-			kmlobj.bindTarget(this, element);
+			// kmlobj.bindTarget(this, element);
 			String targetId = this._genTargetId();
 			element.setAttribute("targetId", targetId);
 			this.mTargetMapper.put(targetId, kmlobj);

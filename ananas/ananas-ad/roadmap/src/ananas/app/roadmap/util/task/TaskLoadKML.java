@@ -2,11 +2,11 @@ package ananas.app.roadmap.util.task;
 
 import java.io.File;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import ananas.app.roadmap.util.RoadmapFileManager;
 import ananas.app.roadmap.util.Task;
-import ananas.app.roadmap.util.kml.KML_kml;
-import ananas.app.roadmap.util.kml.KmlDoc;
-import ananas.app.roadmap.util.kml.dom.KMLFeature;
 
 public class TaskLoadKML implements Task {
 
@@ -41,11 +41,16 @@ public class TaskLoadKML implements Task {
 		}
 		System.out.println("load " + kmlfile.getAbsolutePath());
 
-		KmlDoc doc = KmlDoc.Factory.load(kmlfile);
-		KML_kml root = doc.getRoot();
-		KMLFeature feature = root.getFeature();
+		try {
+			KMLObjectTreeBuilder builder = KMLObjectTreeBuilder.Factory
+					.newInstance();
+			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+			parser.parse(kmlfile, builder.getHandler());
 
-		System.out.println("root feature = " + feature);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
 
 	}
 }
