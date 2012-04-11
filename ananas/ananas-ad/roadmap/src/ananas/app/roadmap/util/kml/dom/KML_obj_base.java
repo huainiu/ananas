@@ -1,4 +1,5 @@
-package ananas.app.roadmap.util.kml;
+package ananas.app.roadmap.util.kml.dom;
+
 
 public class KML_obj_base implements IKMLObject {
 

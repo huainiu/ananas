@@ -7,16 +7,16 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import ananas.app.roadmap.util.kml.IKMLObject;
-import ananas.app.roadmap.util.kml.KML_kml;
-import ananas.app.roadmap.util.kml.KML_obj_base;
+import ananas.app.roadmap.util.kml.dom.IKMLObject;
 import ananas.app.roadmap.util.kml.dom.KMLDocument;
 import ananas.app.roadmap.util.kml.dom.KMLFolder;
 import ananas.app.roadmap.util.kml.dom.KMLPlacemark;
 import ananas.app.roadmap.util.kml.dom.KMLPoint;
 import ananas.app.roadmap.util.kml.dom.KML_coordinates;
 import ananas.app.roadmap.util.kml.dom.KML_description;
+import ananas.app.roadmap.util.kml.dom.KML_kml;
 import ananas.app.roadmap.util.kml.dom.KML_name;
+import ananas.app.roadmap.util.kml.dom.KML_obj_base;
 
 public interface KMLObjectTreeBuilder {
 

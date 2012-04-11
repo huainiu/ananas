@@ -1,4 +1,4 @@
-package ananas.app.roadmap.util.kml;
+package ananas.app.roadmap.util.kml.dom;
 
 public interface IKMLObject {
 

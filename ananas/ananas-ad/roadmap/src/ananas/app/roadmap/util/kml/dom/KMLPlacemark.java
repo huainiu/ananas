@@ -1,6 +1,5 @@
 package ananas.app.roadmap.util.kml.dom;
 
-import ananas.app.roadmap.util.kml.IKMLObject;
 
 public class KMLPlacemark extends KMLFeature {
 

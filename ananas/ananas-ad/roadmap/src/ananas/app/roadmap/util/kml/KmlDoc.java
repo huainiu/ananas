@@ -8,10 +8,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import ananas.app.roadmap.util.kml.dom.IKMLObject;
 import ananas.app.roadmap.util.kml.dom.KMLDocument;
 import ananas.app.roadmap.util.kml.dom.KMLFolder;
 import ananas.app.roadmap.util.kml.dom.KMLPlacemark;
 import ananas.app.roadmap.util.kml.dom.KMLPoint;
+import ananas.app.roadmap.util.kml.dom.KML_kml;
 
 public interface KmlDoc {
 
