@@ -4,16 +4,22 @@ import ananas.app.roadmap.util.kml.dom.KMLFeature;
 
 public class KML_kml extends KML_obj_base {
 
-	private KMLFeature mFeature;
+	public KMLFeature mFeature;
 
 	public KML_kml() {
 	}
 
-	public KMLFeature getFeature() {
-		if (this.mFeature == null) {
+	@Override
+	public boolean appendChild(IKMLObject child) {
 
+		if (child instanceof KMLFeature) {
+			this.mFeature = (KMLFeature) child;
+
+		} else {
+			return super.appendChild(child);
 		}
-		return this.mFeature;
+
+		return true;
 	}
 
 }

@@ -28,4 +28,9 @@ public class KML_obj_base implements IKMLObject {
 		return this.mParent;
 	}
 
+	@Override
+	public boolean appendText(String text) {
+		return false;
+	}
+
 }

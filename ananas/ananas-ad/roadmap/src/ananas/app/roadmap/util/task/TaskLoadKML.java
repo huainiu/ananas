@@ -13,6 +13,9 @@ public class TaskLoadKML implements Task {
 	@Override
 	public void run() {
 		File dir = RoadmapFileManager.Factory.getInstance().getKmlDirectory();
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
 		this._loadKmlFilesInDir(dir, 6);
 	}
 

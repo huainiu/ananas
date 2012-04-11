@@ -8,6 +8,8 @@ public interface IKMLObject {
 
 	boolean appendChild(IKMLObject child);
 
+	boolean appendText(String text);
+
 	boolean setAttribute(String name, String value);
 
 }
