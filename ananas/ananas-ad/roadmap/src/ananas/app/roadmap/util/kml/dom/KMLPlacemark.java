@@ -1,10 +1,12 @@
 package ananas.app.roadmap.util.kml.dom;
 
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
 
 public class KMLPlacemark extends KMLFeature {
 
 	public KMLGeometry mGeometry;
+	private OverlayItem mOverlayItem;
 
 	@Override
 	public boolean appendChild(IKMLObject child) {
@@ -20,7 +22,15 @@ public class KMLPlacemark extends KMLFeature {
 	}
 
 	public OverlayItem getOverlayItem() {
-		return null;
+		if (this.mOverlayItem == null) {
+
+			GeoPoint point = new GeoPoint(0, 0);
+			String title = "";
+			String text = "";
+			this.mOverlayItem = new OverlayItem(point, title, text);
+
+		}
+		return this.mOverlayItem;
 	}
 
 	@Override

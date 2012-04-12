@@ -5,8 +5,12 @@ import java.io.File;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import com.google.android.maps.OverlayItem;
+
 import ananas.app.roadmap.util.RoadmapFileManager;
 import ananas.app.roadmap.util.Task;
+import ananas.app.roadmap.util.kml.dom.IOverlayItemEnumerator;
+import ananas.app.roadmap.util.kml.dom.KML_kml;
 
 public class TaskLoadKML implements Task {
 
@@ -50,10 +54,28 @@ public class TaskLoadKML implements Task {
 			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 			parser.parse(kmlfile, builder.getHandler());
 
+			MyItemList list = new MyItemList();
+			KML_kml kml = builder.getKmlRoot();
+			kml.listOverlayItems(list);
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
 	}
+
+	class MyItemList implements IOverlayItemEnumerator {
+
+		private int mIndex;
+
+		@Override
+		public void append(OverlayItem item) {
+
+			int index = (this.mIndex++);
+			System.out.println("list item[" + index + "]" + item);
+
+		}
+	}
+
 }

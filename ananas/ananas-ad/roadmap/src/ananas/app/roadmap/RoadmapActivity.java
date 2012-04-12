@@ -6,14 +6,13 @@ import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
 import ananas.app.roadmap.util.ArmKmlOverlay;
 import ananas.app.roadmap.util.ArmScaleOverlay;
 import ananas.app.roadmap.util.StatusClient;
-import ananas.app.roadmap.util.Task;
 import ananas.app.roadmap.util.TaskRunner;
-import ananas.app.roadmap.util.task.TaskLoadKML;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Menu;
@@ -33,6 +32,7 @@ public class RoadmapActivity extends MapActivity {
 	private MyLocationOverlay mMyLocOver;
 	private TextView mStatusView;
 	private TaskRunner mTaskRunner;
+	private ArmKmlOverlay mKmlOverlay;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -57,8 +57,11 @@ public class RoadmapActivity extends MapActivity {
 		this.mMapView = (MapView) findViewById(R.id.mapview);
 		this.mMapView.setBuiltInZoomControls(true);
 		MyLocationOverlay myloc = new MyLocationOverlay(this, this.mMapView);
+		Drawable icon = this.getResources().getDrawable(R.drawable.ic_launcher);
+		ArmKmlOverlay kmlOverlay = new ArmKmlOverlay(this, this.mMapView, icon);
+		this.mKmlOverlay = kmlOverlay;
 		// myloc.enableMyLocation();
-		this.mMapView.getOverlays().add(new ArmKmlOverlay());
+		this.mMapView.getOverlays().add(kmlOverlay);
 		this.mMapView.getOverlays().add(myloc);
 		this.mMapView.getOverlays().add(new ArmScaleOverlay());
 		this.mMyLocOver = myloc;
@@ -163,12 +166,15 @@ public class RoadmapActivity extends MapActivity {
 	}
 
 	private void _loadKML() {
-		TaskRunner runner = this._getTaskRunner();
-		Task task = new TaskLoadKML();
-		runner.addTask(task);
+		/*
+		 * TaskRunner runner = this._getTaskRunner(); Task task = new
+		 * TaskLoadKML(); runner.addTask(task);
+		 */
+
+		this.mKmlOverlay.startLoad();
 	}
 
-	private TaskRunner _getTaskRunner() {
+	public TaskRunner getTaskRunner() {
 		TaskRunner runner = this.mTaskRunner;
 		if (runner == null) {
 			this.mTaskRunner = runner = TaskRunner.Factory.newInstance();
