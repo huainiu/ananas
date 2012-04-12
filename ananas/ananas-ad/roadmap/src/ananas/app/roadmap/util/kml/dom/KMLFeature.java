@@ -1,7 +1,6 @@
 package ananas.app.roadmap.util.kml.dom;
 
-
-public class KMLFeature extends KMLObject {
+public abstract class KMLFeature extends KMLObject {
 
 	public KML_name mName;
 	public KML_description mDescription;
@@ -21,5 +20,7 @@ public class KMLFeature extends KMLObject {
 
 		return true;
 	}
+
+	public abstract void listOverlayItems(IOverlayItemEnumerator enumerator);
 
 }

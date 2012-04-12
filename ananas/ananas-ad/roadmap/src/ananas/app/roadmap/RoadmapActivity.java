@@ -3,6 +3,7 @@ package ananas.app.roadmap;
 import java.util.Vector;
 
 import ananas.app.roadmap.RoadmapService.IRoadmapService2Binder;
+import ananas.app.roadmap.util.ArmKmlOverlay;
 import ananas.app.roadmap.util.ArmScaleOverlay;
 import ananas.app.roadmap.util.StatusClient;
 import ananas.app.roadmap.util.Task;
@@ -57,6 +58,7 @@ public class RoadmapActivity extends MapActivity {
 		this.mMapView.setBuiltInZoomControls(true);
 		MyLocationOverlay myloc = new MyLocationOverlay(this, this.mMapView);
 		// myloc.enableMyLocation();
+		this.mMapView.getOverlays().add(new ArmKmlOverlay());
 		this.mMapView.getOverlays().add(myloc);
 		this.mMapView.getOverlays().add(new ArmScaleOverlay());
 		this.mMyLocOver = myloc;

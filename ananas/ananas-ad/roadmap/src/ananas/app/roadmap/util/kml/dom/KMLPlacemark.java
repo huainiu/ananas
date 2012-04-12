@@ -1,5 +1,6 @@
 package ananas.app.roadmap.util.kml.dom;
 
+import com.google.android.maps.OverlayItem;
 
 public class KMLPlacemark extends KMLFeature {
 
@@ -16,6 +17,16 @@ public class KMLPlacemark extends KMLFeature {
 		}
 
 		return true;
+	}
+
+	public OverlayItem getOverlayItem() {
+		return null;
+	}
+
+	@Override
+	public void listOverlayItems(IOverlayItemEnumerator enumerator) {
+		OverlayItem item = this.getOverlayItem();
+		enumerator.append(item);
 	}
 
 }
