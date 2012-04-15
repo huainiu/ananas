@@ -1,18 +1,21 @@
 package ananas.app.roadmap.util.task;
 
 import java.io.File;
+import java.util.Vector;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import com.google.android.maps.OverlayItem;
 
 import ananas.app.roadmap.util.RoadmapFileManager;
 import ananas.app.roadmap.util.Task;
 import ananas.app.roadmap.util.kml.dom.IOverlayItemEnumerator;
 import ananas.app.roadmap.util.kml.dom.KML_kml;
 
+import com.google.android.maps.OverlayItem;
+
 public class TaskLoadKML implements Task {
+
+	private MyItemList mItemList;
 
 	@Override
 	public void run() {
@@ -58,6 +61,8 @@ public class TaskLoadKML implements Task {
 			KML_kml kml = builder.getKmlRoot();
 			kml.listOverlayItems(list);
 
+			this.mItemList = list;
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -65,16 +70,33 @@ public class TaskLoadKML implements Task {
 
 	}
 
+	public OverlayItem[] listItems() {
+		MyItemList il = this.mItemList;
+		if (il == null) {
+			return new OverlayItem[0];
+		} else {
+			return il.toArray();
+		}
+	}
+
 	class MyItemList implements IOverlayItemEnumerator {
 
 		private int mIndex;
+		private final Vector<OverlayItem> mList;
+
+		MyItemList() {
+			this.mList = new Vector<OverlayItem>();
+		}
+
+		public OverlayItem[] toArray() {
+			return mList.toArray(new OverlayItem[mList.size()]);
+		}
 
 		@Override
 		public void append(OverlayItem item) {
-
 			int index = (this.mIndex++);
 			System.out.println("list item[" + index + "]" + item);
-
+			this.mList.addElement(item);
 		}
 	}
 

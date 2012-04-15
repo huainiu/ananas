@@ -1,9 +1,8 @@
-package ananas.app.roadmap.util;
+package ananas.app.roadmap.util.kml;
 
 import ananas.app.roadmap.util.task.TaskLoadKML;
 import android.graphics.drawable.Drawable;
 
-import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
@@ -11,39 +10,25 @@ import com.google.android.maps.OverlayItem;
 
 public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 
-	private OverlayItem mItem;
 	private MyLoadTask mCurTask;
 	private final MapActivity mActivity;
+	private OverlayItem[] mItemArray;
 
 	public ArmKmlOverlay(MapActivity mapActivity, MapView mapView, Drawable icon) {
 		super(boundCenterBottom(icon));
-
 		this.mActivity = mapActivity;
 
-		this.populate();
+		this._setItems(null);
 	}
 
 	@Override
 	protected OverlayItem createItem(int i) {
-
-		if (this.mItem == null) {
-			GeoPoint point = new GeoPoint(0, 0);
-			this.mItem = new MyItem(point, "title", "snippet");
-		}
-		return this.mItem;
+		return this.mItemArray[i];
 	}
 
 	@Override
 	public int size() {
-		return 1;
-	}
-
-	class MyItem extends OverlayItem {
-
-		public MyItem(GeoPoint point, String title, String snippet) {
-			super(point, title, snippet);
-			// TODO Auto-generated constructor stub
-		}
+		return this.mItemArray.length;
 	}
 
 	public void startLoad() {
@@ -66,6 +51,8 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 
 	class MyLoadTask {
 
+		private OverlayItem[] mArray;
+
 		public Runnable getWorkerRunnable() {
 			return new Runnable() {
 
@@ -81,6 +68,8 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 			try {
 				TaskLoadKML task = new TaskLoadKML();
 				task.run();
+				OverlayItem[] array = task.listItems();
+				this.mArray = array;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -116,7 +105,18 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 
 		private void _onFinish() {
 			System.out.println(this + ".onFinish");
+			OverlayItem[] array = this.mArray;
+			ArmKmlOverlay.this._setItems(array);
 		}
+	}
+
+	private void _setItems(OverlayItem[] array) {
+		// must main thread call
+		if (array == null) {
+			array = new OverlayItem[0];
+		}
+		this.mItemArray = array;
+		this.populate();
 	}
 
 }
