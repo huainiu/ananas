@@ -147,6 +147,8 @@ public class RoadmapActivity extends MapActivity {
 			break;
 		}
 		case R.id.menu_item_select_maptype_sat: {
+			RoadmapActivity.this.mMapView.setStreetView(false);
+			RoadmapActivity.this.mMapView.setTraffic(false);
 			RoadmapActivity.this.mMapView.setSatellite(true);
 			break;
 		}
