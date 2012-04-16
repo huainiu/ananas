@@ -22,7 +22,10 @@ public class KMLPlacemark extends KMLFeature {
 
 	public OverlayItem getOverlayItem() {
 		if (this.mOverlayItem == null) {
-			this.mOverlayItem = this.mGeometry.createOverlayItem(this);
+			final KMLGeometry geo = this.mGeometry;
+			if (geo != null) {
+				this.mOverlayItem = geo.createOverlayItem(this);
+			}
 		}
 		return this.mOverlayItem;
 	}

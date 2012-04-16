@@ -1,6 +1,7 @@
 package ananas.app.roadmap.util.kml;
 
 import ananas.app.roadmap.util.task.TaskLoadKML;
+import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 
 import com.google.android.maps.ItemizedOverlay;
@@ -13,11 +14,12 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 	private MyLoadTask mCurTask;
 	private final MapActivity mActivity;
 	private OverlayItem[] mItemArray;
+	private final MapView mMapView;
 
 	public ArmKmlOverlay(MapActivity mapActivity, MapView mapView, Drawable icon) {
 		super(boundCenterBottom(icon));
 		this.mActivity = mapActivity;
-
+		this.mMapView = mapView;
 		this._setItems(null);
 	}
 
@@ -107,6 +109,7 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 			System.out.println(this + ".onFinish");
 			OverlayItem[] array = this.mArray;
 			ArmKmlOverlay.this._setItems(array);
+			ArmKmlOverlay.this.mMapView.invalidate();
 		}
 	}
 
@@ -119,4 +122,13 @@ public class ArmKmlOverlay extends ItemizedOverlay<OverlayItem> {
 		this.populate();
 	}
 
+	@Override
+	public boolean onTap(int index) {
+		OverlayItem item = this.mItemArray[index];
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this.mActivity);
+		dialog.setTitle(item.getTitle());
+		dialog.setMessage(item.getSnippet());
+		dialog.show();
+		return true;
+	}
 }

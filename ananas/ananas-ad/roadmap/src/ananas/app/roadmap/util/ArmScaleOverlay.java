@@ -77,8 +77,8 @@ public class ArmScaleOverlay extends Overlay {
 		final double earth_C = 2 * Math.PI * earth_R;
 
 		final int height = mapView.getHeight();
-		final int width = mapView.getWidth();
-		final int full_width = width - 100;
+		// final int width = mapView.getWidth();
+		final int full_width = 200; // width - 100;
 
 		final Projection proj = mapView.getProjection();
 		final GeoPoint gp1 = proj.fromPixels(0, height / 2);

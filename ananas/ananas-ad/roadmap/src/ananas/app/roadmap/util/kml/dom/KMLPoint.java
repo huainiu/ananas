@@ -19,8 +19,16 @@ public class KMLPoint extends KMLGeometry {
 
 	@Override
 	public OverlayItem createOverlayItem(KMLPlacemark placemark) {
+		String title = "";
+		String content = "";
+		if (placemark != null) {
+			KML_description desc = placemark.mDescription;
+			KML_name name = placemark.mName;
+			title += (name == null) ? ("[no title]") : name.mData;
+			content += (desc == null) ? ("") : desc.mData;
+		}
 		GeoPoint pt = this.mCoordinates.getCoordinate(0);
-		return new OverlayItem(pt, "title", "content");
+		return new OverlayItem(pt, title, content);
 	}
 
 }

@@ -57,7 +57,8 @@ public class RoadmapActivity extends MapActivity {
 		this.mMapView = (MapView) findViewById(R.id.mapview);
 		this.mMapView.setBuiltInZoomControls(true);
 		MyLocationOverlay myloc = new MyLocationOverlay(this, this.mMapView);
-		Drawable icon = this.getResources().getDrawable(R.drawable.ic_launcher);
+		Drawable icon = this.getResources().getDrawable(
+				R.drawable.default_point);
 		ArmKmlOverlay kmlOverlay = new ArmKmlOverlay(this, this.mMapView, icon);
 		this.mKmlOverlay = kmlOverlay;
 		// myloc.enableMyLocation();
@@ -294,6 +295,7 @@ public class RoadmapActivity extends MapActivity {
 
 			RoadmapActivity.this._updateStatus();
 			RoadmapActivity.this._initShowMyPos();
+			RoadmapActivity.this._loadKML();
 		}
 
 		@Override

@@ -23,6 +23,9 @@ public class TaskLoadKML implements Task {
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
+
+		MyItemList list = new MyItemList();
+		this.mItemList = list;
 		this._loadKmlFilesInDir(dir, 6);
 	}
 
@@ -57,11 +60,9 @@ public class TaskLoadKML implements Task {
 			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 			parser.parse(kmlfile, builder.getHandler());
 
-			MyItemList list = new MyItemList();
+			MyItemList list = this.mItemList;
 			KML_kml kml = builder.getKmlRoot();
 			kml.listOverlayItems(list);
-
-			this.mItemList = list;
 
 		} catch (Exception e) {
 
@@ -94,6 +95,9 @@ public class TaskLoadKML implements Task {
 
 		@Override
 		public void append(OverlayItem item) {
+			if (item == null) {
+				return;
+			}
 			int index = (this.mIndex++);
 			System.out.println("list item[" + index + "]" + item);
 			this.mList.addElement(item);
