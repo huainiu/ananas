@@ -32,6 +32,7 @@
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_service2_name" >
         </service>
+        <activity android:name="KmlFileBrowserActivity"></activity>
     </application>
 
 </manifest>

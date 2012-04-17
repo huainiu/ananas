@@ -152,6 +152,10 @@ public class RoadmapActivity extends MapActivity {
 			RoadmapActivity.this.mMapView.setTraffic(false);
 			break;
 		}
+		case R.id.menu_item_select_kml: {
+			this.startActivity(new Intent(this, KmlFileBrowserActivity.class));
+			break;
+		}
 		case R.id.menu_item_load_kml: {
 			RoadmapActivity.this._loadKML();
 			break;
@@ -297,7 +301,7 @@ public class RoadmapActivity extends MapActivity {
 
 			RoadmapActivity.this._updateStatus();
 			RoadmapActivity.this._initShowMyPos();
-			RoadmapActivity.this._loadKML();
+			// RoadmapActivity.this._loadKML();
 		}
 
 		@Override

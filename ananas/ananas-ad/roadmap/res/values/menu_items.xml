@@ -8,5 +8,7 @@
     <string name="menu_item_load_kml">Load KML</string>
     <string name="menu_item_map_type_map">plain map</string>
     <string name="menu_item_map_type_sat">sat map</string>
-
+    
+    <string name="menu_item_select_kml">select KML</string>
+    
 </resources>

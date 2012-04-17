@@ -17,5 +17,6 @@
     </item>
     <item android:id="@+id/menu_item_exit_app" android:title="@string/menu_item_exit">
     </item>
+    <item android:id="@+id/menu_item_select_kml" android:title="@string/menu_item_select_kml"></item>
 
 </menu>
