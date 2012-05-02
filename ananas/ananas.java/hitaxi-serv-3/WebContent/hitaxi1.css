@@ -1,0 +1,320 @@
+@charset "utf-8";
+
+body {
+	background-color: #159951;
+	margin: 0;
+	padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+}
+
+p {
+	margin-bottom: 1.1em;
+	margin-top: 0;
+	font-family: "宋体";
+	font-size: 16px;
+}
+
+#main p.lastNode {
+	margin-bottom: 0;
+}
+
+a:link img,a:visited img {
+	border: none;
+}
+
+div.clearFloat {
+	clear: both;
+	font-size: 0;
+	height: 0;
+	line-height: 0px;
+}
+
+li.clearFloat {
+	clear: both;
+}
+
+ul.symbolList {
+	display: inline;
+	float: left;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.AbsWrap {
+	position: relative;
+	width: 100%;
+}
+
+.rowWrap {
+	width: 100%;
+}
+
+#main {
+	margin: 0 auto;
+	width: 320px;
+	position: relative;
+	z-index: 1;
+}
+
+#base_map_1 {
+	margin-left: 1px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 26px;
+	margin-bottom: 0;
+	width: 319px;
+}
+
+#base_map_9 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 128px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#mid_map_1 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 128px;
+	margin-bottom: 0;
+	width: 300px;
+}
+
+#base_map_2 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 128px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#base_map_8 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 246px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#mid_map_5 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 246px;
+	margin-bottom: 0;
+	width: 5px;
+}
+
+#top_map_1 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 246px;
+	margin-bottom: 0;
+	width: 290px;
+}
+
+#mid_map_2 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 246px;
+	margin-bottom: 0;
+	width: 5px;
+}
+
+#base_map_3 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 246px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#base_map_7 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 80px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#colwrap1 {
+	float: left;
+	margin-left: 0px;
+	margin-top: 0px;
+	width: 300px;
+}
+
+#mid_map_4 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 34px;
+	margin-bottom: 0;
+	width: 5px;
+}
+
+#top_map_2 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 34px;
+	margin-bottom: 0;
+	width: 290px;
+}
+
+#mid_map_3 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 34px;
+	margin-bottom: 0;
+	width: 5px;
+}
+
+#base_map_6 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 46px;
+	margin-bottom: 0;
+	width: 300px;
+}
+
+#base_map_4 {
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline;
+	float: left;
+	height: 80px;
+	margin-bottom: 0;
+	width: 10px;
+}
+
+#main #report #form_exit {
+	text-align: center;
+}
+
+#main #report #form_info {
+	text-align: center;
+}
+
+#main #report #form_status {
+	text-align: center;
+}
+
+#main #report #form_sreach {
+	text-align: center;
+}
+
+#main #report #form_change {
+	text-align: center;
+}
+
+#main #report #result label {
+	text-align: center;
+}
+
+#main #report #result {
+	text-align: center;
+}
+
+#main #report #form1 p label #status_0 {
+	text-align: center;
+}
+
+#main #report #form1 p label {
+	text-align: center;
+}
+
+#login {
+	width: 290px;
+	z-index: 1;
+	margin: auto;
+	left: 15px;
+	top: 177px;
+	position: absolute;
+	visibility: visible;
+	height: 199px;
+}
+
+#report {
+	width: 290px;
+	z-index: 1;
+	margin: auto;
+	left: 15px;
+	top: 160px;
+	position: absolute;
+	visibility: visible;
+	height: 240px;
+	text-align: center;
+}
+
+.heitxi_char {
+	color: #000000;
+	font-family: "宋体";
+	font-size: 16px;
+	height: auto;
+	text-align: center;
+}
+
+.hitexi_button {
+	color: #000;
+	font-family: "宋体";
+	font-size: 16px;
+	text-align: center;
+}
+
+.hitexi_textable {
+	color: #000;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 18px;
+	height: auto;
+}
+
+#div_cue_icon {
+	position: absolute;
+	width: 290px;
+	height: 35px;
+	z-index: 1;
+	left: 0px;
+	top: 169px;
+	margin: auto;
+	visibility: inherit;
+}
+
+#status_img {
+	position: absolute;
+	width: 200px;
+	height: 170px;
+	z-index: 1;
+	left: 45px;
+	top: 0px;
+	visibility: visible;
+}

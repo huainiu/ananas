@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript">
+	function test() {
+
+		try {
+
+			var MyPosAll = window.jsapi.getPos();
+			var MyLat = MyPosAll.getLatitude();
+			var MyLon = MyPosAll.getLongitude();
+			var MyAlt = MyPosAll.getAltitude();
+			var MyAcc = MyPosAll.getAccuracy();
+			var MyTim = MyPosAll.getTimeStamp();
+			var MySou = MyPosAll.getSource();
+			var MyJid = window.jsapi.getJabberID();
+
+			var MyisGPS = window.jsapi.isGPSEnable();
+
+			var s = "<br>";
+			s = s + "<br>1=" + MyJid;
+			s = s + "<br>2=" + MyLat;
+			s = s + "<br>3=" + MyLon;
+			s = s + "<br>4=" + MyAlt;
+			s = s + "<br>5=" + MyAcc;
+			s = s + "<br>6=" + MyTim;
+			s = s + "<br>7=" + MySou;
+			s = s + "<br>8=" + MyisGPS;
+
+			document.getElementById("test1").innerHTML = s;
+
+		} catch (err) {
+
+			alert(err);
+
+		}
+	}
+</script>
+<script type="text/javascript">
+	function testO() {
+		window.jsapi.setGPSEnable(true, 1, 1);
+
+	}
+	function testC() {
+		window.jsapi.setGPSEnable(false);
+
+	}
+</script>
+</head>
+<body>
+	<div id="test1"></div>
+	<input type="button" name="1" id="1" value="提交" onclick="test()" />
+	<input type="button" name="1" id="2" value="OPEN" onclick="testO()" />
+	<input type="button" name="1" id="3" value="CLOSE" onclick="testC()" />
+</body>
+</html>

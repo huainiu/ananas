@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="hitaxi1.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<script type="text/javascript">
+	function Call_FindCarServlet() {// 今后在javascript中对servlet的调用一律采用call_加servlet名的格式
+    var Taxi=document.getElementById("taxi_jid");
+	var TaxiJid=Taxi.value;
+	var CheckTaxi;
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = State_Change;
+	xmlhttp.open("GET", "./GetCarDetail", true);
+	xmlhttp.setRequestHeader("CheckTaxi", TaxiJid);
+	xmlhttp.send();
+	function State_Change() {
+		if (xmlhttp.readyState == 2) {
+			window.location = "./hs/detail.jsp";
+			if (xmlhttp.status == 404) {
+				window.location = "./error/404.jsp";// 服务器维护中！
+			}
+		}
+	}
+}
+
+	    </script>
+<table width="260" border="1" align="center">
+<tr>
+			<td onclick="Call_FindCarServlet()"><img src="images/taxi.png"
+				width="41" height="20" alt="TAXI" /> <input id="taxi_jid"
+				name="taxi_jid" type="text" value="hitexi.xuecheng@gmail.com"
+				readonly="readonly" /> <img src="images/checke_result.png" alt=""
+				id="checked2" /></td>
+		</tr>
+		<tr>
+			<td onclick="Call_FindCarServlet()"><img src="images/taxi.png"
+				width="41" height="20" alt="TAXI" /> <input id="taxi_jid"
+				name="taxi_jid" type="text" value="motofans@gmail.com"
+				readonly="readonly" /> <img src="images/checke_result.png" alt=""
+				id="checked3" onclick="Call_FindCarServlet()" /></td>
+		</tr>
+		<tr>
+			<td onclick="Call_FindCarServlet()"><img src="images/taxi.png"
+				width="41" height="20" alt="TAXI" /> <input id="taxi_jid"
+				name="taxi_jid" type="text" value="118024528@gmail.com"
+				readonly="readonly" /> <img src="images/checke_result.png" alt=""
+				id="checked4" onclick="Call_FindCarServlet()" /></td>
+		</tr>
+	</table>
+<table width="200" border="1" align="center">
+  <tr>
+    <td id="NickName" align="center">昵称：</td>
+  </tr>
+  <tr>
+    <td id="CarNumberPlate" align="center">车牌：</td>
+  </tr>
+  <tr>
+    <td id="TaxiTel" align="center">电话：</td>
+  </tr>
+  <tr>
+    <td id="declare" align="left">《免责申明》本软件处于测试阶段，暂不能保证客户端双方在现实中达成的交易质量，请谅解。</td>
+  </tr>
+</table>
+<p id="111" >数据载入错误，请重新搜车！</p>
+<p><a href="hs/index.jsp"><img src="images/stop.png" width="64" height="64" alt="backindexHS"/></a></p>
+<p>请点击下面的按钮返回主页</p>
+<p align="center">&nbsp;</p>
+<p>&nbsp;</p>
+<table width="270" border="1">
+  <tr>
+    <td width="127" id="q">LaughingMO</td>
+    <td width="127" id="2">asd<img src="images/checke_result.png" width="30" height="30" align="absmiddle" /></td>
+  </tr>
+  <tr>
+    <td id="q2">&nbsp;</td>
+    <td id="22">&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<pre >&nbsp;</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
