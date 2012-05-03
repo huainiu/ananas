@@ -13,9 +13,11 @@
 	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
 	<![endif]-->
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
-</head>
+<script src='../js/ws-js-api.js'></script>
 <script type="text/javascript">
-	function Call_UserStatusCS(num) {
+	function tellserver() {
+		var jsapi=getJSAPI();
+		var MyJid = jsapi.getJabberID();//获取登录jid
 		var xmlhttp;
 		if (window.XMLHttpRequest) {
 			xmlhttp = new XMLHttpRequest();
@@ -24,50 +26,99 @@
 		}
 		xmlhttp.onreadystatechange = State_Change;
 		xmlhttp.open("GET", "./UserStatusByCS", true);
-		xmlhttp.setRequestHeader("MyTaxiStatus", num);
-		xmlhttp.setRequestHeader("no-remote", "yes");
+		xmlhttp.setRequestHeader("jid", MyJid);
 		xmlhttp.send();
 		function State_Change() {
-			if (xmlhttp.readyState == 4) {
-				if (xmlhttp.status == 200) {
-					document.getElementById("status_ico").src = "../images/status_ico_"
-							+ num + ".png";
-					if (num == 1) {
-						window.jsapi.setGPSEnable(true);
-						
-					}
-					if (num == 2) {
-						window.jsapi.setGPSEnable(false);
-					}
-
-				} else {
-					window.location = "../error/404.jsp";
-				}
-			}
+			xmlhttp.readyState == 4;
 		}
 	}
-	
-
 </script>
-<body>
+</head>
+<script type="text/javascript">
+	function Call_UserStatusCS(num) {
+		var jsapi=getJSAPI();
+		document.getElementById("status_ico").src = "../images/status_ico_"
+				+ num + ".png";
+		if (num == 1) {
+			jsapi.setGPSEnable(true, 1, 1);
+			reportmypos();
+		}
+		if (num == 2) {
+			jsapi.setGPSEnable(false);
+			document.getElementById("GPSstatus").innerHTML = "GPS已经关闭";
+		} else {
+			window.location = "../error/404.jsp";
+		}
+	}
+	function reportmypos() {
+		try {
+			var MyPosAll = jsapi.getPos();//获取全部GPS数据
+			var MyLat = MyPosAll.getLatitude();//获取纬度
+			var MyLon = MyPosAll.getLongitude();//获取经度
+			var MyAlt = MyPosAll.getAltitude();//获取海拔
+			var MyAcc = MyPosAll.getAccuracy();//获取精度
+			var MyTim = MyPosAll.getTimeStamp();//获取当前时间戳
+			var MySou = MyPosAll.getSource();//获取GPS设备源
+			var MyJid = jsapi.getJabberID();//获取登录jid
+			var MyisGPS = jsapi.isGPSEnable();//获取gps工作状态
+			var xmlhttp;
+			if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = State_Change;
+			xmlhttp.open("GET", "./ReportPOS", true);
+			xmlhttp.setRequestHeader("geo-pos", MyLon + "," + MyLat);
+			xmlhttp.setRequestHeader("MyAlt", MyAlt);
+			xmlhttp.setRequestHeader("MyAcc", MyAcc);
+			xmlhttp.setRequestHeader("geo-time", MyTim);
+			xmlhttp.setRequestHeader("MySou", MySou);
+			xmlhttp.setRequestHeader("jid", MyJid);
+			xmlhttp.setRequestHeader("MyisGPS", MyisGPS);
+			xmlhttp.send();
+			function State_Change() {
+				xmlhttp.readyState == 4;
+			}
+			var s = "<br>";
+			s = s + "<br>获取登录jid" + MyJid;
+			s = s + "<br>获取纬度" + MyLat;
+			s = s + "<br>获取经度" + MyLon;
+			s = s + "<br>获取海拔" + MyAlt;
+			s = s + "<br>获取精度" + MyAcc;
+			s = s + "<br>时间戳" + MyTim;
+			s = s + "<br>设备源" + MySou;
+			s = s + "<br>gps工作状态" + MyisGPS;
+			document.getElementById("GPSstatus").innerHTML = s;
+		} catch (err) {
+			alert(err);
+		}
+		if (num == 1) {
+			setTimeout("reportmypos()", 1000);
+		}
+		if (num == 2) {
+			clearTimeout("reportmypos()");
+		}
+	}
+</script>
+<body onload="tellserver()">
 	<div id="main">
 		<img src="../images/base_map_1.png" id="base_map_1" alt="" />
 		<div class="clearFloat"></div>
 		<div id="report">
-			<p></p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
 			<div id="status_img">
-				<img src="../images/status_ico_0.png" alt="" id="status_ico" />
+				<img src="../images/status_ico_0.png" alt="" id="status_ico" /> <input
+					name="leisure" type="button" class="hitexi_button"
+					onclick="Call_UserStatusCS(1)" value="空车" /> <input
+					name="busyness" type="button" class="hitexi_button"
+					onclick="Call_UserStatusCS(2)" value="交班" />
 			</div>
-			<input name="leisure" type="button" class="hitexi_button"
-				onclick="Call_UserStatusCS(1)" value="空车" /> <input name="busyness"
-				type="button" class="hitexi_button" onclick="Call_UserStatusCS(2)"
-				value="交班" />
-			</p>
+			<p class="heitxi_char" id="GPSstatus">&nbsp;</p>
+			<p class="heitxi_char">&nbsp;</p>
+			<p class="heitxi_char">&nbsp;</p>
+			<p class="heitxi_char">&nbsp;</p>
+			<p class="heitxi_char">&nbsp;</p>
+			<p class="heitxi_char">&nbsp;</p>
 			<p class="heitxi_char">请设置当前车辆的状态</p>
 		</div>
 		<img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img

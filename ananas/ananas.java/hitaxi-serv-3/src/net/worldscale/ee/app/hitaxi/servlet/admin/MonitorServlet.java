@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.worldscale.ee.app.hitaxi.api.IAgent;
+import net.worldscale.ee.app.hitaxi.api.ITaxi;
+import net.worldscale.ee.app.hitaxi.api.IUser;
+import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
+
 /**
  * Servlet implementation class MonitorServlet
  */
@@ -36,16 +41,21 @@ public class MonitorServlet extends HttpServlet {
 		response.setHeader("Content-Type",
 				"application/vnd.google-earth.kml+xml");
 
-		ServletOutputStream os = response.getOutputStream();
+		IAgent agent = DefaultAgent.getInstance();
+		IUser[] list = agent.getUserManager().listUsers(0, 100);
 
+		ServletOutputStream os = response.getOutputStream();
 		os.print("");
 		os.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		os.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\" >");
 		os.println("<Document><name>Monitor</name>");
-		for (int i = 5; i > 0; i--) {
-			String name = "[name]";
-			String style = "[style-url]";
-			String coor = "[coordinate]";
+		for (IUser item : list) {
+			String name = item.getNickname();
+			String style = "./monitor-style#"
+					+ ((item instanceof ITaxi) ? "style_taxi"
+							: "style_customer");
+			String coor = item.getLongitude() + "," + item.getLatitude();
+
 			os.print("<Placemark><name>");
 			os.print(name);
 			os.print("</name><styleUrl>");
@@ -54,6 +64,7 @@ public class MonitorServlet extends HttpServlet {
 			os.print(coor);
 			os.print("</coordinates></Point></Placemark>");
 			os.println();
+
 		}
 		os.println("</Document></kml>");
 	}

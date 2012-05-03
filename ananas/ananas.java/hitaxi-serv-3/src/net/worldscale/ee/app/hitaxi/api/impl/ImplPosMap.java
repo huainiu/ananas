@@ -26,6 +26,7 @@ class ImplPosMap implements IPositionMap {
 	 * */
 
 	public void setPos(ITaxi taxi, double longitude, double latitude) {
+		taxi.setLocation(longitude, latitude);
 		long nPath = this.coorToLong(longitude, latitude);
 		MyNode node = this.mRoot;
 		if (node == null) {

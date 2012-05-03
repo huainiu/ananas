@@ -8,4 +8,6 @@ public interface IAgent {
 
 	IUserManager getUserManager();
 
+	ILogger getLogger();
+
 }

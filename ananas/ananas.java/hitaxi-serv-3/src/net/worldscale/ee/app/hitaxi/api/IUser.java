@@ -8,10 +8,16 @@ public interface IUser {
 
 	String getPhoneNumber();
 
+	double getLongitude();
+
+	double getLatitude();
+
 	// setter
 
 	void setNickname(String nickname);
 
 	void setPhoneNumber(String phoneNumber);
+
+	void setLocation(double longitude, double latitude);
 
 }

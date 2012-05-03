@@ -3,7 +3,7 @@
 <NetworkLink>
 	<name>monitor-link</name>
 	<Link>
-		<href>http://localhost:8080//kml/monitor.kml</href>
+		<href>http://localhost:8080/hitaxi-server-2/admin/monitor/MonitorServlet</href>
 	</Link>
 </NetworkLink>
 </kml>

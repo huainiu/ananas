@@ -75,6 +75,12 @@
     <servlet-name>AdminShowDBInfo</servlet-name>
     <servlet-class>net.worldscale.ee.app.hitaxi.servlet.admin.AdminShowDBInfo</servlet-class>
   </servlet>
+  <servlet>
+    <description></description>
+    <display-name>MonitorServlet</display-name>
+    <servlet-name>MonitorServlet</servlet-name>
+    <servlet-class>net.worldscale.ee.app.hitaxi.servlet.admin.MonitorServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>AdminShowDBInfo</servlet-name>
     <url-pattern>/AdminShowDBInfo</url-pattern>
@@ -88,5 +94,19 @@
   <servlet-mapping>
     <servlet-name>AdminShowRuntimeInfo</servlet-name>
     <url-pattern>/admin/AdminShowRuntimeInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MonitorServlet</servlet-name>
+    <url-pattern>/admin/monitor/MonitorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowLogInfo</display-name>
+    <servlet-name>ShowLogInfo</servlet-name>
+    <servlet-class>net.worldscale.ee.app.hitaxi.servlet.admin.ShowLogInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowLogInfo</servlet-name>
+    <url-pattern>/admin/ShowLogInfo</url-pattern>
   </servlet-mapping>
 </web-app>

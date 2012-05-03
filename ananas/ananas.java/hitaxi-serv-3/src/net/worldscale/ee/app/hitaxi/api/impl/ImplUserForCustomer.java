@@ -32,4 +32,23 @@ public class ImplUserForCustomer implements ICustomer {
 		this.mPhoneNum = phoneNumber;
 	}
 
+	private double m_lon;
+	private double m_lat;
+
+	@Override
+	public double getLongitude() {
+		return this.m_lon;
+	}
+
+	@Override
+	public double getLatitude() {
+		return this.m_lat;
+	}
+
+	@Override
+	public void setLocation(double longitude, double latitude) {
+		this.m_lat = latitude;
+		this.m_lon = longitude;
+	}
+
 }

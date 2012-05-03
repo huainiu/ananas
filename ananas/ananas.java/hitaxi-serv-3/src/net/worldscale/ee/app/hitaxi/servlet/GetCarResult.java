@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.worldscale.ee.app.hitaxi.api.IAgent;
+import net.worldscale.ee.app.hitaxi.api.ICustomer;
+import net.worldscale.ee.app.hitaxi.api.ITaxi;
+import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
+import net.worldscale.ee.app.hitaxi.util.GeoPos;
+
 /**
  * Servlet implementation class GetCarResult
  */
-
 // @WebServlet("/GetCarResult")
-
 public class GetCarResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,39 +36,48 @@ public class GetCarResult extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int TaxiHow = 5;// �˴�ʵ��ֵ�����ڷ�������������JID�ĸ���
-		response.setContentType("text/html;charset=utf-8");// �����������utf-8
+		int TaxiHow = 5;
+		response.setContentType("text/html;charset=utf-8");
+
+		IAgent agent = DefaultAgent.getInstance();
+		ICustomer customer;
+		double longitude;
+		double latitude;
+		{
+			String jid = request.getHeader("jid");
+			String pos = request.getHeader("geo-pos");
+			String time = request.getHeader("geo-time");
+			customer = agent.getUserManager().getCustomer(jid);
+			GeoPos gpos = GeoPos.Factory.parse(pos);
+			longitude = gpos.getLongitude();
+			latitude = gpos.getLatitude();
+		}
+		ITaxi[] result = agent.getPosMap().findTaxi(customer, longitude,
+				latitude);
+
 		PrintWriter out = response.getWriter();
-		out.println("<html>");// �����resultdiv������
+		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />");
 		out.println("<link href='../hitaxi1.css' rel='stylesheet' type='text/css' />");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<table width='270' border='1' align='center'>");
-		for (int i = 0; i < TaxiHow; i++) {
-			String[] TaxiNames = new String[5];
-			TaxiNames[0] = "LaughingMO";
-			TaxiNames[1] = "ռλ���������";
-			TaxiNames[2] = "ռλ���������";
-			TaxiNames[3] = "ռλ���������";
-			TaxiNames[4] = "ռλ���������";
-			String[] TaxiSpace = new String[5];
-			TaxiSpace[0] = "9000m";
-			TaxiSpace[1] = "0m";
-			TaxiSpace[2] = "0m";
-			TaxiSpace[3] = "0m";
-			TaxiSpace[4] = "0m";
+		int i = 0;
+		for (ITaxi taxi : result) {
+
 			out.println("<tr>");
 			out.println("<td width='134' id=" + i + ">");
-			out.println(TaxiNames[i]);
+			out.println(taxi.getNickname());
 			out.println("</td>");
 			out.println("<td width='120' id='taxisapce" + i + "'>");
-			out.println(TaxiSpace[i]);
+			out.println(/* distance */);
 			out.println("<img src='../images/checke_result.png' id='checked' align='absmiddle' onclick='Call_GetCarDetailServlet("
-					+ i + ")' alt='����'/>");
+					+ i + ")' alt=''/>");
 			out.println("</td>");
 			out.println("</tr>");
+
+			i++;
 		}
 		out.println("</table>");
 		out.println("</body>");

@@ -33,12 +33,31 @@ public class ImplUserForTaxi implements ITaxi {
 		this.m_phoneNum = phoneNumber;
 	}
 
-	public String getCarID() {
+	public String getNumberPlate() {
 		return this.m_carId;
 	}
 
-	public void setCarID(String carId) {
+	public void setNumberPlate(String carId) {
 		this.m_carId = carId;
+	}
+
+	private double m_lon;
+	private double m_lat;
+
+	@Override
+	public double getLongitude() {
+		return this.m_lon;
+	}
+
+	@Override
+	public double getLatitude() {
+		return this.m_lat;
+	}
+
+	@Override
+	public void setLocation(double longitude, double latitude) {
+		this.m_lat = latitude;
+		this.m_lon = longitude;
 	}
 
 }

@@ -1,6 +1,7 @@
 package net.worldscale.ee.app.hitaxi.api.impl;
 
 import net.worldscale.ee.app.hitaxi.api.IAgent;
+import net.worldscale.ee.app.hitaxi.api.ILogger;
 import net.worldscale.ee.app.hitaxi.api.IPositionMap;
 import net.worldscale.ee.app.hitaxi.api.ITradeManager;
 import net.worldscale.ee.app.hitaxi.api.IUserManager;
@@ -16,6 +17,7 @@ class ImplAgent implements IAgent {
 	private final IPositionMap mPosMap = new ImplPosMap();
 	private final ITradeManager mTradeMngr = new ImplTradeMngr();
 	private final IUserManager mUserManager = new ImplUserManager();
+	private final ILogger mLogger = new ImplLogger();
 
 	public IPositionMap getPosMap() {
 		return this.mPosMap;
@@ -27,6 +29,11 @@ class ImplAgent implements IAgent {
 
 	public IUserManager getUserManager() {
 		return this.mUserManager;
+	}
+
+	@Override
+	public ILogger getLogger() {
+		return this.mLogger;
 	}
 
 }

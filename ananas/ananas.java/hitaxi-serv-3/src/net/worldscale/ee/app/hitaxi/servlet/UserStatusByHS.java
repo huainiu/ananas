@@ -14,9 +14,7 @@ import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
 /**
  * Servlet implementation class UserStatusByHS
  */
-
 // @WebServlet("/hs/UserStatusByHS")
-
 public class UserStatusByHS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final IAgent mAgent;

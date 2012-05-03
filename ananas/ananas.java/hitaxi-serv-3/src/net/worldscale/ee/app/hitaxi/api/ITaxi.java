@@ -2,9 +2,9 @@ package net.worldscale.ee.app.hitaxi.api;
 
 public interface ITaxi extends IUser {
 
-	String getCarID();
+	String getNumberPlate();
 
 	// setter
-	void setCarID(String carId);
+	void setNumberPlate(String num);
 
 }

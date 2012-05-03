@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.worldscale.ee.app.hitaxi.api.IAgent;
+import net.worldscale.ee.app.hitaxi.api.ITaxi;
 import net.worldscale.ee.app.hitaxi.api.IUser;
 import net.worldscale.ee.app.hitaxi.api.IUserManager;
 import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
@@ -45,8 +46,14 @@ public class AdminShowRuntimeInfo extends HttpServlet {
 		ps.println();
 		final IUserManager um = this.mAgent.getUserManager();
 		final IUser[] userlist = um.listUsers(0, 1000);
+		ps.println("type | jid | nickname | phone | location |");
 		for (IUser user : userlist) {
-			ps.println(user.getJID() + " | " + user.getClass().getName());
+			ps.print(((user instanceof ITaxi) ? "taxi" : "customer") + " | ");
+			ps.print(user.getJID() + " | ");
+			ps.print(user.getNickname() + " | ");
+			ps.print(user.getPhoneNumber() + " | ");
+			ps.print(user.getLongitude() + "," + user.getLatitude() + " | ");
+			ps.println();
 		}
 		ps.flush();
 	}

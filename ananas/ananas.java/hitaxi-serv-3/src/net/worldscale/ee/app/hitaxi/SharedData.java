@@ -6,8 +6,8 @@ import net.worldscale.ee.app.hitaxi.api.UserType;
 import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
 
 public class SharedData {
-	String help = "BEAN²âÊÔ";
-	String version = "»ù´¡¹¦ÄÜ²âÊÔ×¨ÓÃ";
+	String help = "è¿™é‡Œæ˜¯å¸®åŠ©ï¼";
+	String version = "åŸºç¡€åŠŸèƒ½æµ‹è¯•ç‰ˆ";
 
 	public void setLoginMode() {
 
