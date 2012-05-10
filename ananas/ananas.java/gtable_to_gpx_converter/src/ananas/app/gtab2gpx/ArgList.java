@@ -14,6 +14,7 @@ public class ArgList {
 				// parameter start
 				str = str.substring(1);
 				key = str;
+				value = null;
 			} else {
 				// parameter data
 				if (value == null) {

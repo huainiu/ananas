@@ -19,5 +19,6 @@ public class GeoPoint {
 	public double latitude;
 	public double altitude;
 	public long timestamp;
+	public String source;
 
 }

@@ -40,6 +40,7 @@ public class GpsTableReader implements PointReader {
 		pt.latitude = this.mCpLat.getDoubleValue(vline);
 		pt.altitude = this.mCpAlt.getDoubleValue(vline);
 		pt.timestamp = this.mCpTime.getLongValueOfTimestamp(vline);
+		pt.source = this.mCpSrc.getString(vline);
 		{
 			// anti warning
 			this.mCpSrc.hashCode();
@@ -148,6 +149,10 @@ public class GpsTableReader implements PointReader {
 
 		public MyColumnPicker(int i) {
 			this.mIndex = i;
+		}
+
+		public String getString(Vector<String> vline) {
+			return vline.get(mIndex);
 		}
 
 		public long getLongValueOfTimestamp(Vector<String> vline) {

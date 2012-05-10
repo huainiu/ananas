@@ -27,6 +27,12 @@ public class Main implements Runnable {
 			String in = this.mArgList.getParameter("in");
 			String out = this.mArgList.getParameter("out");
 
+			if (in == null || out == null) {
+				System.out
+						.println("error: no input or output file!(with '-in' or '-out')");
+				return;
+			}
+
 			File fileIn = new File(in);
 			File fileOut = new File(out);
 
@@ -35,7 +41,9 @@ public class Main implements Runnable {
 			gpx.setName(fileIn.getName());
 			gpx.setDescription(fileIn.getName());
 			for (GeoPoint pt = gtab.read(); pt != null; pt = gtab.read()) {
-				gpx.write(pt);
+				if ("gps".equalsIgnoreCase(pt.source)) {
+					gpx.write(pt);
+				}
 			}
 			gpx.close();
 		} catch (Exception e) {
