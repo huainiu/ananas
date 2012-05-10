@@ -13,6 +13,9 @@
 	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
 	<![endif]-->
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
+
+<script src='../js/ws-js-api.js'></script>
+
 </head>
 <body>
 	<div id="main">
@@ -21,6 +24,8 @@
 		<div id="report">
 			<script type="text/javascript">
 				function Call_GetCarResult(url) {//今后在javascript中对servlet的调用一律采用call_加servlet名的格式
+					var jsapi = getJSAPI();
+					var jid = jsapi.getJabberID();//获取登录jid
 					var xmlhttp;
 					if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 						xmlhttp = new XMLHttpRequest();
@@ -28,6 +33,7 @@
 						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 					}
 					xmlhttp.open("get", url, true);
+					xmlhttp.setRequestHeader("jid", jid);
 					xmlhttp.onreadystatechange = function() {
 						if (xmlhttp.readyState == 4) {
 							if (xmlhttp.status == 200) {

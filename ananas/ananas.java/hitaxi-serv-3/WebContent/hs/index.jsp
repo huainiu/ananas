@@ -13,12 +13,13 @@
 	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
 	<![endif]-->
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
+<script src='../js/ws-js-api.js'></script>
 <script type="text/javascript">
 	function Call_UserStatusHS() {// 今后在javascript中对servlet的调用一律采用call_加servlet名的格式
-		
-		
-		
-		
+
+		var jsapi = getJSAPI();
+		var jid = jsapi.getJabberID();//获取登录jid
+
 		var xmlhttp;
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp = new XMLHttpRequest();
@@ -27,11 +28,12 @@
 		}
 		xmlhttp.onreadystatechange = State_Change;
 		xmlhttp.open("GET", "./UserStatusByHS", true);
+		xmlhttp.setRequestHeader("jid", jid);
 		xmlhttp.send();
 		function State_Change() {
 			if (xmlhttp.readyState == 4) {
 				if (xmlhttp.status == 200) {
-					} else {
+				} else {
 					window.location = "../error/404.jsp";// 服务器维护中！
 				}
 			}
@@ -39,21 +41,16 @@
 	}
 </script>
 <script type="text/javascript">
-function mypos(){
-	var MyPosAll=window.jsapi.getPos();
-	var MyLat=MyPosAll.getLatitude();
-	var MyLon=MyPosAll.getLongitude();
-	var MyAlt=MyPosAll.getAltitude();
-	var MyAcc=MyPosAll.Accuracy();
-	var MyTim=MyPosAll.getTimeStamp();
-	var MySou=MyPosAll.getSource();
-	
-	
+	function mypos() {
+		var MyPosAll = window.jsapi.getPos();
+		var MyLat = MyPosAll.getLatitude();
+		var MyLon = MyPosAll.getLongitude();
+		var MyAlt = MyPosAll.getAltitude();
+		var MyAcc = MyPosAll.Accuracy();
+		var MyTim = MyPosAll.getTimeStamp();
+		var MySou = MyPosAll.getSource();
+
 	}
-
-
-
-
 </script>
 </head>
 <body onload="Call_UserStatusHS()">
@@ -61,10 +58,10 @@ function mypos(){
 		<img src="../images/base_map_1.png" id="base_map_1" alt="" />
 		<div class="clearFloat"></div>
 		<div id="report">
-		  <p>&nbsp;</p>
-		  <p>
-			  <a href="./result.jsp" /><img src="../images/findcar.png" /></a>
-	    </p>
+			<p>&nbsp;</p>
+			<p>
+				<a href="./result.jsp" /><img src="../images/findcar.png" /></a>
+			</p>
 			<p>点击“搜车”开始操作！</p>
 
 			<p class="heitxi_char">&nbsp;</p>
