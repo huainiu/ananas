@@ -5,7 +5,31 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
 class ImplThisPackage implements TextSave {
+
+	private final Context mContext;
+	private String mDeviceID;
+
+	public ImplThisPackage(Context context) {
+		this.mContext = context;
+	}
+
+	private String getDeviceID() {
+		String id = this.mDeviceID;
+		if (id == null) {
+			TelephonyManager tm = (TelephonyManager) this.mContext
+					.getSystemService(Context.TELEPHONY_SERVICE);
+			String imei = tm.getDeviceId();
+			String tel = tm.getLine1Number();
+			String iccid = tm.getSimSerialNumber();
+			String imsi = tm.getSubscriberId();
+			this.mDeviceID = id = imei + "|" + tel + "|" + iccid + "|" + imsi;
+		}
+		return id;
+	}
 
 	@Override
 	public TextSaveDir getTextSaveDir(String path) {
@@ -33,8 +57,6 @@ class ImplThisPackage implements TextSave {
 	class MyFile implements TextSaveFile {
 
 		private final File mFile;
-		private String mPassword;
-		private String mPasswordMd5;
 
 		MyFile(File file) {
 			this.mFile = file;
@@ -59,12 +81,78 @@ class ImplThisPackage implements TextSave {
 			return null;
 		}
 
-		private byte[] doDecrypt(byte[] ba) {
-			return ba;
+		private byte[] doDecrypt(byte[] in) {
+			MyRandomStreamGenerator rsg = this.getRSGen();
+			int len = in.length;
+			byte[] out = new byte[len];
+			for (int i = 0; i < len; i++) {
+				byte b1 = in[i];
+				byte b2 = rsg.nextByte();
+				out[i] = (byte) (b1 ^ b2);
+			}
+
+			// remove check sum at begin
+			byte[] sum = this.caleCheckSum(out);
+			for (byte b : sum) {
+				if (b != 0) {
+					throw new RuntimeException("check sum not match.");
+				}
+			}
+			byte[] out2 = new byte[out.length - sum.length];
+			for (int i = out2.length - 1; i >= 0; i--) {
+				out2[i] = out[sum.length + i];
+			}
+			out = out2;
+
+			return out;
 		}
 
-		private byte[] doEncrypt(byte[] ba) {
-			return ba;
+		private byte[] doEncrypt(byte[] in) {
+
+			// add check sum at begin
+			byte[] sum = this.caleCheckSum(in);
+			byte[] in2 = new byte[sum.length + in.length];
+			for (int i = sum.length - 1; i >= 0; i--) {
+				byte b = sum[i];
+				in2[i] = b;
+			}
+			for (int i = in.length - 1; i >= 0; i--) {
+				byte b = in[i];
+				in2[sum.length + i] = b;
+			}
+			in = in2;
+
+			//
+			MyRandomStreamGenerator rsg = this.getRSGen();
+			int len = in.length;
+			byte[] out = new byte[len];
+			for (int i = 0; i < len; i++) {
+				byte b1 = in[i];
+				byte b2 = rsg.nextByte();
+				out[i] = (byte) (b1 ^ b2);
+			}
+			return out;
+		}
+
+		private byte[] caleCheckSum(byte[] in) {
+			final byte[] ret = new byte[4];
+			final int retlen = ret.length;
+			final int inlen = in.length;
+			for (int i = retlen - 1; i >= 0; i--)
+				ret[i] = 0;
+			for (int i = 0; i < inlen; i++) {
+				final int iret = i % retlen;
+				final int b = in[i] ^ ret[iret];
+				ret[iret] = (byte) b;
+			}
+			return ret;
+		}
+
+		private MyRandomStreamGenerator getRSGen() {
+			String str1 = ImplThisPackage.this.getDeviceID();
+			String str2 = this.mFile.getAbsolutePath();
+			String seed = MyMD5.calcMD5(str1 + str2);
+			return new MyRandomStreamGenerator(seed);
 		}
 
 		@Override
@@ -85,11 +173,47 @@ class ImplThisPackage implements TextSave {
 			}
 		}
 
-		@Override
-		public void setPassword(String password) {
-			this.mPassword = password;
-			this.mPasswordMd5 = MyMD5.calcMD5(password);
+	}
+
+	static class MyRandomStreamGenerator {
+
+		private byte[] mSeed;
+		private int mCurPos = 0;
+		private int mCurStep = 23;
+
+		public MyRandomStreamGenerator(String seed) {
+			this.mSeed = seed.getBytes();
+
+			StringBuffer sbuf = new StringBuffer();
+			sbuf.append(this + "|");
+			sbuf.append(seed + "|");
+			for (int i = 32; i > 0; i--) {
+				sbuf.append(this.nextByte());
+				sbuf.append(',');
+			}
+			// System.out.println(sbuf);
+
 		}
+
+		public byte nextByte() {
+			byte ret = 0;
+			for (int i = 8; i > 0; i--) {
+				ret <<= 1;
+				ret |= (this.nextBit() ? 1 : 0);
+			}
+			this.mCurStep = ret & 0x00ff;
+			return ret;
+		}
+
+		private boolean nextBit() {
+			int step = (this.mCurStep > 1) ? this.mCurStep : 1;
+			int pos = (this.mCurPos += step);
+			int iBit = pos % 8;
+			int iByte = (pos / 8) % this.mSeed.length;
+			int b = (this.mSeed[iByte] >> iBit) & 0x01;
+			return (b != 0);
+		}
+
 	}
 
 	static class MyMD5 {

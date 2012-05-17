@@ -14,12 +14,13 @@ public class TestTextSaveActivity extends Activity {
 
 		setContentView(R.layout.main);
 
-		TextSave ts = TextSave.Agent.getInstance();
+		TextSave ts = TextSave.Agent.getInstance(this);
 		TextSaveDir dir = ts.getTextSaveDir("ananas/lib/textsave");
 		TextSaveFile file = dir.getTextSaveFile("sample.txt");
+
+		System.out.println("" + file.loadText());
 		file.saveText("hello, world!");
-		String str = file.loadText();
-		System.out.println(str);
+		System.out.println("" + file.loadText());
 
 	}
 }

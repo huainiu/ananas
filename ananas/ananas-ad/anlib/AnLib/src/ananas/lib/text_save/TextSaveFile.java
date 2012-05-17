@@ -6,6 +6,4 @@ public interface TextSaveFile {
 
 	void saveText(String text);
 
-	void setPassword(String password);
-
 }
