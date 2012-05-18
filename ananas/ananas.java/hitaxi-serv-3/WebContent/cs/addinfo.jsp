@@ -15,62 +15,112 @@
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
 </head>
 <body>
-	<div id="main">
-		<img src="../images/base_map_1.png" id="base_map_1" alt="" />
-		<div class="clearFloat"></div>
-		<div id="report">
-			<p></p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<div id="add_info">
-			  <form id="form1" method="post" action="">
-			      <p>
-			      <label for="nickname">昵称</label>
-			      <input name="nickname" type="text" class="hitexi_textable" id="nickname" size="16" maxlength="14" />
-			      车牌号
-			      <input name="nickname" type="text" class="hitexi_textable" id="nickname" size="16" maxlength="10" />
-			        <label for="nickname">
-		           
-		            电话</label>
-			        <input name="nickname" type="text" class="hitexi_textable" id="nickname" size="16" maxlength="11" />
-			      </p>
-			      <p>
-			        <a href="./index.jsp"><input name="reset" type="button" class="hitexi_button" id="reset" value="取消" /></a>
-			        <input name="add" type="submit" class="hitexi_button" id="add" value="确认" />
-		        </p>
-              </form>
-		  </div>
-			
-		  <p class="heitxi_char" id="GPSstatus">&nbsp;</p>
-		  <p class="heitxi_char">&nbsp;</p>
-		  <p class="heitxi_char">&nbsp;</p>
-		  <p class="heitxi_char">&nbsp;</p>
-		  <p class="heitxi_char">&nbsp;</p>
-		</div>
-		<img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
+<div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
+  <div class="clearFloat"></div>
+  <div id="report">
+    <p class="hitexi_textable">车载用户信息登记</p>
+    <form id="form1" method="get" action="">
+      <p>车主昵称
+        <input name="nickname" type="text" class="heitxi_char" id="nickname" size="18" maxlength="14" />
+      </p>
+      <p>车主电话
+        <input name="cartel" type="text" class="heitxi_char" id="cartel" size="18" maxlength="13" />
+      </p>
+      <p>
+        <label for="carnum"></label>
+        车辆牌号
+        <label for="where"></label>
+        <select name="province" class="heitxi_char" id="province">
+          <option value="京">京</option>
+          <option value="津">津</option>
+          <option value="冀">冀</option>
+          <option value="晋">晋</option>
+          <option value="蒙">蒙</option>
+          <option value="辽">辽</option>
+          <option value="吉">吉</option>
+          <option value="黑">黑</option>
+          <option value="沪">沪</option>
+          <option value="苏">苏</option>
+          <option value="浙">浙</option>
+          <option value="皖">皖</option>
+          <option value="闽">闽</option>
+          <option value="赣">赣</option>
+          <option value="鲁">鲁</option>
+          <option value="豫">豫</option>
+          <option value="鄂">鄂</option>
+          <option value="湘">湘</option>
+          <option value="粤">粤</option>
+          <option value="桂">桂</option>
+          <option value="琼">琼</option>
+          <option value="渝">渝</option>
+          <option value="川">川</option>
+          <option value="贵">贵</option>
+          <option value="云">云</option>
+          <option value="藏">藏</option>
+          <option value="陕">陕</option>
+          <option value="甘">甘</option>
+          <option value="青">青</option>
+          <option value="宁">宁</option>
+          <option value="新">新</option>
+        </select>
+        <select name="licenseHead" class="heitxi_char" id="licenseHead">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+          <option value="H">H</option>
+          <option value="I">I</option>
+          <option value="J">J</option>
+          <option value="K">K</option>
+          <option value="L">L</option>
+          <option value="M">M</option>
+          <option value="N">N</option>
+          <option value="O">O</option>
+          <option value="P">P</option>
+          <option value="Q">Q</option>
+          <option value="R">R</option>
+          <option value="S">S</option>
+          <option value="T">T</option>
+          <option value="U">U</option>
+          <option value="V">V</option>
+          <option value="W">W</option>
+          <option value="X">X</option>
+          <option value="Y">Y</option>
+          <option value="Z">Z</option>
+        </select>
+        <input name="carnum" type="text" class="heitxi_char" id="carnum" value="00000" size="6" maxlength="5" />
+      </p>
+      <p>
+        <input name="addinfo" type="submit" class="hitexi_button" id="Rinfo" value="登记" />
+        <input name="addinfo" type="reset" class="hitexi_button" id="Rwrite" value="清空" />
+        <a href="index.jsp"><input name="addinfo" type="button" class="hitexi_button" id="addinfo" value="返回" /></a>
+      </p>
+    </form>
+    <div align="center">通过登记后能让乘客找到你</div>
+  </div>
+  <img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
 			src="../images/mid_map_1.png" id="mid_map_1" alt="" /><img
 			src="../images/base_map_2.png" id="base_map_2" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
 			src="../images/mid_map_5.png" id="mid_map_5" alt="" /> <img
 			src="../images/top_map_1.png" id="top_map_1" alt="" /> <img
 			src="../images/mid_map_2.png" id="mid_map_2" alt="" /> <img
 			src="../images/base_map_3.png" id="base_map_3" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_7.png" id="base_map_7" alt="" />
-		<div id="colwrap1">
-			<img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_7.png" id="base_map_7" alt="" />
+  <div id="colwrap1"> <img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> <img
 				src="../images/top_map_2.png" id="top_map_2" alt="" /> <img
 				src="../images/mid_map_3.png" id="mid_map_3" alt="" />
-			<div class="clearFloat"></div>
-			<img src="../images/base_map_6.png" id="base_map_6" alt="" />
-			<div class="clearFloat"></div>
-		</div>
-		<img src="../images/base_map_4.png" id="base_map_4" alt="" />
-		<div class="clearFloat"></div>
-	</div>
+    <div class="clearFloat"></div>
+    <img src="../images/base_map_6.png" id="base_map_6" alt="" />
+    <div class="clearFloat"></div>
+  </div>
+  <img src="../images/base_map_4.png" id="base_map_4" alt="" />
+  <div class="clearFloat"></div>
+</div>
 </body>
 </html>

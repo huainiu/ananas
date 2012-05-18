@@ -102,46 +102,50 @@
 	}
 </script>
 <body onload="tellserver()">
-	<div id="main">
-		<img src="../images/base_map_1.png" id="base_map_1" alt="" />
-		<div class="clearFloat"></div>
-		<div id="report">
-			<div id="status_img">
-				<img src="../images/status_ico_0.png" alt="" id="status_ico" /> <input
+<div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
+  <div class="clearFloat"></div>
+  <div id="report">
+    <div class="clearFloat" id="status_img">
+      <p><img src="../images/status_ico_0.png" alt="" id="status_ico" />
+        <input
 					name="leisure" type="button" class="hitexi_button"
-					onclick="Call_UserStatusCS(1)" value="空车" /> <input
+					onclick="Call_UserStatusCS(1)" value="空车" />
+        <input
 					name="busyness" type="button" class="hitexi_button"
 					onclick="Call_UserStatusCS(2)" value="交班" />
-			</div>
-			<p class="heitxi_char" id="GPSstatus">&nbsp;</p>
-			<p class="heitxi_char">&nbsp;</p>
-			<p class="heitxi_char">&nbsp;</p>
-			<p class="heitxi_char">&nbsp;</p>
-			<p class="heitxi_char">&nbsp;</p>
-			<p class="heitxi_char">&nbsp;</p>
-			<p class="heitxi_char">请设置当前车辆的状态</p>
-		</div>
-		<img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
+      </p>
+    </div>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p class="heitxi_char" align="justify">&nbsp;</p>
+    <p id="GPSstatus" class="heitxi_char" align="justify">请设置当前车辆的状态</p>
+    <div id="toolbar"><a href="addinfo.jsp"><img src="../images/user.png" width="32" height="32" alt="车载用户性息设置"/></a></div>
+  </div>
+  <img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
 			src="../images/mid_map_1.png" id="mid_map_1" alt="" /><img
 			src="../images/base_map_2.png" id="base_map_2" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
 			src="../images/mid_map_5.png" id="mid_map_5" alt="" /> <img
 			src="../images/top_map_1.png" id="top_map_1" alt="" /> <img
 			src="../images/mid_map_2.png" id="mid_map_2" alt="" /> <img
 			src="../images/base_map_3.png" id="base_map_3" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_7.png" id="base_map_7" alt="" />
-		<div id="colwrap1">
-			<img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> <img
-				src="../images/top_map_2.png" id="top_map_2" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_7.png" id="base_map_7" alt="" />
+  <div id="colwrap1"> <img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> 
+    <img
+				src="../images/top_map_2.png" id="top_map_2" alt="" /> 
+    <img
 				src="../images/mid_map_3.png" id="mid_map_3" alt="" />
-			<div class="clearFloat"></div>
-			<img src="../images/base_map_6.png" id="base_map_6" alt="" />
-			<div class="clearFloat"></div>
-		</div>
-		<img src="../images/base_map_4.png" id="base_map_4" alt="" />
-		<div class="clearFloat"></div>
-	</div>
+    <div class="clearFloat"></div>
+    <img src="../images/base_map_6.png" id="base_map_6" alt="" />
+    <div class="clearFloat"></div>
+  </div>
+  <img src="../images/base_map_4.png" id="base_map_4" alt="" />
+  <div class="clearFloat"></div>
+</div>
 </body>
 </html>
