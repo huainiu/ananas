@@ -34,6 +34,9 @@ function addinfo(){
 	xmlhttp.setRequestHeader("jid", jid);
 	xmlhttp.setRequestHeader("nickname", nickname);
 	xmlhttp.setRequestHeader("cartel", cartel);
+	xmlhttp.setRequestHeader("province", province);
+	xmlhttp.setRequestHeader("licenseHead", licenseHead);
+	xmlhttp.setRequestHeader("carnum", carnum);
 	xmlhttp.send();
 	function State_Change() {
 		if (xmlhttp.readyState == 4) {
