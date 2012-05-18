@@ -18,11 +18,11 @@
 function addinfo(){
 	var jsapi = getJSAPI();
 	var jid = jsapi.getJabberID();//获取登录jid
-    var nickname=document.getElementById("nickname");
-	var cartel=document.getElementById("cartel");
-	var province=document.getElementById("province");
-	var licenseHead=document.getElementById("licenseHead");
-	var carnum=document.getElementById("carnum");
+    var nickname=document.getElementById("nickname").value;
+	var cartel=document.getElementById("cartel").value;
+	var province=document.getElementById("province").value;
+	var licenseHead=document.getElementById("licenseHead").value;
+	var carnum=document.getElementById("carnum").value;
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 		xmlhttp = new XMLHttpRequest();
@@ -55,8 +55,7 @@ function addinfo(){
   <div class="clearFloat"></div>
   <div id="report">
     <p class="hitexi_textable">车载用户信息登记</p>
-    <form id="carinfo" method="get" action="./SetCarInfo">
-      <p>车主昵称
+          <p>车主昵称
         <input name="nickname" type="text" class="heitxi_char" id="nickname" size="18" maxlength="14" />
       </p>
       <p>车主电话
@@ -127,14 +126,13 @@ function addinfo(){
           <option value="Y">Y</option>
           <option value="Z">Z</option>
         </select>
-        <input name="carnum" type="text" class="heitxi_char" id="carnum" value="00000" size="6" maxlength="5" />
+        <input name="carnum" type="text" class="heitxi_char" id="carnum" value="00000" size="7" maxlength="5" />
       </p>
       <p>
-        <input name="addinfo" type="button" class="hitexi_button" id="Rinfo" value="登记" onclick="addinfo()"/>
+        <input name="add" type="button" class="hitexi_button" id="Rinfo" value="登记" onclick="addinfo()"/>
         <input name="addinfo" type="reset" class="hitexi_button" id="Rwrite" value="清空" />
         <a href="index.jsp"><input name="addinfo" type="button" class="hitexi_button" id="addinfo" value="返回" /></a>
       </p>
-    </form>
     <div align="center">通过登记后能让乘客找到你</div>
   </div>
   <img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
