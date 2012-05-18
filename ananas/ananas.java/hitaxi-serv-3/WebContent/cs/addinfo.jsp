@@ -50,7 +50,7 @@ function addinfo(){
 	}
 </script>
 </head>
-<body onload="getjid()">
+<body>
 <div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
   <div class="clearFloat"></div>
   <div id="report">
