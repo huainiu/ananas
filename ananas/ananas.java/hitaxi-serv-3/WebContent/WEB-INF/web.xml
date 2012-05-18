@@ -118,6 +118,6 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>SetCarInfo</servlet-name>
-  	<url-pattern>/SetCarInfo</url-pattern>
+  	<url-pattern>/cs/SetCarInfo</url-pattern>
   </servlet-mapping>
 </web-app>
