@@ -31,6 +31,7 @@ function addinfo(){
 	}
 	xmlhttp.onreadystatechange = State_Change;
 	xmlhttp.open("POST", "./SetCarInfo", true);
+	xmlhttp.setRequestHeader("text/html;charset=utf-8");
 	xmlhttp.setRequestHeader("jid", jid);
 	xmlhttp.setRequestHeader("nickname", nickname);
 	xmlhttp.setRequestHeader("cartel", cartel);
