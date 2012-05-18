@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	function Call_UserStatusHS() {// 今后在javascript中对servlet的调用一律采用call_加servlet名的格式
 		try {
-			document.getElementById("showdo").innerHTML="正在收车中……";
+			document.getElementById("showdo").innerHTML="正在搜车中……";
 			document.getElementById("showpic").src="../images/wait.gif";
 			var jsapi = getJSAPI();
 			var MyJid = jsapi.getJabberID();//获取登录jid
@@ -49,7 +49,9 @@
 			function State_Change() {
 				if (xmlhttp.readyState == 4) {
 					if (xmlhttp.status == 200) {
-						xmlhttp.getAllResponseHeaders("");//接受server返回的结果并刷新界面
+						var result = request.responseText;
+                        eval("var car = " +result);
+                        document.getElementById("showpic").innerHTML = car.nickname+":"+car.distance;
 					} else {
 						window.location = "../error/404.jsp";// 服务器维护中！
 					}
@@ -61,38 +63,35 @@
 </script>
 </head>
 <body>
-	<div id="main">
-		<img src="../images/base_map_1.png" id="base_map_1" alt="" />
-		<div class="clearFloat"></div>
-		<div id="report">
-			<p>&nbsp;</p>
-			<p> <img id="showpic" src="../images/findcar.png" onclick="Call_UserStatusHS()"/>
-		  </p>
-			<p id="showdo">点击“搜车”图标开始操作！</p>
-
-			<a href="../main/index.jsp"/><input type="button" class="hitexi_button" id="back" value="返回" /></a>
-		</div>
-		<img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
+<div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
+  <div class="clearFloat"></div>
+  <div id="report">
+    <p>&nbsp;</p>
+    <p> <img id="showpic" src="../images/findcar.png" onclick="Call_UserStatusHS()"/> </p>
+    <p id="showdo">点击“搜车”图标开始操作！</p>
+    <a href="../main/index.jsp"/>
+    <input type="button" class="hitexi_button" id="back" value="返回" />
+    </a> </div>
+  <img src="../images/base_map_9.png" id="base_map_9" alt="" /> <img
 			src="../images/mid_map_1.png" id="mid_map_1" alt="" /><img
 			src="../images/base_map_2.png" id="base_map_2" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_8.png" id="base_map_8" alt="" /> <img
 			src="../images/mid_map_5.png" id="mid_map_5" alt="" /> <img
 			src="../images/top_map_1.png" id="top_map_1" alt="" /> <img
 			src="../images/mid_map_2.png" id="mid_map_2" alt="" /> <img
 			src="../images/base_map_3.png" id="base_map_3" alt="" />
-		<div class="clearFloat"></div>
-		<img src="../images/base_map_7.png" id="base_map_7" alt="" />
-		<div id="colwrap1">
-			<img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> <img
+  <div class="clearFloat"></div>
+  <img src="../images/base_map_7.png" id="base_map_7" alt="" />
+  <div id="colwrap1"> <img src="../images/mid_map_4.png" id="mid_map_4" alt="" /> <img
 				src="../images/top_map_2.png" id="top_map_2" alt="" /> <img
 				src="../images/mid_map_3.png" id="mid_map_3" alt="" />
-			<div class="clearFloat"></div>
-			<img src="../images/base_map_6.png" id="base_map_6" alt="" />
-			<div class="clearFloat"></div>
-		</div>
-		<img src="../images/base_map_4.png" id="base_map_4" alt="" />
-		<div class="clearFloat"></div>
-	</div>
+    <div class="clearFloat"></div>
+    <img src="../images/base_map_6.png" id="base_map_6" alt="" />
+    <div class="clearFloat"></div>
+  </div>
+  <img src="../images/base_map_4.png" id="base_map_4" alt="" />
+  <div class="clearFloat"></div>
+</div>
 </body>
 </html>

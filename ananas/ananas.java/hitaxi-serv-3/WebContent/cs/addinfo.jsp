@@ -50,6 +50,15 @@ function addinfo(){
 	
 	}
 </script>
+<script type="text/javascript">
+function dataclear(){
+	document.getElementById("nickname").value="";
+	document.getElementById("cartel").value="";
+	document.getElementById("province").value="京";
+	document.getElementById("licenseHead").value="A";
+	document.getElementById("carnum").value="";
+}
+</script>
 </head>
 <body>
 <div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
@@ -127,11 +136,11 @@ function addinfo(){
           <option value="Y">Y</option>
           <option value="Z">Z</option>
         </select>
-        <input name="carnum" type="text" class="heitxi_char" id="carnum" value="00000" size="7" maxlength="5" />
+        <input name="carnum" type="text" class="heitxi_char" id="carnum" value="" size="7" maxlength="5" />
       </p>
       <p>
         <input name="add" type="button" class="hitexi_button" id="Rinfo" value="登记" onclick="addinfo()"/>
-        <input name="addinfo" type="reset" class="hitexi_button" id="Rwrite" value="清空" />
+        <input name="addinfo" type="button" class="hitexi_button" id="Rwrite" value="清空" onclick="dataclear()" />
         <a href="index.jsp"><input name="addinfo" type="button" class="hitexi_button" id="addinfo" value="返回" /></a>
       </p>
     <div align="center">通过登记后能让乘客找到你</div>
