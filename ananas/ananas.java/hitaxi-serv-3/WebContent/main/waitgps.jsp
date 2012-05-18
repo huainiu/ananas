@@ -9,7 +9,7 @@
 <script src='../js/ws-js-api.js'></script>
 
 <script type="text/javascript">
-	var targetURL = "";
+	var targetURL = "../hs/index.jsp";
 
 	function startTimer() {
 		setTimeout("timer()", 1000);
@@ -33,7 +33,7 @@
 		var acc = pos.getAccuracy();
 		if ((0 < acc) && (acc < 30)) {
 			// ok
-			window. =;
+			window.location = targetURL;
 		}
 
 	}

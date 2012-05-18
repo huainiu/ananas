@@ -53,7 +53,7 @@ function getjid(){
 				src="../images/mode_d.png" alt="我是司机" align="middle" width="152"
 				height="48" /></a>
     <p>&nbsp;</p>
-    <a href="../hs/index.jsp"><img name="HS" type="image"
+    <a href="waitgps.jsp"><img name="HS" type="image"
 				src="../images/mode_p.png" alt="我是乘客" align="middle" width="152"
 				height="48" /></a>
     </p>
