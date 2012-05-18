@@ -16,40 +16,44 @@
 <script src='../js/ws-js-api.js'></script>
 <script type="text/javascript">
 	function Call_UserStatusHS() {// 今后在javascript中对servlet的调用一律采用call_加servlet名的格式
-
-		var jsapi = getJSAPI();
-		var jid = jsapi.getJabberID();//获取登录jid
-
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange = State_Change;
-		xmlhttp.open("GET", "./UserStatusByHS", true);
-		xmlhttp.setRequestHeader("jid", jid);
-		xmlhttp.send();
-		function State_Change() {
-			if (xmlhttp.readyState == 4) {
-				if (xmlhttp.status == 200) {
-				} else {
-					window.location = "../error/404.jsp";// 服务器维护中！
+		try {
+			var jsapi = getJSAPI();
+			var MyJid = jsapi.getJabberID();//获取登录jid
+			var MyPosAll = jsapi.getPos();//获取全部GPS数据
+			var MyLat = MyPosAll.getLatitude();//获取纬度
+			var MyLon = MyPosAll.getLongitude();//获取经度
+			var MyAlt = MyPosAll.getAltitude();//获取海拔
+			var MyAcc = MyPosAll.getAccuracy();//获取精度
+			var MyTim = MyPosAll.getTimeStamp();//获取当前时间戳
+			var MySou = MyPosAll.getSource();//获取GPS设备源
+			var MyJid = jsapi.getJabberID();//获取登录jid
+			var MyisGPS = jsapi.isGPSEnable();//获取gps工作状态
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = State_Change;
+			xmlhttp.open("GET", "./UserStatusByHS", true);
+			xmlhttp.setRequestHeader("geo-pos", MyLon + "," + MyLat);
+			xmlhttp.setRequestHeader("MyAlt", MyAlt);
+			xmlhttp.setRequestHeader("MyAcc", MyAcc);
+			xmlhttp.setRequestHeader("geo-time", MyTim);
+			xmlhttp.setRequestHeader("MySou", MySou);
+			xmlhttp.setRequestHeader("jid", MyJid);
+			xmlhttp.setRequestHeader("MyisGPS", MyisGPS);
+			xmlhttp.send();
+			function State_Change() {
+				if (xmlhttp.readyState == 4) {
+					if (xmlhttp.status == 200) {
+					} else {
+						window.location = "../error/404.jsp";// 服务器维护中！
+					}
 				}
 			}
+		} catch (err) {
 		}
-	}
-</script>
-<script type="text/javascript">
-	function mypos() {
-		var MyPosAll = window.jsapi.getPos();
-		var MyLat = MyPosAll.getLatitude();
-		var MyLon = MyPosAll.getLongitude();
-		var MyAlt = MyPosAll.getAltitude();
-		var MyAcc = MyPosAll.Accuracy();
-		var MyTim = MyPosAll.getTimeStamp();
-		var MySou = MyPosAll.getSource();
-
 	}
 </script>
 </head>
@@ -62,7 +66,7 @@
 			<p>
 				<a href="./result.jsp" /><img src="../images/findcar.png" /></a>
 			</p>
-			<p>点击“搜车”开始操作！</p>
+			<p>点击“搜车”图标开始操作！</p>
 
 			<p class="heitxi_char">&nbsp;</p>
 		</div>
