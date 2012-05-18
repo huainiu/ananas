@@ -39,6 +39,11 @@
         <tr>
 			<td class="heitxi_char">testXXX page <a href="./testXXX.html">testXXX.html</a></td>
 		</tr>
+        <tr>
+			<td class="heitxi_char">wait gps<a href="./main/waitgps.jsp">waitgps.jsp</a></td>
+		</tr>
+		
+		
 	</table>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
