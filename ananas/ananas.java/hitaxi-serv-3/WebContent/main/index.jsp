@@ -14,6 +14,7 @@
 	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
 	<![endif]-->
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
+<script src='../js/ws-js-api.js'></script>
 <script type="text/javascript">
 	function startTime() {
 		var today = new Date();
@@ -36,9 +37,10 @@
 </script>
 <script type="text/javascript">
 function getjid(){
-	var jid=window.jsapi.getJabberID();
+	var jsapi=getJSAPI();
+	var MyJid = jsapi.getJabberID();;
 	//var jid="motofans@vip.qq.com";
-	document.getElementById("showjid").innerHTML=jid;
+	document.getElementById("showjid").innerHTML=MyJid;
 	}
 </script>
 </head>
