@@ -36,14 +36,23 @@
 		<tr>
 			<td class="heitxi_char">test page <a href="./test.html">test.html</a></td>
 		</tr>
-        <tr>
+		<tr>
 			<td class="heitxi_char">testXXX page <a href="./testXXX.html">testXXX.html</a></td>
 		</tr>
-        <tr>
+		<tr>
 			<td class="heitxi_char">wait gps<a href="./main/waitgps.jsp">waitgps.jsp</a></td>
 		</tr>
-		
-		
+
+		<tr>
+			<td class="heitxi_char">192.168.1.217:8080<a
+				href="http://192.168.1.217:8080/hitaxi-server/">192.168.1.217:8080</a></td>
+		</tr>
+		<tr>
+			<td class="heitxi_char">192.168.1.120:8080<a
+				href="http://192.168.1.120:8080/hitaxi-server/">192.168.1.120:8080</a></td>
+		</tr>
+
+
 	</table>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>

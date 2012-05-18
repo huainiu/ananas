@@ -12,6 +12,9 @@
 	var targetURL = "../hs/index.jsp";
 
 	function startTimer() {
+		var api = getJSAPI();
+		api.setGPSEnable(false, 0, 0);
+		api.setGPSEnable(true, 10 * 1000, 20);
 		setTimeout("timer()", 1000);
 	}
 
