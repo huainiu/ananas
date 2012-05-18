@@ -13,13 +13,46 @@
 	<style type="text/css" media="all">.borderitem {border-style: solid;}</style>
 	<![endif]-->
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
+<script src='../js/ws-js-api.js'></script>
+<script type="text/javascript">
+function addinfo(){
+	var jsapi = getJSAPI();
+	var jid = jsapi.getJabberID();//获取登录jid
+    var nickname=document.getElementById("nickname");
+	var cartel=document.getElementById("cartel");
+	var province=document.getElementById("province");
+	var licenseHead=document.getElementById("licenseHead");
+	var carnum=document.getElementById("carnum");
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = State_Change;
+	xmlhttp.open("POST", "./SetCarInfo", true);
+	xmlhttp.setRequestHeader("jid", jid);
+	xmlhttp.setRequestHeader("nickname", nickname);
+	xmlhttp.setRequestHeader("cartel", cartel);
+	xmlhttp.send();
+	function State_Change() {
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.status == 200) {
+			} else {
+				window.location = "../error/404.jsp";// 服务器维护中！
+			}
+		}
+	}
+	
+	}
+</script>
 </head>
-<body>
+<body onload="getjid()">
 <div id="main"> <img src="../images/base_map_1.png" id="base_map_1" alt="" />
   <div class="clearFloat"></div>
   <div id="report">
     <p class="hitexi_textable">车载用户信息登记</p>
-    <form id="form1" method="get" action="">
+    <form id="carinfo" method="get" action="./SetCarInfo">
       <p>车主昵称
         <input name="nickname" type="text" class="heitxi_char" id="nickname" size="18" maxlength="14" />
       </p>
@@ -94,7 +127,7 @@
         <input name="carnum" type="text" class="heitxi_char" id="carnum" value="00000" size="6" maxlength="5" />
       </p>
       <p>
-        <input name="addinfo" type="submit" class="hitexi_button" id="Rinfo" value="登记" />
+        <input name="addinfo" type="button" class="hitexi_button" id="Rinfo" value="登记" onclick="addinfo()"/>
         <input name="addinfo" type="reset" class="hitexi_button" id="Rwrite" value="清空" />
         <a href="index.jsp"><input name="addinfo" type="button" class="hitexi_button" id="addinfo" value="返回" /></a>
       </p>
