@@ -105,8 +105,19 @@
     <servlet-name>ShowLogInfo</servlet-name>
     <servlet-class>net.worldscale.ee.app.hitaxi.servlet.admin.ShowLogInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SetCarInfo</display-name>
+  	<servlet-name>SetCarInfo</servlet-name>
+  	<servlet-class>net.worldscale.ee.app.hitaxi.servlet.SetCarInfo</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ShowLogInfo</servlet-name>
     <url-pattern>/admin/ShowLogInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SetCarInfo</servlet-name>
+  	<url-pattern>/SetCarInfo</url-pattern>
   </servlet-mapping>
 </web-app>
