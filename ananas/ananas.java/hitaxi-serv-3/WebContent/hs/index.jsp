@@ -15,6 +15,49 @@
 <link rel="stylesheet" type="text/css" href="../hitaxi1.css" media="all" />
 <script src='../js/ws-js-api.js'></script>
 <script type="text/javascript">
+	function show(jid) {
+		try {
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = State_Change;
+			xmlhttp.open("GET", "./GetCarDetail", true);
+			xmlhttp.setRequestHeader("jid", Jid);
+			xmlhttp.send();
+			function State_Change() {
+				if (xmlhttp.readyState == 4) {
+					if (xmlhttp.status == 200) {
+						var result = xmlhttp.responseText;
+						eval("var cardetail = " + result);
+
+						var table = "<table width='200' border='0' >";
+
+						for ( var i = 0; i < carList.length; i++) {
+							var car = cardetail[i];
+							car.jid;
+							car.nickname;
+							car.phone;
+							car.plate;
+							var row = "<tr><td>" + car.nickname + "</td><td>"
+									+ car.plate + "</td><td>" + "tel:"
+									+ car.phone + "</td></tr>";
+							table = table + row;
+						}
+						table = table + "</table>";
+						document.getElementById("report").innerHTML = table;
+
+					} else {
+						window.location = "../error/404.jsp";// 服务器维护中！
+					}
+				}
+			}
+		} catch (err) {
+		}
+	}
+
 	function Call_UserStatusHS() {// 今后在javascript中对servlet的调用一律采用call_加servlet名的格式
 		try {
 			document.getElementById("showdo").innerHTML = "正在搜车中……";
@@ -61,8 +104,8 @@
 							car.distance;
 							var row = "<tr> <td>" + car.nickname + "</td><td>"
 									+ car.distance
-									+ "</td><td><a onclick='show(" + car.jid
-									+ ")'>详细</a></td> </tr>";
+									+ "</td><td><a onclick='show(\"" + car.jid
+									+ "\")'>详细</a></td> </tr>";
 							table = table + row;
 						}
 						table = table + "</table>";
