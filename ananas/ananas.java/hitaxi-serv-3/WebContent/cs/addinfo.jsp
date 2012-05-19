@@ -42,7 +42,9 @@ function addinfo(){
 	function State_Change() {
 		if (xmlhttp.readyState == 4) {
 			if (xmlhttp.status == 200) {
-				window.location="./SetCarInfo";
+		document.getElementById("report").innerHTML="<br><br><br><br>您的信息已登记成功！<br><br>跳转主页中……";
+		
+		
 			} else {
 				window.location = "../error/404.jsp";// 服务器维护中！
 			}
