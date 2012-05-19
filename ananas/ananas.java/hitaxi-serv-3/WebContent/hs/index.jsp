@@ -41,9 +41,13 @@
 							car.nickname;
 							car.phone;
 							car.plate;
-							var row = "<tr><td>" + car.nickname + "</td><td>"
-									+ car.plate + "</td><td>" + "tel:"
-									+ car.phone + "</td></tr>";
+							var row = "<tr><td>JID：</td><td>" + car.jid
+									+ "</td></tr><tr><td>昵称：</td><td>"
+									+ car.nickname
+									+ "</td></tr><tr><td>车牌：</td><td>"
+									+ car.phone
+									+ "</td></tr><tr><td>电话：</td><td><a>tel:"
+									+ car.plate + "</a></td></tr>";
 							table = table + row;
 						}
 						table = table + "</table>";
@@ -104,8 +108,8 @@
 							car.distance;
 							var row = "<tr> <td>" + car.nickname + "</td><td>"
 									+ car.distance
-									+ "</td><td><p onclick='show(&quot;" + car.jid
-									+ "&quot;)'>详细</p></td> </tr>";
+									+ "</td><td><p onclick='show(&quot;"
+									+ car.jid + "&quot;)'>详细</p></td> </tr>";
 							table = table + row;
 						}
 						table = table + "</table>";
