@@ -1,12 +1,16 @@
 package net.worldscale.ee.app.hitaxi.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.worldscale.ee.app.hitaxi.api.IAgent;
+import net.worldscale.ee.app.hitaxi.api.ITaxi;
+import net.worldscale.ee.app.hitaxi.api.impl.DefaultAgent;
 
 /**
  * Servlet implementation class GetCarDetail
@@ -29,38 +33,17 @@ public class GetCarDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String CheckTaxi = request.getHeader("CheckTaxi");
-		String GetCheckTaxi = CheckTaxi;
-		String GetTaxiPlate = "��H-WJ652";
-		String GetTaxiTel = "18677305767";
-		response.setContentType("text/html;charset=utf-8");// �����������utf-8
-		PrintWriter out = response.getWriter();
-		out.println("<html>");// ���������Ҫ����body��
-		out.println("<body>");
-		out.println("<table width='270' border='1' align='center'>");
-		out.println("<tr>");
-		out.println("<td id='NickName' align='center'>�ǳƣ�" + GetCheckTaxi
-				+ "</td>");
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td id='CarNumberPlate' align='center'>���ƣ�"
-				+ GetTaxiPlate + "</td>");
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td id='TaxiTel' align='center'>�绰��" + GetTaxiTel
-				+ "</td>");
-		out.println("</tr>");
-		out.println("<tr>");
-		out.println("<td id='declare' align='left'>��HiTaxi������������������ڲ��Խ׶Σ��ݲ��ܱ�֤�ͻ���˫������ʵ�д�ɵĽ������������½⡣</td>");
-		out.println("</tr>");
-		out.println("</table>");
-		out.println("<p> <a href='tel:"
-				+ GetTaxiTel
-				+ "'><img src='../images/tel.png' width='64' height='64' alt='tel' /></a> ");
-		out.println("<a href='index.jsp'><img src='../images/stop.png' width='64' height='64' alt='stop' /></a> </p>");
-		out.println("</body>");
-		out.println("</html>");
+		String jid = request.getHeader("jid");
+		IAgent agent = DefaultAgent.getInstance();
+		ITaxi taxi = agent.getUserManager().getTaxi(jid);
+		ServletOutputStream out = response.getOutputStream();
+		// {"jid":"xk@gm","nickname":"xx","phone":"130xxxxx","plate":"bj4095" }
+		out.print("{");
+		out.print("\"jid\":\"" + taxi.getJID() + "\",");
+		out.print("\"nickname\":\"" + taxi.getNickname() + "\",");
+		out.print("\"plate\":\"" + taxi.getNumberPlate() + "\",");
+		out.print("\"phone\":\"" + taxi.getPhoneNumber() + "\"");
+		out.print("}");
 	}
 
 	/**
