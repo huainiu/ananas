@@ -49,7 +49,7 @@
 			function State_Change() {
 				if (xmlhttp.readyState == 4) {
 					if (xmlhttp.status == 200) {
-						var result = request.responseText;
+						var result = xmlhttp.responseText;
                         eval("var car = " +result);
                         document.getElementById("showpic").innerHTML = car.nickname+":"+car.distance;
 					} else {
