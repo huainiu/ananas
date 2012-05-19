@@ -41,13 +41,12 @@
 							car.nickname;
 							car.phone;
 							car.plate;
-							var row = "<tr><td>JID：</td><td>" + car.jid
-									+ "</td></tr><tr><td>昵称：</td><td>"
+							var row = "<tr><td>昵称：</td><td>"
 									+ car.nickname
 									+ "</td></tr><tr><td>车牌：</td><td>"
-									+ car.phone
-									+ "</td></tr><tr><td>电话：</td><td><a>tel:"
-									+ car.plate + "</a></td></tr>";
+									+ car.plate
+									+ "</td></tr><tr><td>电话：</td><td><a href=tel:"+car.phone+">"
+									+ car.phone + "</a></td></tr>"+"<br><br><br>如需订该车请点击电话号码即可！";
 							table = table + row;
 						}
 						table = table + "</table>";
