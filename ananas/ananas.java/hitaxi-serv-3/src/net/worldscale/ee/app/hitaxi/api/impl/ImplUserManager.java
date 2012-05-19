@@ -37,13 +37,13 @@ class ImplUserManager implements IUserManager {
 	public IUser openUser(String jid, UserType type) {
 		if (jid == null)
 			return null;
-		IUser ret = null;
-		if (type.equals(UserType.type_taxi)) {
+		IUser ret = this.mTable.get(jid);
+		if (type.equals(UserType.type_taxi) && (!(ret instanceof ITaxi))) {
 			ret = new ImplUserForTaxi(jid);
-		} else if (type.equals(UserType.type_customer)) {
+			this.mTable.put(jid, ret);
+		} else if (type.equals(UserType.type_customer)
+				&& (!(ret instanceof ICustomer))) {
 			ret = new ImplUserForCustomer(jid);
-		}
-		if (ret != null) {
 			this.mTable.put(jid, ret);
 		}
 		return ret;
