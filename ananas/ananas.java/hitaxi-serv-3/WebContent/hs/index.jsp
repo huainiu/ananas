@@ -24,8 +24,8 @@
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			xmlhttp.onreadystatechange = State_Change;
-			xmlhttp.open("GET", "./GetCarDetail", true);
-			xmlhttp.setRequestHeader("jid", Jid);
+			xmlhttp.open("GET", "../GetCarDetail", true);
+			xmlhttp.setRequestHeader("jid", jid);
 			xmlhttp.send();
 			function State_Change() {
 				if (xmlhttp.readyState == 4) {
@@ -35,8 +35,8 @@
 
 						var table = "<table width='200' border='0' >";
 
-						for ( var i = 0; i < carList.length; i++) {
-							var car = cardetail[i];
+						{
+							var car = cardetail;
 							car.jid;
 							car.nickname;
 							car.phone;
@@ -104,8 +104,8 @@
 							car.distance;
 							var row = "<tr> <td>" + car.nickname + "</td><td>"
 									+ car.distance
-									+ "</td><td><a onclick='show(\"" + car.jid
-									+ "\")'>详细</a></td> </tr>";
+									+ "</td><td><p onclick='show(&quot;" + car.jid
+									+ "&quot;)'>详细</p></td> </tr>";
 							table = table + row;
 						}
 						table = table + "</table>";
