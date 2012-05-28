@@ -10,47 +10,49 @@ import net.worldscale.ee.app.hitaxi.api.UserType;
 
 class ImplUserManager implements IUserManager {
 
-	private final Hashtable<String, IUser> mTable;
+	private final Hashtable<String, ICustomer> mTableHS;
+	private final Hashtable<String, ITaxi> mTableCS;
 
 	public ImplUserManager() {
-		this.mTable = new Hashtable<String, IUser>();
+		this.mTableHS = new Hashtable<String, ICustomer>();
+		this.mTableCS = new Hashtable<String, ITaxi>();
 	}
 
 	public ITaxi getTaxi(String jid) {
-		IUser ret = this.mTable.get(jid);
-		if (ret instanceof ITaxi) {
-			return ((ITaxi) ret);
-		} else {
-			return null;
-		}
+		return this.mTableCS.get(jid);
 	}
 
 	public ICustomer getCustomer(String jid) {
-		IUser ret = this.mTable.get(jid);
-		if (ret instanceof ICustomer) {
-			return ((ICustomer) ret);
-		} else {
-			return null;
-		}
+		return this.mTableHS.get(jid);
 	}
 
 	public IUser openUser(String jid, UserType type) {
+
 		if (jid == null)
 			return null;
-		IUser ret = this.mTable.get(jid);
-		if (type.equals(UserType.type_taxi) && (!(ret instanceof ITaxi))) {
-			ret = new ImplUserForTaxi(jid);
-			this.mTable.put(jid, ret);
-		} else if (type.equals(UserType.type_customer)
-				&& (!(ret instanceof ICustomer))) {
-			ret = new ImplUserForCustomer(jid);
-			this.mTable.put(jid, ret);
+
+		if (type.equals(UserType.type_taxi)) {
+			ITaxi ret = this.mTableCS.get(jid);
+			if (ret == null) {
+				ret = new ImplUserForTaxi(jid);
+				this.mTableCS.put(jid, ret);
+			}
+			return ret;
+
+		} else if (type.equals(UserType.type_customer)) {
+			ICustomer ret = this.mTableHS.get(jid);
+			if (ret == null) {
+				ret = new ImplUserForCustomer(jid);
+				this.mTableHS.put(jid, ret);
+			}
+			return ret;
 		}
-		return ret;
+
+		return null;
 	}
 
 	public IUser[] listUsers(int offset, int length) {
-		return this.mTable.values().toArray(new IUser[0]);
+		return this.mTableCS.values().toArray(new IUser[0]);
 	}
 
 }
