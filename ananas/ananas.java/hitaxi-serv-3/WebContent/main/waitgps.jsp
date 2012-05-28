@@ -34,7 +34,7 @@
 		var api = getJSAPI();
 		var pos = api.getPos();
 		var acc = pos.getAccuracy();
-		if ((0 < acc) && (acc < 30)) {
+		if ((0 < acc) && (acc < 3000)) {
 			// ok
 			window.location = targetURL;
 		}
