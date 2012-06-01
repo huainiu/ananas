@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AnanasQuickSMSActivity!</string>
+    <string name="app_name">QuickSMS</string>
+    <string name="phone_number">phone number</string>
+    <string name="text_content">text content</string>
+    <string name="send">send</string>
+
+</resources>
