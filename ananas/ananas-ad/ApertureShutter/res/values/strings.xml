@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, ApertureShutterActivity!</string>
+    <string name="app_name">ApertureShutter</string>
+    <string name="sign_p">+</string>
+    <string name="sign_n">-</string>
+    <string name="text_999">999</string>
+    
+</resources>
