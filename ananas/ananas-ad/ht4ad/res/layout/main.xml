@@ -4,8 +4,9 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/included1"
-        layout="@layout/header_bar" />
+    <WebView
+        android:id="@+id/wv_body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>
