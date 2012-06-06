@@ -112,6 +112,20 @@
   	<servlet-name>SetCarInfo</servlet-name>
   	<servlet-class>net.worldscale.ee.app.hitaxi.servlet.SetCarInfo</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>RegNewUser1</display-name>
+  	<servlet-name>RegNewUser1</servlet-name>
+  	<servlet-class>net.worldscale.ee.app.hitaxi.v2.servlet.RegNewUser1</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>RegNewUser2</display-name>
+  	<servlet-name>RegNewUser2</servlet-name>
+  	<servlet-class>net.worldscale.ee.app.hitaxi.v2.servlet.RegNewUser2</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>ShowLogInfo</servlet-name>
     <url-pattern>/admin/ShowLogInfo</url-pattern>
@@ -119,5 +133,13 @@
   <servlet-mapping>
   	<servlet-name>SetCarInfo</servlet-name>
   	<url-pattern>/cs/SetCarInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegNewUser1</servlet-name>
+  	<url-pattern>/RegNewUser1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RegNewUser2</servlet-name>
+  	<url-pattern>/RegNewUser2</url-pattern>
   </servlet-mapping>
 </web-app>
