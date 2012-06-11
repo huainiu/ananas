@@ -6,4 +6,28 @@ final class ImplWebProxyClient implements WebProxyClient {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void connect() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void disconnect() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean isConnected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void sendPackage(Package pkg) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
