@@ -13,19 +13,22 @@ import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 public class Ht4adActivity extends Activity {
 
-	private final static String sInitURL = "http://192.168.1.217/jsapi/test/";
+	private final static String sInitURL = "http://m.qq.com/";
 
 	private WebView mWebViewBody;
 	private boolean mPageLoaded = false;
 	private final MyConnection mServiceConn = new MyConnection();
 	private IJavascriptAPI2 mJsAPI;
+	private ProgressBar mProgNetWorking;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -44,6 +47,10 @@ public class Ht4adActivity extends Activity {
 		this.mWebViewBody.getSettings().setJavaScriptEnabled(true);
 		this.mWebViewBody.setWebChromeClient(new MyWebChromeClient());
 		this.mWebViewBody.setWebViewClient(new MyWebViewClient());
+
+		this.mProgNetWorking = (ProgressBar) this
+				.findViewById(R.id.progressNetWorking);
+		this.mProgNetWorking.setVisibility(View.INVISIBLE);
 
 		// start service
 		Intent service = new Intent(this, Ht4adService.class);
@@ -206,6 +213,17 @@ public class Ht4adActivity extends Activity {
 	}
 
 	class MyWebChromeClient extends WebChromeClient {
+
+		@Override
+		public void onProgressChanged(WebView view, int newProgress) {
+			super.onProgressChanged(view, newProgress);
+			if ((0 <= newProgress) && (newProgress < 100)) {
+				Ht4adActivity.this.mProgNetWorking.setVisibility(View.VISIBLE);
+			} else {
+				Ht4adActivity.this.mProgNetWorking
+						.setVisibility(View.INVISIBLE);
+			}
+		}
 	}
 
 	class MyWebViewClient extends WebViewClient {
