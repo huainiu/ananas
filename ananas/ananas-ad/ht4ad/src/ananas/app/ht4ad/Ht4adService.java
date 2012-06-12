@@ -1,5 +1,6 @@
 package ananas.app.ht4ad;
 
+import ananas.app.ht4ad.jsapi2.IJavascriptAPI2;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -9,7 +10,8 @@ import android.os.IBinder;
 
 public class Ht4adService extends Service {
 
-	private MyBinder mBinder = new MyBinder();
+	private final MyBinder mBinder = new MyBinder();
+	private IJavascriptAPI2 mJsAPI;
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -24,6 +26,21 @@ public class Ht4adService extends Service {
 
 		public void stopService() {
 			Ht4adService.this._stopForeground();
+		}
+
+		public String get(String key) {
+			IJavascriptAPI2 api = Ht4adService.this.getJsAPI();
+			return api.get(key);
+		}
+
+		public void set(String key, String value) {
+			IJavascriptAPI2 api = Ht4adService.this.getJsAPI();
+			api.set(key, value);
+		}
+
+		public String[] listKeys() {
+			IJavascriptAPI2 api = Ht4adService.this.getJsAPI();
+			return api.listKeys();
 		}
 	}
 
@@ -41,11 +58,8 @@ public class Ht4adService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-
 		super.onStart(intent, startId);
-
 		this._startForeground();
-
 	}
 
 	private void _startForeground() {
@@ -61,6 +75,15 @@ public class Ht4adService extends Service {
 
 	private void _stopForeground() {
 		this.stopForeground(true);
+	}
+
+	public IJavascriptAPI2 getJsAPI() {
+		IJavascriptAPI2 api = this.mJsAPI;
+		if (api == null) {
+			Ht4adServiceJsapiTools tools = new Ht4adServiceJsapiTools(this);
+			this.mJsAPI = api = tools;
+		}
+		return api;
 	}
 
 }

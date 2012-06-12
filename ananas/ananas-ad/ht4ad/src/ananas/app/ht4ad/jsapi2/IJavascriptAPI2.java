@@ -10,6 +10,8 @@ public interface IJavascriptAPI2 extends IKeyValueMapper {
 
 	// key for memory
 	public static final String memory_xxx = "memory.xxx";
+	public static final String memory_home_url = "memory.home_url";
+	public static final String memory_help_url = "memory.help_url";
 
 	// key for storage
 	public static final String storage_xxx = "storage.xxx";
