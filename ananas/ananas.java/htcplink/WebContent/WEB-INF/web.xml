@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Bridge</display-name>
+    <servlet-name>Bridge</servlet-name>
+    <servlet-class>ananas.app.htcplink.webproxy.servlets.Bridge</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Bridge</servlet-name>
+    <url-pattern>/Bridge</url-pattern>
+  </servlet-mapping>
 </web-app>
