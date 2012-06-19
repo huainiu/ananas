@@ -1,4 +1,4 @@
-package ananas.app.htcplink.webproxy.protocol;
+package ananas.app.htcplink;
 
 public interface WebProxyClient {
 

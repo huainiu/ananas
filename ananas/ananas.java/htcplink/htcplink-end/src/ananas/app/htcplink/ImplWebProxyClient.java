@@ -1,4 +1,4 @@
-package ananas.app.htcplink.webproxy.protocol;
+package ananas.app.htcplink;
 
 final class ImplWebProxyClient implements WebProxyClient {
 
