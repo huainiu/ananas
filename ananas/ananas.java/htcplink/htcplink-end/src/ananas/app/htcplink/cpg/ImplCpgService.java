@@ -4,7 +4,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.apache.tomcat.util.net.ServerSocketFactory;
+import javax.net.ServerSocketFactory;
 
 public class ImplCpgService implements CpgService, Runnable {
 
@@ -46,7 +46,7 @@ public class ImplCpgService implements CpgService, Runnable {
 			String host = "";
 			InetSocketAddress ep = new InetSocketAddress(host, port);
 			ServerSocketFactory ssf = ServerSocketFactory.getDefault();
-			ServerSocket ssock = ssf.createSocket(port);
+			ServerSocket ssock = ssf.createServerSocket();
 			ssock.bind(ep);
 			for (;;) {
 				Socket sessionSock = ssock.accept();
