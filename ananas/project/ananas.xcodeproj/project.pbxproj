@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		6712E313146A4AFA003D555F /* ANClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6712E30D146A4AFA003D555F /* ANClass.m */; };
+		6712E314146A4AFA003D555F /* ANObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6712E30F146A4AFA003D555F /* ANObject.m */; };
+		676FC927147B66C4007876E8 /* ANInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 676FC926147B66C4007876E8 /* ANInputStream.m */; };
+		676FC92A147B66EA007876E8 /* ANOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 676FC929147B66EA007876E8 /* ANOutputStream.m */; };
+		676FC933147B67DA007876E8 /* ANConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 676FC932147B67DA007876E8 /* ANConnection.m */; };
+		67F9C20E146A3F70005B2CAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F9C20C146A3F6F005B2CAB /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* ananas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ananas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		32CA4F630368D1EE00C91783 /* ananas_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ananas_Prefix.pch; sourceTree = "<group>"; };
+		6712E30C146A4AFA003D555F /* ANClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANClass.h; path = ../src/ananas/base/ANClass.h; sourceTree = SOURCE_ROOT; };
+		6712E30D146A4AFA003D555F /* ANClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANClass.m; path = ../src/ananas/base/ANClass.m; sourceTree = SOURCE_ROOT; };
+		6712E30E146A4AFA003D555F /* ANObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANObject.h; path = ../src/ananas/base/ANObject.h; sourceTree = SOURCE_ROOT; };
+		6712E30F146A4AFA003D555F /* ANObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANObject.m; path = ../src/ananas/base/ANObject.m; sourceTree = SOURCE_ROOT; };
+		676FC925147B66C4007876E8 /* ANInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANInputStream.h; sourceTree = "<group>"; };
+		676FC926147B66C4007876E8 /* ANInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANInputStream.m; sourceTree = "<group>"; };
+		676FC928147B66EA007876E8 /* ANOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANOutputStream.h; sourceTree = "<group>"; };
+		676FC929147B66EA007876E8 /* ANOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANOutputStream.m; sourceTree = "<group>"; };
+		676FC931147B67DA007876E8 /* ANConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANConnection.h; sourceTree = "<group>"; };
+		676FC932147B67DA007876E8 /* ANConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANConnection.m; sourceTree = "<group>"; };
+		676FC938147B700E007876E8 /* an_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = an_type.h; sourceTree = "<group>"; };
+		67F9C20B146A3F6F005B2CAB /* ananas-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ananas-Info.plist"; sourceTree = SOURCE_ROOT; };
+		67F9C20C146A3F6F005B2CAB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* ananas.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				6712E309146A4AFA003D555F /* src */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				67F9C20B146A3F6F005B2CAB /* ananas-Info.plist */,
+				67F9C20C146A3F6F005B2CAB /* main.m */,
+				32CA4F630368D1EE00C91783 /* ananas_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6712E309146A4AFA003D555F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				6712E30A146A4AFA003D555F /* ananas */,
+			);
+			name = src;
+			path = ../src;
+			sourceTree = SOURCE_ROOT;
+		};
+		6712E30A146A4AFA003D555F /* ananas */ = {
+			isa = PBXGroup;
+			children = (
+				6712E30B146A4AFA003D555F /* base */,
+				6712E310146A4AFA003D555F /* io */,
+				6712E311146A4AFA003D555F /* net */,
+				6712E312146A4AFA003D555F /* util */,
+			);
+			name = ananas;
+			path = ../src/ananas;
+			sourceTree = SOURCE_ROOT;
+		};
+		6712E30B146A4AFA003D555F /* base */ = {
+			isa = PBXGroup;
+			children = (
+				6712E30C146A4AFA003D555F /* ANClass.h */,
+				6712E30D146A4AFA003D555F /* ANClass.m */,
+				6712E30E146A4AFA003D555F /* ANObject.h */,
+				6712E30F146A4AFA003D555F /* ANObject.m */,
+				676FC938147B700E007876E8 /* an_type.h */,
+			);
+			name = base;
+			path = ../src/ananas/base;
+			sourceTree = SOURCE_ROOT;
+		};
+		6712E310146A4AFA003D555F /* io */ = {
+			isa = PBXGroup;
+			children = (
+				676FC925147B66C4007876E8 /* ANInputStream.h */,
+				676FC926147B66C4007876E8 /* ANInputStream.m */,
+				676FC928147B66EA007876E8 /* ANOutputStream.h */,
+				676FC929147B66EA007876E8 /* ANOutputStream.m */,
+			);
+			name = io;
+			path = ../src/ananas/io;
+			sourceTree = SOURCE_ROOT;
+		};
+		6712E311146A4AFA003D555F /* net */ = {
+			isa = PBXGroup;
+			children = (
+				676FC931147B67DA007876E8 /* ANConnection.h */,
+				676FC932147B67DA007876E8 /* ANConnection.m */,
+			);
+			name = net;
+			path = ../src/ananas/net;
+			sourceTree = SOURCE_ROOT;
+		};
+		6712E312146A4AFA003D555F /* util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = util;
+			path = ../src/ananas/util;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* ananas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ananas" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ananas;
+			productName = ananas;
+			productReference = 1D6058910D05DD3D006BFB54 /* ananas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ananas" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* ananas */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67F9C20E146A3F70005B2CAB /* main.m in Sources */,
+				6712E313146A4AFA003D555F /* ANClass.m in Sources */,
+				6712E314146A4AFA003D555F /* ANObject.m in Sources */,
+				676FC927147B66C4007876E8 /* ANInputStream.m in Sources */,
+				676FC92A147B66EA007876E8 /* ANOutputStream.m in Sources */,
+				676FC933147B67DA007876E8 /* ANConnection.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ananas_Prefix.pch;
+				INFOPLIST_FILE = "ananas-Info.plist";
+				PRODUCT_NAME = ananas;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ananas_Prefix.pch;
+				INFOPLIST_FILE = "ananas-Info.plist";
+				PRODUCT_NAME = ananas;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "ananas-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "ananas-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ananas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ananas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

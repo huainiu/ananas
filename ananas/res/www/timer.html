@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<html>
+
+<head>
+<title>timer test</title>
+
+<script type="text/javascript">
+// <![CDATA[
+
+
+function updateClock () {
+	var today=new Date();
+	var h=today.getHours();
+	var m=today.getMinutes();
+	var s=today.getSeconds();
+	// add a zero in front of numbers<10
+	// m=checkTime(m);
+	// s=checkTime(s);
+	document.getElementById('show-time').innerHTML=h+":"+m+":"+s;
+}
+
+
+function start() {
+	updateClock();
+	var t = setTimeout( "doRefresh()", 1000 );	
+}
+
+
+function doRefresh () {
+
+//	self.location='timer.html';
+	window.location.href="timer.html";
+	
+	updateClock();
+	var t = setTimeout( "doRefresh()", 1000 );	
+}
+
+
+// ]]>
+</script>
+
+</head>
+
+<body onload='start()' >
+
+<p><div id='show-time' > </div></p>
+<p>Hello, this is a timer.</p>
+
+</body>
+</html>

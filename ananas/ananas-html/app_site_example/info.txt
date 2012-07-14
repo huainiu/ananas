@@ -1,5 +1,0 @@
-{"app-site-info":{
-	"home-page":"index.html",
-	"title":"app_site_example",
-	"base-url":"http://ananas.googlecode.com/svn/trunk/ananas/ananas-html/app_site_example"
-}}
