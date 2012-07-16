@@ -366,6 +366,11 @@ class JSONObjectFactoryImpl implements JSONObjectFactory {
 		public JSONObjectCast cast() {
 			return this;
 		}
+
+		@Override
+		public String getData() {
+			return this.mValue;
+		}
 	}
 
 	static class MyArray implements JSON_array, JSONObjectCast {
