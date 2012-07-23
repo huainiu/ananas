@@ -3,12 +3,12 @@ package ananas.app.passworld;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,6 +35,11 @@ public class PassWorldActivity extends Activity {
 
 			TextView tv = (TextView) this.findViewById(R.id.textViewTitle);
 			tv.setText(dat);
+		}
+
+		{
+			WebView webview = (WebView) this.findViewById(R.id.webview);
+			webview.loadUrl("content://ananas.passworld.providers.httpprovider/index.html");
 		}
 
 	}

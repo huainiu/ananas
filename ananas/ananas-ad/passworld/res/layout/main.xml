@@ -16,4 +16,15 @@
         android:layout_height="wrap_content"
         android:text="zxing://scan/" />
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
 </LinearLayout>
