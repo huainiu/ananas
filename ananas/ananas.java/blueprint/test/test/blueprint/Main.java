@@ -5,6 +5,7 @@ import java.io.InputStream;
 import ananas.lib.blueprint.Blueprint;
 import ananas.lib.blueprint.IDocument;
 import ananas.lib.blueprint.IDocumentBuilder;
+import ananas.lib.blueprint.IElement;
 import ananas.lib.blueprint.IImplementation;
 
 public class Main {
@@ -18,7 +19,7 @@ public class Main {
 		InputStream is = "".getClass().getResourceAsStream(path);
 		String baseURI = null;
 		IDocument doc = builder.build(is, baseURI);
-		doc.getRootElement();
-
+		IElement root = doc.getRootElement();
+		System.out.println("doc:root = " + doc + ":" + root);
 	}
 }
