@@ -8,20 +8,14 @@
 		value="ananas.lib.blueprint.elements.awt.NamespaceLoader" />
 
 	<bp:content>
-
 		<JFrame xmlns="xmlns:ananas:blueprint:swing" id="root"
 			title="Blueprint DEMO" x="320" y="240" width="640" height="480">
-
-
 			<MenuBar xmlns="xmlns:ananas:blueprint:awt">
-
 				<Menu label="File">
 					<MenuItem label="New"></MenuItem>
 					<MenuItem id="id_menu_exit" label="Exit">
 					</MenuItem>
 				</Menu>
-
-
 				<Menu label="Edit">
 					<MenuItem label="Cut"></MenuItem>
 					<MenuItem label="Copy"></MenuItem>
@@ -31,20 +25,12 @@
 						<MenuItem label="Find in Directory"></MenuItem>
 					</Menu>
 				</Menu>
-
-
 				<Menu label="Help">
 					<MenuItem label="Help Content"></MenuItem>
 					<MenuItem label="About"></MenuItem>
 				</Menu>
-
 			</MenuBar>
-
-
-			<JButton text="Hello world! This is a demo of Blueprint."></JButton>
-
-
+			<JButton id="id_button_1" text="Hello world! This is a demo of Blueprint."></JButton>
 		</JFrame>
-
 	</bp:content>
 </bp:blueprint>

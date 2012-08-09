@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import ananas.lib.blueprint.Blueprint;
 import ananas.lib.blueprint.IDocument;
 import ananas.lib.blueprint.elements.awt.IEMenuItem;
+import ananas.lib.blueprint.elements.swing.IEJButton;
 
 public class DemoMain {
 
@@ -43,6 +44,19 @@ public class DemoMain {
 					System.exit(0);
 				}
 			});
+
+			IEJButton button = (IEJButton) doc.findElementById("id_button_1");
+			button.toJButton().addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+
+					javax.swing.JOptionPane.showMessageDialog(
+							DemoFrameCtrl.this.mFrame, "Yeah!");
+
+				}
+			});
+
 		}
 
 		public void show() {
