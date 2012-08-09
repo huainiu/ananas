@@ -2,7 +2,11 @@ package ananas.lib.blueprint.elements.awt;
 
 import java.awt.Frame;
 
+import ananas.lib.blueprint.IElement;
+
 public interface IEFrame extends IEWindow {
+
+	Frame toFrame();
 
 	public static class Wrapper extends IEWindow.Wrapper implements IEFrame {
 
@@ -24,6 +28,23 @@ public interface IEFrame extends IEWindow {
 		}
 
 		@Override
+		public boolean appendChild(IElement element) {
+
+			if (element == null) {
+				return false;
+
+			} else if (element instanceof IEMenuBar) {
+				IEMenuBar mb = (IEMenuBar) element;
+				this.toFrame().setMenuBar(mb.toMenuBar());
+
+			} else {
+				return super.appendChild(element);
+
+			}
+			return true;
+		}
+
+		@Override
 		public Object createTarget() {
 			return new Frame();
 		}
@@ -38,6 +59,11 @@ public interface IEFrame extends IEWindow {
 			if (this.mTitle != null)
 				frame.setTitle(this.mTitle);
 
+		}
+
+		@Override
+		public Frame toFrame() {
+			return (Frame) this.getTarget(true);
 		}
 
 	}

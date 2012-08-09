@@ -22,6 +22,11 @@ public class NamespaceLoader implements INamespaceLoader {
 		this.registerClass(ns, "Window", IEWindow.Wrapper.class);
 		this.registerClass(ns, "Frame", IEFrame.Wrapper.class);
 
+		this.registerClass(ns, "MenuComponent", IEMenuComponent.Wrapper.class);
+		this.registerClass(ns, "MenuBar", IEMenuBar.Wrapper.class);
+		this.registerClass(ns, "MenuItem", IEMenuItem.Wrapper.class);
+		this.registerClass(ns, "Menu", IEMenu.Wrapper.class);
+
 		return ns;
 
 	}

@@ -205,7 +205,15 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 			for (int i = 0; i < len; i++) {
 				String name = attr.getQName(i);
 				String value = attr.getValue(i);
-				element.setAttribute(name, value);
+				boolean rlt = element.setAttribute(name, value);
+				if (!rlt) {
+					String msg = "The element not accept the attribute";
+					System.err.println(msg + this._stringOfLocator());
+					System.err.println("    " + "element   = " + element);
+					System.err.println("    " + "attrName  = " + name);
+					System.err.println("    " + "attrValue = " + value);
+					throw new SAXException(msg);
+				}
 			}
 
 		}

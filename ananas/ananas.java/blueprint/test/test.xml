@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<blueprint xmlns="xmlns:ananas:blueprint:base">
+<bp:blueprint xmlns:bp="xmlns:ananas:blueprint:base"
+	xmlns:awt="xmlns:ananas:blueprint:awt" xmlns:swing="xmlns:ananas:blueprint:swing">
 
-	<import type="class:NamespaceLoader"
+	<bp:import type="class:NamespaceLoader"
 		value="ananas.lib.blueprint.elements.swing.NamespaceLoader" />
+	<bp:import type="class:NamespaceLoader"
+		value="ananas.lib.blueprint.elements.awt.NamespaceLoader" />
 
-	<content>
-		<JFrame xmlns="xmlns:ananas:blueprint:swing" id="root" title="hello world!"
-			x="100" y="200" width="640" height="480">
+	<bp:content>
+
+		<JFrame xmlns="xmlns:ananas:blueprint:swing" id="root"
+			title="Hello world! This is a demo of Blueprint." x="320" y="240"
+			width="640" height="480">
+
+
+			<MenuBar xmlns="xmlns:ananas:blueprint:awt">
+
+				<Menu label="File">
+					<MenuItem label="New"></MenuItem>
+					<MenuItem label="Exit">
+					</MenuItem>
+				</Menu>
+
+
+				<Menu label="Edit">
+					<MenuItem label="Cut"></MenuItem>
+					<MenuItem label="Copy"></MenuItem>
+					<MenuItem label="Paste"></MenuItem>
+					<Menu label="Find">
+						<MenuItem label="Find in Document"></MenuItem>
+						<MenuItem label="Find in Directory"></MenuItem>
+					</Menu>
+				</Menu>
+
+
+				<Menu label="Help">
+					<MenuItem label="Help Content"></MenuItem>
+					<MenuItem label="About"></MenuItem>
+				</Menu>
+
+			</MenuBar>
+
+
 		</JFrame>
-	</content>
 
-</blueprint>
+	</bp:content>
+</bp:blueprint>

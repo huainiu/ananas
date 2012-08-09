@@ -6,6 +6,8 @@ import ananas.lib.blueprint.elements.awt.IEFrame;
 
 public interface IEJFrame extends IEFrame {
 
+	JFrame toJFrame();
+
 	public static class Wrapper extends IEFrame.Wrapper implements IEJFrame {
 
 		@Override
@@ -20,6 +22,11 @@ public interface IEJFrame extends IEFrame {
 
 			// Frame frame = (Frame) this.getTarget(true);
 
+		}
+
+		@Override
+		public JFrame toJFrame() {
+			return (JFrame) this.getTarget(true);
 		}
 
 	}
