@@ -15,7 +15,7 @@ public class Main {
 		IImplementation impl = Blueprint.getInstance().getImplementation();
 		IDocumentBuilder builder = Blueprint.getInstance()
 				.getDocumentBuilderFactory().createDocumentBuilder(impl);
-		String path = "/test/test.xml";
+		String path = "/test.xml";
 		InputStream is = "".getClass().getResourceAsStream(path);
 		String baseURI = null;
 		IDocument doc = builder.build(is, baseURI);
