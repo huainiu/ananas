@@ -1,5 +1,8 @@
 package ananas.lib.blueprint.elements.swing;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import ananas.lib.blueprint.IImplementation;
 import ananas.lib.blueprint.INamespace;
 import ananas.lib.blueprint.INamespaceLoader;
@@ -16,14 +19,11 @@ public class NamespaceLoader implements INamespaceLoader {
 		String defaultPrefix = "swing";
 		INamespace ns = impl.newNamespace(nsURI, defaultPrefix);
 
-		this.registerClass(ns, "JFrame", IEJFrame.Wrapper.class);
+		ns.registerClass("JButton", IEJButton.Wrapper.class, JButton.class);
+		ns.registerClass("JFrame", IEJFrame.Wrapper.class, JFrame.class);
 
 		return ns;
 
-	}
-
-	private void registerClass(INamespace ns, String localName, Class<?> class1) {
-		ns.registerClass(localName, class1, class1);
 	}
 
 }
