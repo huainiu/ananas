@@ -16,12 +16,16 @@ public class NamespaceLoader implements INamespaceLoader {
 		String defaultPrefix = "bp";
 		INamespace ns = impl.newNamespace(nsURI, defaultPrefix);
 
-		ns.registerClass("blueprint", BlueprintElement.class, Blueprint.class);
-		ns.registerClass("document", DocumentElement.class, Document.class);
-		ns.registerClass("import", ImportElement.class, Import.class);
+		this.registerClass(ns, "blueprint", ElementBlueprint.class);
+		this.registerClass(ns, "content", ElementContent.class);
+		this.registerClass(ns, "import", ElementImport.class);
 
 		return ns;
 
+	}
+
+	private void registerClass(INamespace ns, String localName, Class<?> class1) {
+		ns.registerClass(localName, class1, class1);
 	}
 
 }
