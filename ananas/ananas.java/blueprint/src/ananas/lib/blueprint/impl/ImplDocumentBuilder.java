@@ -101,10 +101,10 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 			String text = new String(ch, start, length);
 			boolean rlt = element.appendText(text);
 			if (!rlt) {
-				String msg = "";
+				String msg = "The ELEMENT not accept the TEXT";
 				System.err.println(msg + this._stringOfLocator());
 				System.err.println("    " + "element = " + element);
-				System.err.println("    " + "   text = " + text);
+				System.err.println("    " + "text    = " + text);
 				throw new SAXException(msg);
 			}
 
@@ -139,10 +139,10 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 				final IElement parent = this.mStack.peek();
 				boolean rlt = parent.appendChild(child);
 				if (!rlt) {
-					String msg = "";
+					String msg = "The PARENT not accept the CHILD";
 					System.err.println(msg + this._stringOfLocator());
 					System.err.println("    " + "parent = " + parent);
-					System.err.println("    " + " child = " + child);
+					System.err.println("    " + "child  = " + child);
 					throw new SAXException(msg);
 				}
 			}
@@ -178,10 +178,31 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 				Attributes attr) throws SAXException {
 
 			INamespace ns = this.mNSReg.getNamespace(uri);
+			if (ns == null) {
+				String msg = "No Namespace";
+				System.err.println(msg + this._stringOfLocator());
+				System.err.println("    " + "Namespace-URI = " + uri);
+				System.err.println("    " + "Local-Name    = " + localName);
+				throw new SAXException(msg);
+			}
 			IClass cls = ns.findClass(localName);
+			if (cls == null) {
+				String msg = "No Class";
+				System.err.println(msg + this._stringOfLocator());
+				System.err.println("    " + "Namespace-URI = " + uri);
+				System.err.println("    " + "Local-Name    = " + localName);
+				throw new SAXException(msg);
+			}
 			IElement element = cls.createElement(this.mDoc);
 
 			this.mStack.push(element);
+
+			final int len = attr.getLength();
+			for (int i = 0; i < len; i++) {
+				String name = attr.getQName(i);
+				String value = attr.getValue(i);
+				element.setAttribute(name, value);
+			}
 
 		}
 

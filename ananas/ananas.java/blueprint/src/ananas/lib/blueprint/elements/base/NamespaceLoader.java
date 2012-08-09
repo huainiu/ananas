@@ -3,6 +3,9 @@ package ananas.lib.blueprint.elements.base;
 import ananas.lib.blueprint.IImplementation;
 import ananas.lib.blueprint.INamespace;
 import ananas.lib.blueprint.INamespaceLoader;
+import ananas.lib.blueprint.elements.base.ElementBlueprint.DefaultElementBlueprint;
+import ananas.lib.blueprint.elements.base.ElementContent.DefaultElementContent;
+import ananas.lib.blueprint.elements.base.ElementImport.DefaultElementImport;
 
 public class NamespaceLoader implements INamespaceLoader {
 
@@ -16,9 +19,9 @@ public class NamespaceLoader implements INamespaceLoader {
 		String defaultPrefix = "bp";
 		INamespace ns = impl.newNamespace(nsURI, defaultPrefix);
 
-		this.registerClass(ns, "blueprint", ElementBlueprint.class);
-		this.registerClass(ns, "content", ElementContent.class);
-		this.registerClass(ns, "import", ElementImport.class);
+		this.registerClass(ns, "blueprint", DefaultElementBlueprint.class);
+		this.registerClass(ns, "content", DefaultElementContent.class);
+		this.registerClass(ns, "import", DefaultElementImport.class);
 
 		return ns;
 
