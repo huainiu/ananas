@@ -10,15 +10,14 @@
 	<bp:content>
 
 		<JFrame xmlns="xmlns:ananas:blueprint:swing" id="root"
-			title="Hello world! This is a demo of Blueprint." x="320" y="240"
-			width="640" height="480">
+			title="Blueprint DEMO" x="320" y="240" width="640" height="480">
 
 
 			<MenuBar xmlns="xmlns:ananas:blueprint:awt">
 
 				<Menu label="File">
 					<MenuItem label="New"></MenuItem>
-					<MenuItem label="Exit">
+					<MenuItem id="id_menu_exit" label="Exit">
 					</MenuItem>
 				</Menu>
 
@@ -40,6 +39,9 @@
 				</Menu>
 
 			</MenuBar>
+
+
+			<JButton text="Hello world! This is a demo of Blueprint."></JButton>
 
 
 		</JFrame>
