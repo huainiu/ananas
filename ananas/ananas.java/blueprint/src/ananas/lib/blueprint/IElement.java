@@ -10,18 +10,37 @@ public interface IElement {
 
 	Object getTarget();
 
+	Object createTarget();
+
 	IDocument getOwnerDocument();
 
 	IClass getBlueprintClass();
 
-	void bindOwnerDocument(IDocument ownerDoc);
+	boolean bindTarget(Object target);
 
-	void bindBlueprintClass(IClass aClass);
+	boolean bindOwnerDocument(IDocument ownerDoc);
+
+	boolean bindBlueprintClass(IClass aClass);
 
 	boolean setAttribute(String name, String value);
 
 	boolean appendText(String text);
 
 	boolean appendChild(IElement element);
+
+	void tagBegin();
+
+	void tagEnd();
+
+	IElement getParent();
+
+	/**
+	 * set new parent and return old parent.
+	 * 
+	 * @param parent
+	 *            the new parent.
+	 * @return the old parent.
+	 * */
+	IElement setParent(IElement parent);
 
 }

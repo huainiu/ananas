@@ -22,19 +22,6 @@ class ImplClass implements IClass {
 	}
 
 	@Override
-	public IElement createElement(IDocument ownerDoc) {
-		try {
-			IElement element = (IElement) this.mElementClass.newInstance();
-			element.bindOwnerDocument(ownerDoc);
-			element.bindBlueprintClass(this);
-			return element;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
 	public INamespace getOwnerNamespace() {
 		return this.mOwnerNS;
 	}
@@ -52,6 +39,26 @@ class ImplClass implements IClass {
 	@Override
 	public Class<?> getTargetClass() {
 		return this.mTargetClass;
+	}
+
+	@Override
+	public IElement createElement(IDocument ownerDoc) {
+		try {
+			IElement element = (IElement) this.mElementClass.newInstance();
+			element.bindOwnerDocument(ownerDoc);
+			element.bindBlueprintClass(this);
+			return element;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public IElement createElement(IDocument ownerDoc, Object target) {
+		IElement element = this.createElement(ownerDoc);
+		element.bindTarget(target);
+		return element;
 	}
 
 }

@@ -1,4 +1,4 @@
-package ananas.lib.blueprint.elements.swing;
+package ananas.lib.blueprint.elements.awt;
 
 import ananas.lib.blueprint.IImplementation;
 import ananas.lib.blueprint.INamespace;
@@ -12,11 +12,15 @@ public class NamespaceLoader implements INamespaceLoader {
 	@Override
 	public INamespace load(IImplementation impl) {
 
-		String nsURI = "xmlns:ananas:blueprint:swing";
-		String defaultPrefix = "swing";
+		String nsURI = "xmlns:ananas:blueprint:awt";
+		String defaultPrefix = "awt";
 		INamespace ns = impl.newNamespace(nsURI, defaultPrefix);
 
-		this.registerClass(ns, "JFrame", IEJFrame.Wrapper.class);
+		this.registerClass(ns, "Object", IEObject.Wrapper.class);
+		this.registerClass(ns, "Component", IEComponent.Wrapper.class);
+		this.registerClass(ns, "Container", IEContainer.Wrapper.class);
+		this.registerClass(ns, "Window", IEWindow.Wrapper.class);
+		this.registerClass(ns, "Frame", IEFrame.Wrapper.class);
 
 		return ns;
 

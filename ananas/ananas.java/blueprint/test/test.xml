@@ -5,8 +5,9 @@
 		value="ananas.lib.blueprint.elements.swing.NamespaceLoader" />
 
 	<content>
-		<jframe xmlns="xmlns:ananas:blueprint:swing">
-		</jframe>
+		<JFrame xmlns="xmlns:ananas:blueprint:swing" id="root" title="hello world!"
+			x="100" y="200" width="640" height="480">
+		</JFrame>
 	</content>
 
 </blueprint>

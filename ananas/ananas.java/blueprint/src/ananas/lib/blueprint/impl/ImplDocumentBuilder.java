@@ -133,10 +133,13 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 				throws SAXException {
 
 			final IElement child = this.mStack.pop();
+			child.tagEnd();
 			if (this.mStack.isEmpty()) {
 				this.mDoc.setRootElement(child);
+				child.setParent(null);
 			} else {
 				final IElement parent = this.mStack.peek();
+				child.setParent(parent);
 				boolean rlt = parent.appendChild(child);
 				if (!rlt) {
 					String msg = "The PARENT not accept the CHILD";
@@ -196,6 +199,7 @@ final class ImplDocumentBuilder implements IDocumentBuilder {
 			IElement element = cls.createElement(this.mDoc);
 
 			this.mStack.push(element);
+			element.tagBegin();
 
 			final int len = attr.getLength();
 			for (int i = 0; i < len; i++) {
