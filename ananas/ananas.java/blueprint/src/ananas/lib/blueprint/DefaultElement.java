@@ -108,7 +108,13 @@ public class DefaultElement implements IElement {
 
 	@Override
 	public Object createTarget() {
-		return this;
+		Object obj = null;
+		try {
+			obj = this.getBlueprintClass().getTargetClass().newInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return obj;
 	}
 
 	protected final Object getTarget(boolean createIfNull) {
