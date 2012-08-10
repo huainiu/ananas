@@ -45,7 +45,8 @@ public class DemoMain {
 				}
 			});
 
-			IEJButton button = (IEJButton) doc.findElementById("id_button_hello");
+			IEJButton button = (IEJButton) doc
+					.findElementById("id_button_hello");
 			button.toJButton().addActionListener(new ActionListener() {
 
 				@Override
@@ -57,9 +58,6 @@ public class DemoMain {
 				}
 			});
 
-			IEJButton btnSouth = (IEJButton) doc
-					.findElementById("id_button_south");
-			btnSouth.toJButton().setText("row1\nrow2");
 		}
 
 		public void show() {

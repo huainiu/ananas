@@ -37,19 +37,16 @@
 				<awt:BorderLayout />
 
 				<awt:position value="south" />
-				<JButton id="id_button_south" text="south-\n-xxxxxxxx"></JButton>
+				<JButton id="id_button_south" text="south" />
 
 				<swing:position value="north" />
-				<JPanel>
-					<awt:BorderLayout />
-					<JButton id="id_button_2" text="north-xxxxxxxx"></JButton>
-				</JPanel>
+				<JButton id="id_button_hello" text="hello" />
 
 				<swing:position value="east" />
 				<JButton id="id_button_3" text="east"></JButton>
 
 				<swing:position value="west" />
-				<JButton id="id_button_4" text="west-xxxxxxxx"></JButton>
+				<JLabel id="id_button_4" text="west-xxxxxxxx" />
 
 				<swing:position value="center" />
 				<JButton id="id_button_5" text="中心"></JButton>
@@ -66,23 +63,39 @@
 				<JButton id="id_button_3" text="button 3"></JButton>
 				<swing:position value="b" />
 				<JButton id="id_button_4" text="button 4"></JButton>
+
+				<JButton id="id_button_4" text="(^_^)"></JButton>
+
 			</awt:Container>
 
 			<JPanel>
 				<awt:GridLayout rows="4" columns="4" />
-				<awt:position value="a" />
-				<JButton id="id_button_hello" text="Hello world! This is a demo of Blueprint."></JButton>
-				<swing:position value="b" />
-				<JButton id="id_button_2" text="button 2"></JButton>
-				<swing:position value="b" />
-				<JLabel text="this is a JLabel" />
-				<swing:position value="b" />
-				<JButton id="id_button_4" text="button 4"></JButton>
+
+				<JButton text="a JButton" />
+				<JLabel text="a JLabel" />
+				<JTextField text="a JTextField" />
+				<JPasswordField text="a JPasswordField" />
+
 			</JPanel>
 
 			<JPanel>
-				<awt:GridLayout rows="0" columns="1" />
-				<JButton id="id_button_4" text="(^_^)"></JButton>
+				<awt:GridLayout rows="1" columns="0" />
+				<JTextArea>
+
+					A JLabel object can
+					display either text, an image, or both. You can
+					specify where in the
+					label's display area the label's contents are
+					aligned by setting the
+					vertical and horizontal alignment. By
+					default, labels are vertically
+					centered in their display area.
+					Text-only labels are leading edge
+					aligned, by default; image-only
+					labels are horizontally centered, by
+					default.
+
+				</JTextArea>
 				<JLabel>
 					<![CDATA[<html><body><p>]]>
 					A display area for a short text string or an image, or both. A
