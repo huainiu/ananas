@@ -80,45 +80,54 @@
 
 			<JPanel>
 				<awt:GridLayout rows="1" columns="0" />
-				<JTextArea>
+				<JScrollPane>
+					<JTextArea>
 
-					A JLabel object can
-					display either text, an image, or both. You can
-					specify where in the
-					label's display area the label's contents are
-					aligned by setting the
-					vertical and horizontal alignment. By
-					default, labels are vertically
-					centered in their display area.
-					Text-only labels are leading edge
-					aligned, by default; image-only
-					labels are horizontally centered, by
-					default.
+						A JLabel object can
+						display either text, an image, or
+						both. You can
+						specify where in the
+						label's display area the label's
+						contents are
+						aligned by setting the
+						vertical and horizontal
+						alignment. By
+						default, labels are vertically
+						centered in their
+						display area.
+						Text-only labels are leading edge
+						aligned, by default;
+						image-only
+						labels are horizontally centered, by
+						default.
 
-				</JTextArea>
-				<JLabel>
+					</JTextArea>
+				</JScrollPane>
+				<JScrollPane>
+					<JLabel>
 					<![CDATA[<html><body><p>]]>
-					A display area for a short text string or an image, or both. A
-					label
-					does not react to input events. As a result, it cannot get the
-					keyboard focus. A label can, however, display a keyboard
-					alternative as a convenience for a nearby component that has a
-					keyboard alternative but can't display it.
+						A display area for a short text string or an image, or both. A
+						label
+						does not react to input events. As a result, it cannot get the
+						keyboard focus. A label can, however, display a keyboard
+						alternative as a convenience for a nearby component that has a
+						keyboard alternative but can't display it.
 					<![CDATA[</p><p>]]>
-					A JLabel object can
-					display either text, an image, or both. You can
-					specify where in the
-					label's display area the label's contents are
-					aligned by setting the
-					vertical and horizontal alignment. By
-					default, labels are vertically
-					centered in their display area.
-					Text-only labels are leading edge
-					aligned, by default; image-only
-					labels are horizontally centered, by
-					default.
+						A JLabel object can
+						display either text, an image, or both. You can
+						specify where in the
+						label's display area the label's contents are
+						aligned by setting the
+						vertical and horizontal alignment. By
+						default, labels are vertically
+						centered in their display area.
+						Text-only labels are leading edge
+						aligned, by default; image-only
+						labels are horizontally centered, by
+						default.
 					<![CDATA[</p></body></html>]]>
-				</JLabel>
+					</JLabel>
+				</JScrollPane>
 			</JPanel>
 
 		</JFrame>

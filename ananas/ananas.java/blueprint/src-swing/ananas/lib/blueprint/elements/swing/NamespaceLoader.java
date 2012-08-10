@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
@@ -45,6 +46,8 @@ public class NamespaceLoader implements INamespaceLoader {
 				JPasswordField.class);
 		ns.registerClass("JTextArea", IEJTextArea.Wrapper.class,
 				JTextArea.class);
+		ns.registerClass("JScrollPane", IEJScrollPane.Wrapper.class,
+				JScrollPane.class);
 
 		// } end
 
