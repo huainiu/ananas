@@ -2,6 +2,7 @@ package ananas.lib.blueprint.elements.swing;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import ananas.lib.blueprint.IImplementation;
 import ananas.lib.blueprint.INamespace;
@@ -24,6 +25,7 @@ public class NamespaceLoader implements INamespaceLoader {
 				IE_position.Core.class);
 		ns.registerClass("JButton", IEJButton.Wrapper.class, JButton.class);
 		ns.registerClass("JFrame", IEJFrame.Wrapper.class, JFrame.class);
+		ns.registerClass("JPanel", IEJPanel.Wrapper.class, JPanel.class);
 
 		return ns;
 

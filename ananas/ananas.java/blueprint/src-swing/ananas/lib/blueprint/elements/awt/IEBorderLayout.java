@@ -75,6 +75,5 @@ public interface IEBorderLayout extends IEObject, IELayoutManager {
 		public Object createTarget() {
 			return super.createTarget();
 		}
-
 	}
 }
