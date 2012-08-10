@@ -30,7 +30,17 @@
 					<MenuItem label="About"></MenuItem>
 				</Menu>
 			</MenuBar>
+			
+			<awt:FlowLayout />
+			<awt:BorderLayout />
+			<awt:GridLayout />
+
+			<awt:position value="a" />
 			<JButton id="id_button_1" text="Hello world! This is a demo of Blueprint."></JButton>
+			<swing:position value="b" />
+			<JButton id="id_button_2" text="button 2"></JButton>
+			<JButton id="id_button_3" text="button 3"></JButton>
+			<JButton id="id_button_4" text="button 4"></JButton>
 		</JFrame>
 	</bp:content>
 </bp:blueprint>
